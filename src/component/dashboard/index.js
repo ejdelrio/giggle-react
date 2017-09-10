@@ -9,13 +9,12 @@ import SocketIOClient from 'socket.io-client';
 class Dashboard extends React.Component {
   render() {
 
-    console.log('xxxxx',this.props);
     if(this.props.token && !this.props.socket) {
       this.props.setSocket();
     }
 
     if(this.props.socket) {
-      this.props.socket.emit('message', 'I AM A GOD');
+      this.props.socket.emit('test', 'I AM A GOD');
     }
     return(
       <span>
