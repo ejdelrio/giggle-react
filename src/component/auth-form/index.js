@@ -20,7 +20,6 @@ class AuthForm extends React.Component {
   }
 
   onChange(e) {
-    console.log(this.props.auth)
     let {name, value} = e.target;
     this.setState({
       [name]: value

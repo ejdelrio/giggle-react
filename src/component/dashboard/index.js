@@ -1,9 +1,22 @@
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+
 import Landing from '../landing'
+import * as socketAction from '../../action/socket-action.js';
+import SocketIOClient from 'socket.io-client';
 
 class Dashboard extends React.Component {
   render() {
+
+    console.log('xxxxx',this.props);
+    if(this.props.token && !this.props.socket) {
+      this.props.setSocket();
+    }
+
+    if(this.props.socket) {
+      this.props.socket.emit('message', 'I AM A GOD');
+    }
     return(
       <span>
         <ul>
@@ -15,5 +28,13 @@ class Dashboard extends React.Component {
     )
   }
 }
+let mapStateToProps = state => ({
+  token: state.token,
+  socket: state.socket
+})
 
-export default Dashboard;
+let mapDispatchToProps = dispatch => ({
+  setSocket: () => dispatch(socketAction.connectSocket())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

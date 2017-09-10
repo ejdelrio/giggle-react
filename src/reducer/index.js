@@ -1,6 +1,8 @@
 import {combineReducers} from 'redux';
-import authReducer from './auth.js';
+import token from './auth.js';
+import socket from './socket.js';
 
 module.exports = combineReducers({
-  authReducer,
+  token,
+  socket,
 });
