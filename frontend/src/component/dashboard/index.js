@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
     }
 
     if(this.props.socket) {
-      this.props.socket.emit('test', 'I AM A GOD');
+      this.props.socket.emit('balls-chicken');
     }
     return(
       <span>

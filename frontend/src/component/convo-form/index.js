@@ -19,12 +19,13 @@ class ConvoForm extends React.Component{
 
   onSubmit(e) {
     e.preventDefault();
-    let newConvo = {}
-    newConvo.members = this.state.members.split(', ');
-    this.props.onComplete(newConvo);
-    this.setState({
-      members: ''
-    });
+    let newConvo = this.state.members.split(', ');
+    let newMessage = {content: this.state.message};
+    this.props.onComplete(newConvo, newMessage);
+    .then(() => this.setState({
+      members: '',
+      message: ''
+    }));
   }
 
   render() {
@@ -35,6 +36,13 @@ class ConvoForm extends React.Component{
           type='text'
           placeholder='Enter username'
           value={this.state.members}
+          onChange={this.onChange}
+        />
+        <input
+          name='message'
+          type='text'
+          placeholder='Enter message'
+          value={this.state.message}
           onChange={this.onChange}
         />
         <button type='submit'>Send Message</button>
