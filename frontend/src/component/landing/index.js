@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 
 import * as util from '../../lib/util.js';
 import AuthForm from '../auth-form';
-import ConvoForm from '../convo-form';
 import * as authAction from '../../action/auth-action.js';
 
 class Landing extends React.Component {

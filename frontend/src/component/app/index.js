@@ -16,7 +16,7 @@ class App extends React.Component {
           <Route exact path='*' component={NavBar} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/settings' component={Settings} />
-          <Route exact path='landing' component={Landing} />
+          <Route exact path='/welcome/:auth' component={Landing} />
         </span>
 
       </BrowserRouter>

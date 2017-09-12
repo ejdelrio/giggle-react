@@ -21,19 +21,21 @@ class AuthForm extends React.Component {
 
   onChange(e) {
     let {name, value} = e.target;
-    let errorCheck = errorName => {
-      return name === !errorName && !value ? `${errorName}` : null;
+
+    function errorCheck(errorName) {
+      return name === errorName && !value ? `${errorName} required`: null;
     }
+
     this.setState({
       [name]: value,
-      userName: errorCheck('userName'),
-      passWord: errorCheck('passWord'),
-      email: errorCheck('email')
+      userNameError: errorCheck('username'),
+      emailError: errorCheck('email'),
+      passWordError: errorCheck('password')
     })
   }
 
   onSubmit(e) {
-    console.log(this.props.onComplete);
+    console.log(this.state);
     e.preventDefault();
     this.props.onComplete(this.state)
     .then(() => {

@@ -9,6 +9,7 @@ export const tokenSet = token => ({
 export const tokenDelete = () => {
   util.deleteCookie('Giggle-Token')
   return {type: 'TOKEN_DELETE'};
+};
 
 export const signupRequest = user => dispatch => {
   return superagent.post(`${__API_URL__}/api/signup`)
