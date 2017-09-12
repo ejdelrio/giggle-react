@@ -1,13 +1,14 @@
 import superagent from 'superagent';
+import * as util from '../lib/util.js';
 
 export const tokenSet = token => ({
   type: 'TOKEN_SET',
   payload: token
 });
 
-export const tokenDelete = () => ({
-  type: 'TOKEN_DELETE'
-});
+export const tokenDelete = () => {
+  util.deleteCookie('Giggle-Token')
+  return {type: 'TOKEN_DELETE'};
 
 export const signupRequest = user => dispatch => {
   return superagent.post(`${__API_URL__}/api/signup`)

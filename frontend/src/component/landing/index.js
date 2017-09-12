@@ -16,19 +16,13 @@ class Landing extends React.Component {
       this.props.login
 
     return(
-      <span>
-        <AuthForm
-          onComplete={onComplete}
-          auth={params.auth}
+      <AuthForm
+        onComplete={onComplete}
+        auth={params.auth}
+        history={() => this.props.history.replace('/')}
         />
-        {util.renderIf(this.props.token,
-          <ConvoForm />
-        )}
-      </span>
     )
   }
-
-
 }
 
 let mapStateToProps = state => ({

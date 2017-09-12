@@ -7,7 +7,7 @@ import App from './component/app';
 let store = createAppStore();
 let createApp = () => (
   <Provider store={store}>
-    </App>
+    <App />
   </Provider>
 )
 ReactDom.render(createApp(), document.getElementById('root'));

@@ -21,8 +21,14 @@ class AuthForm extends React.Component {
 
   onChange(e) {
     let {name, value} = e.target;
+    let errorCheck = errorName => {
+      return name === !errorName && !value ? `${errorName}` : null;
+    }
     this.setState({
-      [name]: value
+      [name]: value,
+      userName: errorCheck('userName'),
+      passWord: errorCheck('passWord'),
+      email: errorCheck('email')
     })
   }
 
@@ -30,6 +36,17 @@ class AuthForm extends React.Component {
     console.log(this.props.onComplete);
     e.preventDefault();
     this.props.onComplete(this.state)
+    .then(() => {
+      this.setState({
+        userName: '',
+        passWord: '',
+        email: ''
+      });
+      this.props.history();
+    })
+    .catch(error => {
+      this.setState({error});
+    })
   }
 
   render() {
@@ -61,8 +78,8 @@ class AuthForm extends React.Component {
         {util.renderIf(this.props.auth === 'signup', emailInput)}
         <button type='submit'>{this.props.auth}</button>
       </form>
-    )
-  }
+    );
+  };
 }
 
 export default AuthForm;
