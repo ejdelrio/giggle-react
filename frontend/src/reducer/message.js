@@ -6,7 +6,7 @@ module.exports = (state={}, action) => {
 
   switch(type) {
     case 'CONVERSATION_CREATE':
-      return {...state, payload.id: []}
+      return {...state, [payload.id]: []}
     case 'MESSAGE_CREATE':
       let {convoID} = payload;
       let convoMessages = state[convoID];

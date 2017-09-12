@@ -21,7 +21,7 @@ class ConvoForm extends React.Component{
     e.preventDefault();
     let newConvo = this.state.members.split(', ');
     let newMessage = {content: this.state.message};
-    this.props.onComplete(newConvo, newMessage);
+    this.props.onComplete(newConvo, newMessage)
     .then(() => this.setState({
       members: '',
       message: ''
