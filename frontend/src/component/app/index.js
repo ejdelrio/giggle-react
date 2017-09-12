@@ -10,11 +10,9 @@ const store = createAppStore();
 class App extends React.Component {
   render() {
     return(
-      <Provider store={store}>
-        <BrowserRouter>
-          <Route path='/' component={Dashboard} />
-        </BrowserRouter>
-      </Provider>
+      <BrowserRouter>
+        
+      </BrowserRouter>
     )
   }
 }
