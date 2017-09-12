@@ -30,8 +30,7 @@ class AuthForm extends React.Component {
       [name]: value,
       userNameError: errorCheck('username'),
       emailError: errorCheck('email'),
-      passWordError: errorCheck('password')
-    })
+      passWordError: errorCheck('password') })
   }
 
   onSubmit(e) {

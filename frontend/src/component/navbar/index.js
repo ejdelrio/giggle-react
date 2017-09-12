@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import * as util from '../../lib/util.js';
-import * as authActions from '../../action/auth-action.js'
+import * as authActions from '../../action/auth-action.js';
+import * as socketActions from '../../action/socket-action.js';
 
 let newLink = (link, text) => (
   <li>
@@ -19,6 +20,9 @@ class NavBar extends React.Component {
     this.validateRoute = this.validateRoute.bind(this);
     this.onLogout = this.onLogout.bind(this);
   }
+  componentDidMount() {
+    this.validateRoute();
+  }
 
   validateRoute() {
     let {match, history} = this.props;
@@ -31,6 +35,11 @@ class NavBar extends React.Component {
     // .catch(err => console.error('NO PROFILE :D'));
 
   }
+  validateLogin() {
+    if(this.props.token) {
+
+    }
+  }
 
   onLogout() {
    this.props.logout()
@@ -42,14 +51,18 @@ class NavBar extends React.Component {
     return (
       <header>
         <h1>Giggle</h1>
-        <ul>
-          {newLink('settings', 'settings')}
-          {newLink('dashboard', 'dashboard')}
-
-          {util.renderIf(!this.props.token, newLink('welcome/login', 'login'))}
-          {util.renderIf(!this.props.token, newLink('welcome/signup', 'signup'))}
-
-        </ul>
+        {util.renderIf(this.props.token,
+          <ul>
+            {newLink('settings', 'settings')}
+            {newLink('dashboard', 'dashboard')}
+          </ul>
+        )}
+        {util.renderIf(!this.props.token,
+          <ul>
+            {newLink('welcome/login', 'login')}
+            {newLink('welcome/signup', 'signup')}
+          </ul>
+        )}
         {util.renderIf(this.props.token,
          <button onClick={this.onLogout}>logout</button>
         )}
@@ -61,12 +74,15 @@ class NavBar extends React.Component {
 
 let mapStateToProps = store => ({
   token: store.token,
+  profile: store.profile
 });
 
 let mapDispatchToProps = dispatch => ({
-  restoreSession: token => dispatch(authActions.setToken(token)),
+  restoreSession: token => dispatch(authActions.tokenSet(token)),
   logout: () => dispatch(authActions.tokenDelete()),
-  fetchProfile: () => dispatch()
+  fetchProfile: () => dispatch(),
+  connectSocket: () => dispatch(socketActions.connectSocket())
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
