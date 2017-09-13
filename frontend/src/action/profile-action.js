@@ -10,6 +10,10 @@ export const updateProfile = profile => ({
   payload: profile
 })
 
+export const deleteProfile = () => ({
+  type: 'PROFILE_DELETE'
+})
+
 export const getProfile = () => (dispatch, getState) => {
   let {auth} = getState();
   return superagent.get(`${__API_URL__}/api/profile`)

@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 import Dashboard from '../dashboard';
-import Settings from '../settings';
+import ProfileView from '../settings';
 import Landing from '../landing';
 import NavBar from '../navbar';
 
@@ -15,7 +15,7 @@ class App extends React.Component {
         <span>
           <Route exact path='*' component={NavBar} />
           <Route exact path='/dashboard' component={Dashboard} />
-          <Route exact path='/settings' component={Settings} />
+          <Route exact path='/settings' component={ProfileView} />
           <Route exact path='/welcome/:auth' component={Landing} />
         </span>
 

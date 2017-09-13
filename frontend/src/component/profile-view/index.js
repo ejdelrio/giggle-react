@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Settings extends React.Component{
+class ProfileView extends React.Component{
   constructor(props) {
     super(props);
   }
@@ -11,4 +11,4 @@ class Settings extends React.Component{
   }
 }
 
-export default Settings;
+export default ProfileView;
