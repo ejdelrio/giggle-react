@@ -1,5 +1,7 @@
 import React from 'react';
 import * as util from '../../lib/util.js';
+import * as querystring from 'querystring';
+
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -20,37 +22,49 @@ class AuthForm extends React.Component {
   }
 
   onChange(e) {
-    let {name, value} = e.target;
+    let { name, value } = e.target;
 
     function errorCheck(errorName) {
-      return name === errorName && !value ? `${errorName} required`: null;
+      return name === errorName && !value ? `${errorName} required` : null;
     }
 
     this.setState({
       [name]: value,
       userNameError: errorCheck('username'),
       emailError: errorCheck('email'),
-      passWordError: errorCheck('password') })
+      passWordError: errorCheck('password')
+    })
   }
 
   onSubmit(e) {
     console.log(this.state);
     e.preventDefault();
     this.props.onComplete(this.state)
-    .then(() => {
-      this.setState({
-        userName: '',
-        passWord: '',
-        email: ''
-      });
-      this.props.history();
-    })
-    .catch(error => {
-      this.setState({error});
-    })
+      .then(() => {
+        this.setState({
+          userName: '',
+          passWord: '',
+          email: ''
+        });
+        this.props.history();
+      })
+      .catch(error => {
+        this.setState({ error });
+      })
   }
 
   render() {
+    let googleLoginBaseURL = 'https://accounts.google.com/o/oauth2/v2/auth';
+    let googleLoginQuery = querystring.stringify({
+      client_id: __GOOGLE_CLIENT_ID__,
+      response_type: 'code',
+      redirect_uri: `${__API_URL__}/oauth/google/code`,
+      scope: 'openid profile email',
+      prompt: __DEBUG__ ? 'consent' : undefined
+    });
+
+    let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
+
     let emailInput = (
       <input
         name='email'
@@ -60,8 +74,17 @@ class AuthForm extends React.Component {
         onChange={this.onChange}
       />
     )
-    return(
+
+    let googleButton = (
+      <a href={googleLoginURL}>LOGIN WIH GOOG</a>
+    )
+
+    return (
       <form onSubmit={this.onSubmit}>
+        {util.renderIf(this.props.auth === 'login', googleButton)}
+
+        
+
         <input
           name='userName'
           type='text'

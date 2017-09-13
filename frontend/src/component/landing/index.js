@@ -28,7 +28,6 @@ class Landing extends React.Component {
 
     return (
       <div>
-        <a href={googleLoginURL}>LOGIN WIH GOOG</a>
         <AuthForm
           onComplete={onComplete}
           auth={params.auth}
