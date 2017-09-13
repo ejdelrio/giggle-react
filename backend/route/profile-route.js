@@ -3,44 +3,34 @@
 const Router = require('express').Router;
 const debug = require('debug')('giggle: User Router');
 const createError = require('http-errors');
-const jasonParser = require('body-parser').json();
+const jsonParser = require('body-parser').json();
 
-const User = require('../model/user.js');
 const Profile = require('../model/profile.js');
-const basicAuth = require('../lib/basic.js');
+const bearerAuth = require('../lib/bearer.js');
+const profileFetch = require('../lib/profileFetch.js');
 
-const userRouter = module.exports = new Router();
+const profileRouter = module.exports = new Router();
 
-userRouter.post('/api/signup', jasonParser, function(req, res, next) {
-  debug('POST /api/signup');
-  
-  if(!req.body.userName) return next(createError(400, 'Username required'));
-  if(!req.body.passWord) return next(createError(400, 'Password required'));
+profileRouter.post('/api/profile', jsonParser, bearerAuth, function(req, res, next) {
+  debug('POST /api/profile');
 
-  let passWord = req.body.passWord;
-  delete req.body.passWord;
-
-  let newUser = new User(req.body);
-
-
-
-  new Profile({userID: newUser._id}).save()
-  .then(() => newUser.encryptPassword(passWord))
-  .then(user => user.generateToken())
-  .then(token => res.json(token))
+  req.body.userID = req.user._id;
+  new Profile(req.body).save()
+  .then(profile => res.json(profile))
   .catch(err => next(createError(400, err.message)));
 
 });
 
-userRouter.get('/api/login', basicAuth, function(req, res, next) {
-  debug('GET /api/login');
+profileRouter.get('/api/profile', bearerAuth, profileFetch, function(req, res, next) {
+  debug('GET /api/profile');
 
-  let passWord = req.auth.passWord;
-  delete req.auth.passWord;
+  next(res.json(req.profile));
+});
 
-  User.findOne(req.auth)
-  .then(user => user.attemptLogin(passWord))
-  .then(user => user.generateToken())
-  .then(token => res.json(token))
-  .catch(err => next(createError(401, err.message)));
+profileRouter.PUT('/api/profile', bearerAuth, profileFetch, function(req, res, next) {
+  debug('PUT /api/profile');
+
+  Profile.findByIdAndUpdate(req.profile._id, req.body, {new: true})
+  .then(profile => res.json(profile))
+  .catch(err => next(createError(404, err)));
 });

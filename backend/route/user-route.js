@@ -13,7 +13,7 @@ const userRouter = module.exports = new Router();
 
 userRouter.post('/api/signup', jasonParser, function(req, res, next) {
   debug('POST /api/signup');
-  
+
   if(!req.body.userName) return next(createError(400, 'Username required'));
   if(!req.body.passWord) return next(createError(400, 'Password required'));
 
@@ -23,11 +23,13 @@ userRouter.post('/api/signup', jasonParser, function(req, res, next) {
   let newUser = new User(req.body);
 
 
-
   new Profile({userID: newUser._id}).save()
   .then(() => newUser.encryptPassword(passWord))
   .then(user => user.generateToken())
-  .then(token => res.json(token))
+  .then(token => {
+    res.cookie('Giggle-Token', token, {maxAge: 86400});
+    res.json(token);
+  })
   .catch(err => next(createError(400, err.message)));
 
 });
@@ -41,6 +43,9 @@ userRouter.get('/api/login', basicAuth, function(req, res, next) {
   User.findOne(req.auth)
   .then(user => user.attemptLogin(passWord))
   .then(user => user.generateToken())
-  .then(token => res.json(token))
+  .then(token => {
+    res.cookie('Giggle-Token', token, {maxAge: 86400});
+    res.json(token);
+  })
   .catch(err => next(createError(401, err.message)));
 });
