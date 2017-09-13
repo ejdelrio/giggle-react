@@ -8,13 +8,15 @@ import * as profileAct from '../../action/profile-action.js';
 class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
+    this.state = this.props.profile ?
+    this.props.profile :
+    {
       bio: '',
       avatar: '',
       genre: [],
       type: 'band',
       error: null
-    }
+    };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -33,10 +35,9 @@ class ProfileForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.createProfile(this.state)
-    .then(() => {
-      console.log('hurrayyyy')
-    })
+    (this.props.profile?
+    this.props.updateProfile(this.state):
+    this.props.createProfile(this.state))
     .catch(error => {
       this.setState({error});
     })
@@ -49,7 +50,6 @@ class ProfileForm extends React.Component {
 
   render() {
     let type = this.state.type;
-    console.log(this.state);
     return(
       <form className={this.props.className} onSubmit={this.onSubmit}>
         <select name='type' onChange={this.onChange}>
@@ -80,11 +80,12 @@ class ProfileForm extends React.Component {
 }
 
 let mapStateToProps = store => ({
-
+  profile: store.profile
 });
 
 let mapDispatchToProps = dispatch => ({
-  createProfile: profile => dispatch(profileAct.postProfile(profile))
+  createProfile: profile => dispatch(profileAct.postProfile(profile)),
+  updateProfile: profile => dispatch(profileAct.putProfile(profile))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);

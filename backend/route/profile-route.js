@@ -23,14 +23,14 @@ profileRouter.post('/api/profile', jsonParser, bearerAuth, function(req, res, ne
 
 profileRouter.get('/api/profile', bearerAuth, profileFetch, function(req, res, next) {
   debug('GET /api/profile');
-  console.log(req.profile)
+
   res.json(req.profile);
   next();
 });
 
-profileRouter.put('/api/profile', bearerAuth, profileFetch, function(req, res, next) {
+profileRouter.put('/api/profile', jsonParser, bearerAuth, profileFetch, function(req, res, next) {
   debug('PUT /api/profile');
-
+  console.log('__REQUEST__: ', req.body);
   Profile.findByIdAndUpdate(req.profile._id, req.body, {new: true})
   .then(profile => res.json(profile))
   .catch(err => next(createError(404, err)));

@@ -1,5 +1,6 @@
 import superagent from 'superagent';
 import * as socketActions from './socket-action.js';
+import * as profileActions from './profile-action.js';
 import * as util from '../lib/util.js';
 
 export const tokenSet = token => ({
@@ -30,7 +31,8 @@ export const loginRequest = user => dispatch => {
   .then(res => {
     util.createCookie('Giggle-Token', res.text, 1);
     dispatch(tokenSet(JSON.parse(res.text)));
-    dispatch(socketActions.connectSocket())
+    dispatch(socketActions.connectSocket());
+    dispatch(profileActions.getProfile());
     return res;
   })
 }

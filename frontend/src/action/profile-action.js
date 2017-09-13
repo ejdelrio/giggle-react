@@ -29,7 +29,8 @@ export const getProfile = () => (dispatch, getState) => {
 
 export const putProfile = profile => (dispatch, getState) => {
   let {token} = getState();
-  return superagent.get(`${__API_URL__}/api/profile`)
+
+  return superagent.put(`${__API_URL__}/api/profile`)
   .set('Authorization', `Bearer ${token}`)
   .send(profile)
   .then(res => {

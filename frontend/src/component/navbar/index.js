@@ -28,28 +28,23 @@ class NavBar extends React.Component {
   validateRoute() {
     let {match, history} = this.props;
 
-    let giggleToken = JSON.parse(util.readCookie('Giggle-Token'));
+    let giggleToken = this.props.token ?
+    this.props.token:
+    JSON.parse(util.readCookie('Giggle-Token'));
+
     if(!giggleToken) return history.replace('/signup');
 
     this.props.restoreSession(giggleToken);
     this.props.fetchProfile()
     .then(() => this.props.connectSocket())
     .catch(err => console.error('NO PROFILE :D'));
-
-    if(!giggleToken && this.props.profile) {
-      console.log('balls deep')
-    }
-
-  }
-  validateLogin() {
-    if(this.props.token) {
-
-    }
   }
 
   onLogout() {
-   this.props.logout()
-   this.props.history.push('/welcome/login')
+   this.props.logout();
+   this.props.disconnectSocket();
+   this.props.logoutProfile();
+   this.props.history.push('/welcome/login');
   }
 
   render() {
@@ -87,8 +82,9 @@ let mapDispatchToProps = dispatch => ({
   restoreSession: token => dispatch(authActions.tokenSet(token)),
   logout: () => dispatch(authActions.tokenDelete()),
   fetchProfile: () => dispatch(profileActions.getProfile()),
-  connectSocket: () => dispatch(socketActions.connectSocket())
-
+  logoutProfile: () => dispatch(profileActions.deleteProfile()),
+  connectSocket: () => dispatch(socketActions.connectSocket()),
+  disconnectSocket: () => dispatch(socketActions.socketDelete())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
