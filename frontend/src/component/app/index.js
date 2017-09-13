@@ -7,7 +7,6 @@ import Settings from '../settings';
 import Landing from '../landing';
 import NavBar from '../navbar';
 
-
 class App extends React.Component {
   render() {
     return(
@@ -18,7 +17,6 @@ class App extends React.Component {
           <Route exact path='/settings' component={Settings} />
           <Route exact path='/welcome/:auth' component={Landing} />
         </span>
-
       </BrowserRouter>
     )
   }

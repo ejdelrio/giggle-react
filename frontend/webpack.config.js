@@ -15,7 +15,9 @@ let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
   new DefinePlugin({
     __DEBUG__: JSON.stringify(!production),
-    __API_URL__: JSON.stringify(process.env.API_URL)
+    __API_URL__: JSON.stringify(process.env.API_URL),
+    __GOOGLE_CLIENT_ID__: JSON.stringify(process.env.GOOGLE_CLIENT_ID)
+
   })
 ];
 
@@ -24,7 +26,7 @@ if(production) {
 }
 
 module.exports = {
-  devtool: production ? undefined : 'eval',
+  devtool: production ? undefined : 'inline-source-map',
   entry: `${__dirname}/src/main.js`,
   devServer: {
     historyApiFallback: true
