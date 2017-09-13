@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const Schema = mongoose.Schema;
+const faker = require('faker');
 
 const userSchema = new Schema({
   userName: { type: String, required: true, unique: true },
@@ -27,6 +28,8 @@ userSchema.methods.encryptPassword = function (password) {
 };
 
 userSchema.methods.tokenCreate  = function(){
+  debug('tokenCreate');
+  
   this.tokenSeed = crypto.randomBytes(32).toString('base64')
   return this.save()
   .then(user => {
@@ -92,15 +95,20 @@ User.handleOAUTH = function (data) {
   return User.findOne({ email: data.email })
     .then(user => {
       if (!user) {
-        throw new Error('not found - create a user');
+        return new User({
+          userName: faker.internet.userName(),
+          passWord: faker.internet.password(),
+          email: data.email
+        }).save();
       }
       return user;
     })
     .catch(() => {
-      return new User({
-        username: faker.internet.userName(),
-        email: data.email
-      }).save();
+      console.log('in catch block');
+      // return new User({
+      //   username: faker.internet.userName(),
+      //   email: data.email
+      // }).save();
     })
 }
 
