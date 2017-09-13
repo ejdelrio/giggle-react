@@ -23,11 +23,12 @@ profileRouter.post('/api/profile', jsonParser, bearerAuth, function(req, res, ne
 
 profileRouter.get('/api/profile', bearerAuth, profileFetch, function(req, res, next) {
   debug('GET /api/profile');
-
-  next(res.json(req.profile));
+  console.log(req.profile)
+  res.json(req.profile);
+  next();
 });
 
-profileRouter.PUT('/api/profile', bearerAuth, profileFetch, function(req, res, next) {
+profileRouter.put('/api/profile', bearerAuth, profileFetch, function(req, res, next) {
   debug('PUT /api/profile');
 
   Profile.findByIdAndUpdate(req.profile._id, req.body, {new: true})

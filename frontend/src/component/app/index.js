@@ -3,12 +3,15 @@ import {Provider} from 'react-redux';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 import Dashboard from '../dashboard';
-import ProfileView from '../settings';
+import ProfileView from '../profile-view';
 import Landing from '../landing';
 import NavBar from '../navbar';
 
 
 class App extends React.Component {
+  componentDidMount() {
+    console.log('pickle')
+  }
   render() {
     return(
       <BrowserRouter>

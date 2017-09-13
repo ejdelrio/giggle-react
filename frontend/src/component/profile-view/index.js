@@ -1,4 +1,5 @@
 import React from 'react';
+import ProfileForm from '../profile-form';
 
 class ProfileView extends React.Component{
   constructor(props) {
@@ -6,7 +7,7 @@ class ProfileView extends React.Component{
   }
   render() {
     return(
-      <h1>Hello</h1>
+      <ProfileForm />
     )
   }
 }

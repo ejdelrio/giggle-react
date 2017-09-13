@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+import * as socketActions from './socket-action.js';
 import * as util from '../lib/util.js';
 
 export const tokenSet = token => ({
@@ -16,9 +17,11 @@ export const signupRequest = user => dispatch => {
   .send(user)
   .then(res => {
     util.createCookie('Giggle-Token', res.text, 1);
-    dispatch(tokenSet(res.text));
+    dispatch(tokenSet(JSON.parse(res.text)));
+    dispatch(socketActions.connectSocket())
     return res;
   })
+  .then(() => connectSocket)
 }
 
 export const loginRequest = user => dispatch => {
@@ -26,7 +29,8 @@ export const loginRequest = user => dispatch => {
   .auth(user.userName, user.passWord)
   .then(res => {
     util.createCookie('Giggle-Token', res.text, 1);
-    dispatch(tokenSet(res.text));
+    dispatch(tokenSet(JSON.parse(res.text)));
+    dispatch(socketActions.connectSocket())
     return res;
   })
 }

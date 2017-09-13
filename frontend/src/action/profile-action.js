@@ -15,19 +15,22 @@ export const deleteProfile = () => ({
 })
 
 export const getProfile = () => (dispatch, getState) => {
-  let {auth} = getState();
+  let {token} = getState();
+
   return superagent.get(`${__API_URL__}/api/profile`)
-  .set('Authorization', `Bearer ${auth}`)
+  .set('Authorization', `Bearer ${token}`)
   .then(res => {
+    console.log('__PROFILE__: ',res.body)
     dispatch(createProfile(res.body));
     return res;
-  });
+  })
+  .catch(err => console.error(err));
 }
 
 export const putProfile = profile => (dispatch, getState) => {
-  let {auth} = getState();
+  let {token} = getState();
   return superagent.get(`${__API_URL__}/api/profile`)
-  .set('Authorization', `Bearer ${auth}`)
+  .set('Authorization', `Bearer ${token}`)
   .send(profile)
   .then(res => {
     dispatch(updateProfile(res.body));
@@ -36,9 +39,9 @@ export const putProfile = profile => (dispatch, getState) => {
 }
 
 export const postProfile = profile => (dispatch, getState) => {
-  let {auth} = getState();
+  let {token} = getState();
   return superagent.post(`${__API_URL__}/api/profile`)
-  .set('Authorization', `Bearer ${auth}`)
+  .set('Authorization', `Bearer ${token}`)
   .send(profile)
   .then(res => {
     dispatch(createProfile(res.body));

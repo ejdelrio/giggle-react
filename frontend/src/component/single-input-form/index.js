@@ -11,17 +11,22 @@ class SingleInput extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    if(this.state) return this.props.onComplete(this.state);
+    if(this.state) {
+      this.props.onComplete(this.state[this.props.name]);
+      this.setState({[this.props.name]: ''});
+    }
   }
 
   onChange(e) {
     let {name, value} = e.target;
-    this.setState();
+    this.setState({
+      [name]: value
+    });
   }
 
-  rener() {
+  render() {
     return(
-      <form onSubmit={this.onSubmit}, type='submit'>
+      <div>
         <input
           type='text'
           name={this.props.name}
@@ -29,10 +34,10 @@ class SingleInput extends React.Component {
           value={this.state[this.props.name]}
           onChange={this.onChange}
         />
-        <button type='submit'>{this.props.buttonText}</button>
-      </form>
+        <button onClick={this.onSubmit}>{this.props.buttonText}</button>
+      </div>
     )
   }
 }
 
-export defaul SingleInput;
+export default SingleInput;

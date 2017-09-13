@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 import * as util from '../../lib/util.js';
 import * as authActions from '../../action/auth-action.js';
+import * as profileActions from '../../action/profile-action.js';
 import * as socketActions from '../../action/socket-action.js';
 
 let newLink = (link, text) => (
@@ -27,12 +28,17 @@ class NavBar extends React.Component {
   validateRoute() {
     let {match, history} = this.props;
 
-    let giggleToken = util.readCookie('Giggle-Token');
+    let giggleToken = JSON.parse(util.readCookie('Giggle-Token'));
     if(!giggleToken) return history.replace('/signup');
 
     this.props.restoreSession(giggleToken);
-    // this.props.userProfileFetch()
-    // .catch(err => console.error('NO PROFILE :D'));
+    this.props.fetchProfile()
+    .then(() => this.props.connectSocket())
+    .catch(err => console.error('NO PROFILE :D'));
+
+    if(!giggleToken && this.props.profile) {
+      console.log('balls deep')
+    }
 
   }
   validateLogin() {
@@ -80,7 +86,7 @@ let mapStateToProps = store => ({
 let mapDispatchToProps = dispatch => ({
   restoreSession: token => dispatch(authActions.tokenSet(token)),
   logout: () => dispatch(authActions.tokenDelete()),
-  fetchProfile: () => dispatch(),
+  fetchProfile: () => dispatch(profileActions.getProfile()),
   connectSocket: () => dispatch(socketActions.connectSocket())
 
 });

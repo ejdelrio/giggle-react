@@ -48,6 +48,7 @@ userSchema.methods.generateHash = function() {
 
     function _generateHash() {
       this.hash = crypto.randomBytes(32).toString('hex');
+      console.log(this);
       this.save()
       .then( () => {
         return resolve(this.hash);
@@ -66,7 +67,7 @@ userSchema.methods.generateToken = function() {
 
   return new Promise((resolve, reject) => {
     this.generateHash()
-    .then(hash => resolve(jwt.sign({ token: hash }, process.env.APP_SECRET)))
+    .then(hash => resolve(jwt.sign({token: hash}, process.env.APP_SECRET)))
     .catch( err => reject(err));
   });
 };
