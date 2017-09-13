@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import * as util from '../../lib/util.js';
 import * as authActions from '../../action/auth-action.js';
 import * as socketActions from '../../action/socket-action.js';
+import GoogleButton from '../../component/google-button/'
 
 let newLink = (link, text) => (
   <li>
@@ -59,6 +60,7 @@ class NavBar extends React.Component {
         )}
         {util.renderIf(!this.props.token,
           <ul>
+            <li><GoogleButton /></li>
             {newLink('welcome/login', 'login')}
             {newLink('welcome/signup', 'signup')}
           </ul>
