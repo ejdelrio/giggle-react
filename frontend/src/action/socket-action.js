@@ -14,7 +14,9 @@ export const socketDelete = () => ({
 export const connectSocket = profile => (dispatch, getState) => {
   let userName = profile.userName;
   let socket = SocketIOClient(__API_URL__);
-  
+  socket.on('bacon', () => {
+    console.log('It worked');
+  })
   socket.on(`updateConvos-${userName}`, () => {
     console.log('Firing off');
 
