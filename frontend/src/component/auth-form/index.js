@@ -1,6 +1,7 @@
 import React from 'react';
 import * as util from '../../lib/util.js';
 
+
 class AuthForm extends React.Component {
   constructor(props) {
     super(props);
@@ -20,34 +21,35 @@ class AuthForm extends React.Component {
   }
 
   onChange(e) {
-    let {name, value} = e.target;
+    let { name, value } = e.target;
 
     function errorCheck(errorName) {
-      return name === errorName && !value ? `${errorName} required`: null;
+      return name === errorName && !value ? `${errorName} required` : null;
     }
 
     this.setState({
       [name]: value,
       userNameError: errorCheck('username'),
       emailError: errorCheck('email'),
-      passWordError: errorCheck('password') })
+      passWordError: errorCheck('password')
+    })
   }
 
   onSubmit(e) {
     console.log(this.state);
     e.preventDefault();
     this.props.onComplete(this.state)
-    .then(() => {
-      this.setState({
-        userName: '',
-        passWord: '',
-        email: ''
-      });
-      this.props.history();
-    })
-    .catch(error => {
-      this.setState({error});
-    })
+      .then(() => {
+        this.setState({
+          userName: '',
+          passWord: '',
+          email: ''
+        });
+        this.props.history();
+      })
+      .catch(error => {
+        this.setState({ error });
+      })
   }
 
   render() {
@@ -60,8 +62,11 @@ class AuthForm extends React.Component {
         onChange={this.onChange}
       />
     )
-    return(
+
+
+    return (
       <form onSubmit={this.onSubmit}>
+
         <input
           name='userName'
           type='text'
