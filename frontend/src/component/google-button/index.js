@@ -4,6 +4,24 @@ import React from 'react';
 
 
 class GoogleButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id_token: ''
+    }
+
+    this.onSignIn = this.onSignIn.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('button mounted');
+  }
+
+  onSignIn(googleUser) {
+    console.log('success!');
+    this.setState({ id_token: googleUser.getAuthResponse().id_token });
+  }
+
   render() {
     let googleLoginBaseURL = 'https://accounts.google.com/o/oauth2/v2/auth';
     let googleLoginQuery = querystring.stringify({
@@ -16,10 +34,11 @@ class GoogleButton extends React.Component {
 
     let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
 
+
+
     return (
       <div>
-        <meta name="google-signin-client_id" content={__GOOGLE_CLIENT_ID__} />
-        <a className="g-signin2" href={googleLoginURL}>_</a>
+        <div className="g-signin2" data-onsuccess={this.onSignIn}>_</div>
       </div>
     )
   }
