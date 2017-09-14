@@ -43,6 +43,7 @@ class Dashboard extends React.Component {
   }
   render() {
     let userName = this.props.profile.userName;
+    console.log(`updateConvos-${userName}`)
     this.props.socket.on(`updateConvos-${userName}`, () => {
       console.log('Firing off')
       this.props.fetchConvos();
