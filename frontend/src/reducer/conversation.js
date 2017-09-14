@@ -10,9 +10,6 @@ module.exports = (state=[], action) => {
     case 'CONVERSATION_CREATE':
       validation(payload, preReqs);
       return [...state, payload];
-    case 'CONVERSATION_DELETE':
-      validation(payload, preReqs);
-      return state.filter(convo => convo._id != payload._id);
     default:
       return state;
   }

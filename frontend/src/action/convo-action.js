@@ -15,11 +15,22 @@ export const convoDelete = conversation => ({
   payload: conversation
 })
 
-export const requestConvos = token => dispatch => {
-  return superaget.get(`${__API_URL__}/api/conversation`)
-  .set('Authoriazation', `Bearer ${token}`)
+export const requestConvos = () => (dispatch, getState) => {
+  let {token} = getState();
+
+  console.log(`Bearer ${token}`)
+  return superagent.get(`${__API_URL__}/api/conversations`)
+  .set('Authorization', `Bearer ${token}`)
   .then(res => {
     dispatch(fetchConvo(res.body));
     return res;
-  });
+  })
+  .catch(err => console.error(err));
+}
+
+export const newConvo = data => (dispatch, getState) => {
+  let {socket} = getState();
+  console.log(socket, data);
+
+  socket.emit('startConvo', data);
 }

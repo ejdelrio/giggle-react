@@ -72,10 +72,8 @@ export const updateLocation = () => (dispatch, getState) => {
 
 export const userQuery = (max, genre, limit=10) => (dispatch, getState) => {
   let {token} = getState();
-  console.log('xxxx', {genre});
   return superagent.get(`${__API_URL__}/api/userQuery/${max}/${limit}`)
   .set('Authorization', `Bearer ${token}`)
-  .send({genre: genre})
   .then(res => {
     console.log(res.body);
   });
