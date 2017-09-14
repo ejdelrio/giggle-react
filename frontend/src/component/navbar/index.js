@@ -9,6 +9,7 @@ import GoogleLogin from 'react-google-login';
 import superagent from 'superagent';
 import GoogleButton from 'react-google-button';
 import querystring from 'querystring';
+import Iframe from 'react-iframe'
 
 
 let newLink = (link, text) => (
@@ -83,7 +84,7 @@ class NavBar extends React.Component {
         {util.renderIf(!this.props.token,
           <div>
             <meta name="google-signin-client_id" content={__GOOGLE_CLIENT_ID__} />
-            <a href={googleLoginURL}>
+            <a className='googleLink' href={googleLoginURL}>
               <GoogleButton />
             </a>
             <ul>
