@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+import * as socketActions from './socket-action.js';
 
 export const createProfile = profile => ({
   type: 'PROFILE_CREATE',
@@ -20,8 +21,8 @@ export const getProfile = () => (dispatch, getState) => {
   return superagent.get(`${__API_URL__}/api/profile`)
   .set('Authorization', `Bearer ${token}`)
   .then(res => {
-    console.log('__PROFILE__: ',res.body)
     dispatch(createProfile(res.body));
+    dispatch(socketActions.connectSocket(res.body));
     return res;
   })
   .catch(err => console.error(err));
@@ -46,6 +47,7 @@ export const postProfile = profile => (dispatch, getState) => {
   .send(profile)
   .then(res => {
     dispatch(createProfile(res.body));
+    dispatch(socketActions.connectSocket(res.body));
     return res;
   });
 }

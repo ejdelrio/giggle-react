@@ -33,6 +33,9 @@ class Dashboard extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
+
+    this.props.socket.emit('chicken');
+
     let message = {
       content: this.state.content,
       senderID: this.props.profile._id

@@ -31,8 +31,7 @@ export const loginRequest = user => dispatch => {
   .then(res => {
     util.createCookie('Giggle-Token', res.text, 1);
     dispatch(tokenSet(JSON.parse(res.text)));
-    dispatch(socketActions.connectSocket());
     dispatch(profileActions.getProfile());
     return res;
-  })
+  });
 }
