@@ -8,7 +8,10 @@ import Landing from '../landing';
 import NavBar from '../navbar';
 
 class App extends React.Component {
+  componentDidMount() {
 
+  }
+  
   render() {
     if(this.props.profile) {
       let userName = this.props.profile.userName;
