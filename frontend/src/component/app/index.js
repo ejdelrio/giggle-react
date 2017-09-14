@@ -7,7 +7,6 @@ import ProfileView from '../profile-view';
 import Landing from '../landing';
 import NavBar from '../navbar';
 
-
 class App extends React.Component {
   componentDidMount() {
     console.log('pickle')
@@ -21,7 +20,6 @@ class App extends React.Component {
           <Route exact path='/settings' component={ProfileView} />
           <Route exact path='/welcome/:auth' component={Landing} />
         </span>
-
       </BrowserRouter>
     )
   }
