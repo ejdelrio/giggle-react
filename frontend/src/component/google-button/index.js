@@ -16,9 +16,11 @@ class GoogleButton extends React.Component {
 
     let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
 
-
     return (
-      <a href={googleLoginURL}>CONTINUE WIH GOOG</a>
+      <div>
+        <meta name="google-signin-client_id" content={__GOOGLE_CLIENT_ID__} />
+        <a className="g-signin2" href={googleLoginURL}>_</a>
+      </div>
     )
   }
 }

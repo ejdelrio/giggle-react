@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import * as util from '../../lib/util.js';
 import * as authActions from '../../action/auth-action.js';
@@ -26,10 +26,10 @@ class NavBar extends React.Component {
   }
 
   validateRoute() {
-    let {match, history} = this.props;
+    let { match, history } = this.props;
 
     let giggleToken = util.readCookie('Giggle-Token');
-    if(!giggleToken) return history.replace('/signup');
+    if (!giggleToken) return history.replace('/signup');
 
     this.props.restoreSession(giggleToken);
     // this.props.userProfileFetch()
@@ -37,18 +37,18 @@ class NavBar extends React.Component {
 
   }
   validateLogin() {
-    if(this.props.token) {
+    if (this.props.token) {
 
     }
   }
 
   onLogout() {
-   this.props.logout()
-   this.props.history.push('/welcome/login')
+    this.props.logout()
+    this.props.history.push('/welcome/login')
   }
 
   render() {
-    let {url} = this.props.match;
+    let { url } = this.props.match;
     return (
       <header>
         <h1>Giggle</h1>
@@ -59,14 +59,18 @@ class NavBar extends React.Component {
           </ul>
         )}
         {util.renderIf(!this.props.token,
-          <ul>
-            <li><GoogleButton /></li>
+          <div>
+            <GoogleButton />
+            <ul>
+
             {newLink('welcome/login', 'login')}
             {newLink('welcome/signup', 'signup')}
           </ul>
+          </div>
+
         )}
         {util.renderIf(this.props.token,
-         <button onClick={this.onLogout}>logout</button>
+          <button onClick={this.onLogout}>logout</button>
         )}
       </header>
     )

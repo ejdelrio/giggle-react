@@ -7,6 +7,7 @@ import * as util from '../../lib/util.js';
 import AuthForm from '../auth-form';
 import * as authAction from '../../action/auth-action.js';
 
+
 class Landing extends React.Component {
   render() {
     let { params } = this.props.match;
@@ -14,17 +15,6 @@ class Landing extends React.Component {
     let onComplete = params.auth === 'signup' ?
       this.props.signup :
       this.props.login
-
-    let googleLoginBaseURL = 'https://accounts.google.com/o/oauth2/v2/auth';
-    let googleLoginQuery = querystring.stringify({
-      client_id: __GOOGLE_CLIENT_ID__,
-      response_type: 'code',
-      redirect_uri: `${__API_URL__}/oauth/google/code`,
-      scope: 'openid profile email',
-      prompt: __DEBUG__ ? 'consent' : undefined
-    });
-
-    let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
 
     return (
       <div>
