@@ -42,12 +42,6 @@ class Dashboard extends React.Component {
     this.props.newConvo(submission);
   }
   render() {
-    let userName = this.props.profile.userName;
-    console.log(`updateConvos-${userName}`)
-    this.props.socket.on(`updateConvos-${userName}`, () => {
-      console.log('Firing off')
-      this.props.fetchConvos();
-    });
     return(
       <span>
         <form onSubmit={this.onSubmit}>
