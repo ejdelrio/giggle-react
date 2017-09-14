@@ -10,15 +10,6 @@ import NavBar from '../navbar';
 class App extends React.Component {
 
   render() {
-    if(this.props.profile) {
-      let userName = this.props.profile.userName;
-      let {socket} = this.props;
-      console.log(`updateConvos-${userName}`);
-      this.props.socket.on(`updateConvos-${userName}`, () => {
-        console.log('Firing off');
-        this.props.fetchConvos();
-      });
-    }
     return(
       <BrowserRouter>
         <span>
@@ -28,7 +19,7 @@ class App extends React.Component {
           <Route exact path='/welcome/:auth' component={Landing} />
         </span>
       </BrowserRouter>
-    )
+    );
   }
 }
 
