@@ -20,7 +20,8 @@ const trackRouter = require('./route/profile/track-route.js');
 const userRouter = require('./route/user-route.js');
 const albumRouter = require('./route/profile/album-route.js');
 const socketRouter = require('./route/socket-route/socket-route.js');
-const profileRouter = require('./route/profile-route.js')
+const profileRouter = require('./route/profile-route.js');
+
 
 dotenv.load();
 mongoose.connect(process.env.MONGODB_URI);

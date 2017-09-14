@@ -4,8 +4,11 @@ export const messageCreate = message => ({
   payload: message
 });
 
-export const emitSocketMessage (socket, message) => {
+export const emitSocketMessage = message => (dispatch, getState) => {
+  let {socket} = getState();
+
   return new Promise(resolve => {
-    resolve(socket.emit('message', message))
+    resolve(socket.emit('message', message));
   })
+  .then(() => dispatch(messageCreate(message)));
 }

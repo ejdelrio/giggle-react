@@ -22,9 +22,6 @@ class ProfileForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.addGenre = this.addGenre.bind(this);
   }
-  componentDidMount() {
-    console.log(this.state);
-  }
 
   onChange(e) {
     let {name, value} = e.target;
@@ -57,7 +54,9 @@ class ProfileForm extends React.Component {
           <option value='venue'>Venue</option>
           <option value='fan'>Fan</option>
         </select>
-        <p>{this.state.genre.join(', ')}</p>
+        {util.renderIf((type === 'band' || type === 'venue'),
+          <p>{this.state.genre.join(', ')}</p>
+        )}
         {util.renderIf((type === 'band' || type === 'venue'),
           <SingleInput
             name='singleGenre'
@@ -74,6 +73,12 @@ class ProfileForm extends React.Component {
           onChange={this.onChange}
         ></textarea>
         <button type='submit'>Add Genre</button>
+        <button onClick={this.props.updateLocation}>
+          Update location
+        </button>
+        <button onClick={() => this.props.userQuery(5, ['blues'])}>
+          Test searches
+        </button>
       </form>
     )
   }
@@ -85,7 +90,9 @@ let mapStateToProps = store => ({
 
 let mapDispatchToProps = dispatch => ({
   createProfile: profile => dispatch(profileAct.postProfile(profile)),
-  updateProfile: profile => dispatch(profileAct.putProfile(profile))
+  updateProfile: profile => dispatch(profileAct.putProfile(profile)),
+  updateLocation: () => dispatch(profileAct.updateLocation()),
+  userQuery:(max, genre, limit=10) => dispatch(profileAct.userQuery(max, genre, limit))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileForm);

@@ -17,7 +17,6 @@ export const convoDelete = conversation => ({
 
 export const requestConvos = token => dispatch => {
   return superaget.get(`${__API_URL__}/api/conversation`)
-  .withCredentials()
   .set('Authoriazation', `Bearer ${token}`)
   .then(res => {
     dispatch(fetchConvo(res.body));
