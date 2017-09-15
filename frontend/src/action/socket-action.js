@@ -19,8 +19,9 @@ export const connectSocket = profile => (dispatch, getState) => {
     let socket = SocketIOClient(__API_URL__);
     socket.emit('test', profile);
     socket.on('testing', msg => console.log(msg))
-    socket.on(`updateConvos-${userName}`, () => {
+    socket.on(`updateConvos-${userName}`, convo => {
       console.log('I work :o');
+      console.log(convo);
     })
 
     dispatch(socketSet(socket));
