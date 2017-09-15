@@ -12,14 +12,20 @@ class MessengerBar extends React.Component {
   }
 
 
-openChat() {
-
+openChat(convo) {
+  let currentState = this.state.activeChats;
+  currentState[convo._id] = convo;
+  this.setState({activeChats: currentState});
+  })
+}
+closeChat(convo) {
+  
 }
 
   render() {
     return(
       <span>
-      
+
       </span>
     )
   }
