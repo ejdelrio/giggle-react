@@ -22,6 +22,7 @@ export const connectSocket = profile => (dispatch, getState) => {
     socket.on(`updateConvos-${userName}`, convo => {
       console.log('I work :o');
       console.log(convo);
+      dispatch(convoActions.createConvo(convo));
     })
 
     dispatch(socketSet(socket));

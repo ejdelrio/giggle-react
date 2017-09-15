@@ -22,15 +22,6 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     this.props.fetchConvos();
-    
-    if(this.props.socket) {
-      let {socket, profile} = this.props;
-      console.log('Connecting');
-      socket.on(`updateConvos-${profile.userName}`, () => {
-        console.log('__EMISSION__');
-        this.props.fetchConvos();
-      })
-    }
   }
 
   onChange(e) {
@@ -73,15 +64,19 @@ class Dashboard extends React.Component {
           />
           <button type='submit'>Start conversation</button>
         </form>
+        <h3>Conversations</h3>
         <ul>
           {this.props.convos.map((val, key) => {
-            <li>
-              <MessageForm
-                onComplete={this.props.sendMessage}
-                profileID={this.props.profile._id}
-                convoID={val._id}
-              />
-            </li>
+            return(
+              <li key={key}>
+                <h5>New Message</h5>
+                <MessageForm
+                  onComplete={this.props.sendMessage}
+                  profileID={this.props.profile._id}
+                  convoID={val._id}
+                />
+              </li>
+            )
           })}
         </ul>
       </span>
