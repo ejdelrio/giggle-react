@@ -1,5 +1,6 @@
 import superagent from 'superagent';
 import SocketIOClient from 'socket.io-client';
+import * as convoAction from './convo-action.js';
 import * as convoActions from './convo-action.js';
 
 export const socketSet = socket => ({
@@ -12,12 +13,12 @@ export const socketDelete = () => ({
 });
 
 export const connectSocket = profile => (dispatch, getState) => {
-  let {userName} = profile.userName;
+  let userName = profile.userName;
   let {socket} = getState();
-  if(!socket) {
+  if(!socket && profile) {
     let socket = SocketIOClient(__API_URL__);
-    socket.on('test', () => {
-       console.log(`${userName} is online`);
+    socket.on(`updateConvos-${userName}`, () => {
+      convoActions.requestConvos();
     })
     dispatch(socketSet(socket));
   }
