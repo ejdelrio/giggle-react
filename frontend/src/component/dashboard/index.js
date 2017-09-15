@@ -20,15 +20,25 @@ class Dashboard extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchConvos();
+    
+    if(this.props.socket) {
+      let {socket, profile} = this.props;
+      console.log('Connecting');
+      socket.on(`updateConvos-${profile.userName}`, () => {
+        console.log('__EMISSION__');
+        this.props.fetchConvos();
+      })
+    }
+  }
+
   onChange(e) {
     let {name, value} = e.target;
 
     this.setState({
       [name]: value
     })
-  }
-  componentDidMount() {
-    this.props.fetchConvos();
   }
 
   onSubmit(e) {
@@ -40,20 +50,10 @@ class Dashboard extends React.Component {
     let members = [this.props.profile.userName, ...this.state.members.split(', ')]
     let submission = {message, members}
     this.props.newConvo(submission);
-    this.setState({
-      members: '',
-      content: ''
-    });
+
   }
   render() {
-    if(this.props.socket) {
-      let {socket, profile} = this.props;
-      console.log('Connecting');
-      socket.on(`updateConvos-${profile.userName}`, () => {
-        console.log('firing');
-        this.props.fetchConvos();
-      })
-    }
+
     return(
       <span>
         <form onSubmit={this.onSubmit}>

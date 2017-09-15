@@ -17,6 +17,11 @@ export const connectSocket = profile => (dispatch, getState) => {
   let {socket} = getState();
   if(!socket && profile) {
     let socket = SocketIOClient(__API_URL__);
+    socket.emit('test', profile);
+    socket.on('testing', msg => console.log(msg))
+    socket.on(`updateConvos-${userName}`, () => {
+      console.log('I work :o');
+    })
 
     dispatch(socketSet(socket));
   }
