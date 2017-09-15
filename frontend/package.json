@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
+  "engines": {
+    "node": "v6.11.1"
+  },
   "scripts": {
     "build": "webpack",
-    "watch": "webpack-dev-server --inline --hot"
+    "watch": "webpack-dev-server --inline --hot",
+    "heroku-postbuild": "webpack -p progress"
   },
   "keywords": [],
   "author": "",
