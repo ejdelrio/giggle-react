@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import * as messageActions from '../../action/message-action.js';
 import * as convoActions from '../../action/convo-action.js';
 
-import Landing from '../landing'
-import MsgBar from '../messanger-bar';
+import MsgBar from '../msg-components/messanger-bar';
+
 
 class Dashboard extends React.Component {
   constructor(props) {

@@ -18,8 +18,9 @@ class MessageContainer extends React.Component {
   }
 
   render() {
-    let joinedMembers = this.props.convo.members.join(', ');
-    let messages = this.props.convo.messages;
+    let {convo} = this.props;
+    let joinedMembers = convo.members.join(', ');
+    let messages = convo.messages;
     return (
       <div
         className={this.state.displayed}
@@ -27,7 +28,7 @@ class MessageContainer extends React.Component {
       >
         <div className='convo-header'>
           <p>joinedMembers</p>
-          <button onClick={this.props.hideConvo}>X</button>
+          <button onClick={() => this.props.hideConvo(convo)}>X</button>
         </div>
         <ul>
           {messages.map((val, ind) => {
