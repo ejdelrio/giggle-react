@@ -44,7 +44,6 @@ class NavBar extends React.Component {
 
     this.props.restoreSession(giggleToken);
     this.props.fetchProfile()
-    .then(() => this.props.connectSocket())
     .catch(err => console.error('NO PROFILE :D'));
   }
 
@@ -113,7 +112,6 @@ let mapDispatchToProps = dispatch => ({
   logout: () => dispatch(authActions.tokenDelete()),
   fetchProfile: () => dispatch(profileActions.getProfile()),
   logoutProfile: () => dispatch(profileActions.deleteProfile()),
-  connectSocket: () => dispatch(socketActions.connectSocket()),
   disconnectSocket: () => dispatch(socketActions.socketDelete())
 });
 

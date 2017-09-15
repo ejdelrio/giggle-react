@@ -31,6 +31,9 @@ export const requestConvos = () => (dispatch, getState) => {
 export const newConvo = data => (dispatch, getState) => {
   let {socket} = getState();
   console.log(socket, data);
-
+  socket.emit('chicken');
   socket.emit('startConvo', data);
+  socket.on('bacon', () => {
+    console.log('eat a dick');
+  })
 }

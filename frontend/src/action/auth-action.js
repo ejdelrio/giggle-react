@@ -19,10 +19,8 @@ export const signupRequest = user => dispatch => {
   .then(res => {
     util.createCookie('Giggle-Token', res.text, 1);
     dispatch(tokenSet(JSON.parse(res.text)));
-    dispatch(socketActions.connectSocket())
     return res;
   })
-  .then(() => connectSocket)
 }
 
 export const loginRequest = user => dispatch => {
