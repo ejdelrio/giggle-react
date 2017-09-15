@@ -40,6 +40,10 @@ class Dashboard extends React.Component {
     let members = [this.props.profile.userName, ...this.state.members.split(', ')]
     let submission = {message, members}
     this.props.newConvo(submission);
+    this.setState({
+      members: '',
+      content: ''
+    })
   }
   render() {
     return(
