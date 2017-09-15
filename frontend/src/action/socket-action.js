@@ -12,7 +12,13 @@ export const socketDelete = () => ({
 });
 
 export const connectSocket = profile => (dispatch, getState) => {
-  let userName = profile.userName;
-  let socket = SocketIOClient(__API_URL__);
-  dispatch(socketSet(socket));
+  let {userName} = profile.userName;
+  let {socket} = getState();
+  if(!socket) {
+    let socket = SocketIOClient(__API_URL__);
+    socket.on('test', () => {
+       console.log(`${userName} is online`);
+    })
+    dispatch(socketSet(socket));
+  }
 }
