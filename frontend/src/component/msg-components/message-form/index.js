@@ -6,7 +6,8 @@ class MessageForm extends React.Component {
     this.state = {
       content: '',
       convoID: this.props.convoID,
-      senderID: this.props.profileID
+      senderName: this.props.senderName,
+      error: false
     }
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -20,6 +21,7 @@ class MessageForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault()
+    if(this.state.content === '') return this.setState({error: true})
     this.props.onComplete(this.state);
   }
 

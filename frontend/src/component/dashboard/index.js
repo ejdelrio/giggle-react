@@ -5,9 +5,7 @@ import * as messageActions from '../../action/message-action.js';
 import * as convoActions from '../../action/convo-action.js';
 
 import Landing from '../landing'
-import MessageForm from '../message-form';
-import * as socketAction from '../../action/socket-action.js';
-import SocketIOClient from 'socket.io-client';
+import MsgBar from '../messanger-bar';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -21,7 +19,8 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchConvos();
+    if(this.props.profile) this.props.fetchConvos();
+
   }
 
   onChange(e) {
@@ -47,38 +46,7 @@ class Dashboard extends React.Component {
 
     return(
       <span>
-        <form onSubmit={this.onSubmit}>
-          <input
-            name='members'
-            type='text'
-            placeholder='Enter usernames'
-            value={this.state.members}
-            onChange={this.onChange}
-          />
-          <input
-            name='content'
-            type='text'
-            placeholder='Enter message content'
-            value={this.state.message}
-            onChange={this.onChange}
-          />
-          <button type='submit'>Start conversation</button>
-        </form>
-        <h3>Conversations</h3>
-        <ul>
-          {this.props.convos.map((val, key) => {
-            return(
-              <li key={key}>
-                <h5>New Message</h5>
-                <MessageForm
-                  onComplete={this.props.sendMessage}
-                  profileID={this.props.profile._id}
-                  convoID={val._id}
-                />
-              </li>
-            )
-          })}
-        </ul>
+        <MsgBar/>
       </span>
     )
   }
