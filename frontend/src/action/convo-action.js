@@ -18,7 +18,6 @@ export const convoDelete = conversation => ({
 export const requestConvos = () => (dispatch, getState) => {
   let {token} = getState();
 
-  console.log(`Bearer ${token}`)
   return superagent.get(`${__API_URL__}/api/conversations`)
   .set('Authorization', `Bearer ${token}`)
   .then(res => {
