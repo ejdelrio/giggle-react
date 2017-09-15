@@ -17,9 +17,8 @@ export const connectSocket = profile => (dispatch, getState) => {
   let {socket} = getState();
   if(!socket && profile) {
     let socket = SocketIOClient(__API_URL__);
-    socket.on(`updateConvos-${userName}`, () => {
-      convoActions.requestConvos();
-    })
+
     dispatch(socketSet(socket));
   }
+
 }

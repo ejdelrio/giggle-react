@@ -43,9 +43,17 @@ class Dashboard extends React.Component {
     this.setState({
       members: '',
       content: ''
-    })
+    });
   }
   render() {
+    if(this.props.socket) {
+      let {socket, profile} = this.props;
+      console.log('Connecting');
+      socket.on(`updateConvos-${profile.userName}`, () => {
+        console.log('firing');
+        this.props.fetchConvos();
+      })
+    }
     return(
       <span>
         <form onSubmit={this.onSubmit}>
