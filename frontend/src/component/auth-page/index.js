@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import * as authActions from '../../action/auth-action.js';
+import * as authAction from '../../action/auth-action.js';
 
 import Modal from '../modal';
 import AuthForm from '../auth-form';
