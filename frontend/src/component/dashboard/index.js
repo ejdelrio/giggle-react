@@ -4,10 +4,8 @@ import {connect} from 'react-redux';
 import * as messageActions from '../../action/message-action.js';
 import * as convoActions from '../../action/convo-action.js';
 
-import Landing from '../landing'
-import MessageForm from '../message-form';
-import * as socketAction from '../../action/socket-action.js';
-import SocketIOClient from 'socket.io-client';
+import MsgBar from '../msg-components/messanger-bar';
+
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -20,15 +18,17 @@ class Dashboard extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if(this.props.profile) this.props.fetchConvos();
+
+  }
+
   onChange(e) {
     let {name, value} = e.target;
 
     this.setState({
       [name]: value
     })
-  }
-  componentDidMount() {
-    this.props.fetchConvos();
   }
 
   onSubmit(e) {
@@ -40,38 +40,13 @@ class Dashboard extends React.Component {
     let members = [this.props.profile.userName, ...this.state.members.split(', ')]
     let submission = {message, members}
     this.props.newConvo(submission);
+
   }
   render() {
+
     return(
       <span>
-        <form onSubmit={this.onSubmit}>
-          <input
-            name='members'
-            type='text'
-            placeholder='Enter usernames'
-            value={this.state.members}
-            onChange={this.onChange}
-          />
-          <input
-            name='content'
-            type='text'
-            placeholder='Enter message content'
-            value={this.state.message}
-            onChange={this.onChange}
-          />
-          <button type='submit'>Start conversation</button>
-        </form>
-        <ul>
-          {this.props.convos.map((val, key) => {
-            <li>
-              <MessageForm
-                onComplete={this.props.sendMessage}
-                profileID={this.props.profile._id}
-                convoID={val._id}
-              />
-            </li>
-          })}
-        </ul>
+        <MsgBar/>
       </span>
     )
   }

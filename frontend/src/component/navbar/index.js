@@ -34,7 +34,7 @@ class NavBar extends React.Component {
   }
 
   validateRoute() {
-    let { match, history } = this.props;
+    let {match, history} = this.props;
 
     let giggleToken = this.props.token ?
     this.props.token:
@@ -48,6 +48,7 @@ class NavBar extends React.Component {
   }
 
   onLogout() {
+    this.props.socket.disconnect();
     this.props.logout();
     this.props.disconnectSocket();
     this.props.logoutProfile();
@@ -104,7 +105,8 @@ class NavBar extends React.Component {
 
 let mapStateToProps = store => ({
   token: store.token,
-  profile: store.profile
+  profile: store.profile,
+  socket: store.socket,
 });
 
 let mapDispatchToProps = dispatch => ({

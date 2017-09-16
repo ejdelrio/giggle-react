@@ -36,7 +36,6 @@ class AuthForm extends React.Component {
   }
 
   onSubmit(e) {
-    console.log(this.state);
     e.preventDefault();
     this.props.onComplete(this.state)
       .then(() => {
