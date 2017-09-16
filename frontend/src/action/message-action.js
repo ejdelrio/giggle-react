@@ -7,8 +7,5 @@ export const messageCreate = message => ({
 export const emitSocketMessage = message => (dispatch, getState) => {
   let {socket} = getState();
 
-  return new Promise(resolve => {
-    resolve(socket.emit('message', message));
-  })
-  .then(() => dispatch(messageCreate(message)));
+  socket.emit('addMessagetoConvo', message);
 }

@@ -1,6 +1,6 @@
 import superagent from 'superagent';
 import SocketIOClient from 'socket.io-client';
-import * as convoAction from './convo-action.js';
+import * as msgActions from './message-action.js';
 import * as convoActions from './convo-action.js';
 
 export const socketSet = socket => ({
@@ -17,12 +17,13 @@ export const connectSocket = profile => (dispatch, getState) => {
   let {socket} = getState();
   if(!socket && profile) {
     let socket = SocketIOClient(__API_URL__);
-    socket.emit('test', profile);
-    socket.on('testing', msg => console.log(msg))
+
     socket.on(`updateConvos-${userName}`, convo => {
-      console.log('I work :o');
-      console.log(convo);
       dispatch(convoActions.createConvo(convo));
+    })
+    socket.on(`newMessage-${userName}` , msg => {
+      console.log('__NEW_MESSAGE__:', msg)
+      dispatch(msgActions.messageCreate(msg));
     })
 
     dispatch(socketSet(socket));

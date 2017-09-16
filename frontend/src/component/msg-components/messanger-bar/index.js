@@ -15,6 +15,7 @@ class MessengerBar extends React.Component {
       activeChats: []
     }
     this.openChat = this.openChat.bind(this);
+    this.closeChat = this.closeChat.bind(this);
   }
 
 
@@ -45,9 +46,10 @@ closeChat(convo) {
               <li>
                 <MsgContainer
                   convo={convo}
-                  hideConvo={this.hideConvo}
+                  hideConvo={this.closeChat}
                   userName={this.props.profile.userName}
                   sendMessage={this.props.createMessage}
+                  profile={this.props.profile}
                 />
               </li>
             )
@@ -64,7 +66,8 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = dispatch => ({
-  newConvo: data => dispatch(convoActions.newConvo(data))
+  newConvo: data => dispatch(convoActions.newConvo(data)),
+  createMessage: msg => dispatch(msgActions.emitSocketMessage(msg))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessengerBar);

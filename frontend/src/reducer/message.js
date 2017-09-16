@@ -5,6 +5,12 @@ module.exports = (state={}, action) => {
   let {type, payload} = action;
 
   switch(type) {
+    case 'CONVERSATION_FETCH':
+      let newState = {};
+      payload.forEach(convo => {
+        newState[convo._id] = convo.messages;
+      });
+      return newState;
     case 'CONVERSATION_CREATE':
       return {...state, [payload.id]: []}
     case 'MESSAGE_CREATE':

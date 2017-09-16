@@ -1,6 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import Msg from '../message';
 import MessageForm from '../message-form'
+
+import * as msgActions from '../../../action/message-action.js';
 
 class MessageContainer extends React.Component {
   constructor(props) {
@@ -18,20 +22,22 @@ class MessageContainer extends React.Component {
   }
 
   render() {
-    let {convo} = this.props;
+    let convo = this.props.convo;
     let joinedMembers = convo.members.join(', ');
-    let messages = convo.messages;
+    let messages = this.props.messages;
+    console.log(convo);
     return (
       <div
         className={this.state.displayed}
         onClick={this.onClick}
       >
         <div className='convo-header'>
-          <p>joinedMembers</p>
+          <p>{joinedMembers}</p>
           <button onClick={() => this.props.hideConvo(convo)}>X</button>
         </div>
         <ul>
-          {messages.map((val, ind) => {
+          {messages[convo._id].map((val, ind) => {
+            console.log('__VALUE__:',val);
             let sentOrRecieved = val.senderName === this.props.userName ?
             'sent-message' : 'recieved-message';
             return(
@@ -52,5 +58,11 @@ class MessageContainer extends React.Component {
     )
   }
 }
+let mapStateToProps = state => ({
+  messages: state.messages
+})
+let mapDispatchToProps = dispatch => ({
 
-export default MessageContainer;
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);
