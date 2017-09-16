@@ -7,6 +7,58 @@ li {
   list-style: none;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 7vh;
+  background: grey;
+  h1 {
+    float: left;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    float: right;
+    width: 30vw;
+    height: 7vh;
+
+    li {
+      display: inline-block;
+      float: right;
+      height: 7vh;
+      width: 7vh;
+    }
+  }
+
+  #gear {
+    height: 5vh;
+    width: 5vh;
+    border-radius: 5px;
+    float: right;
+    margin-right: 1vw;
+    margin-top: 1vh;
+    background: pink;
+
+    img {
+      height: 4vh;
+      width: 4vh;
+      float: left;
+      margin: 0.5vh;
+      transition: 350ms all;
+
+      &:hover {
+        transform: rotate(700deg);
+      }
+    }
+  }
+}
+
+
+
+
+
 .messanger-bar {
   margin: 0;
   padding: 0;
@@ -35,7 +87,7 @@ li {
   }
 
   .visible-chat {
-    height: 100vh;
+    height: 93vh;
 
     &>ul {
       margin: 0;
@@ -178,7 +230,4 @@ li {
       margin-left: 5%;
     }
   }
-
-
-
 }

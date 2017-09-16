@@ -22,9 +22,19 @@ let newLink = (link, text) => (
   </li>
 )
 
+// <meta name="google-signin-client_id" content={__GOOGLE_CLIENT_ID__} />
+// <a className='googleLink' href={googleLoginURL}>
+//   <GoogleButton />
+// </a>
+
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.state = {
+      modelToggler: false
+    }
+
     this.validateRoute = this.validateRoute.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
@@ -79,28 +89,15 @@ class NavBar extends React.Component {
     return (
       <header>
         <h1>Giggle</h1>
-        {util.renderIf(this.props.token,
-          <ul>
-            {newLink('settings', 'settings')}
-            {newLink('dashboard', 'dashboard')}
-          </ul>
-        )}
-        {util.renderIf(!this.props.token,
-          <div>
-            <meta name="google-signin-client_id" content={__GOOGLE_CLIENT_ID__} />
-            <a className='googleLink' href={googleLoginURL}>
-              <GoogleButton />
-            </a>
-            <ul>
-              {newLink('welcome/login', 'login')}
-              {newLink('welcome/signup', 'signup')}
-            </ul>
-          </div>
-
-        )}
-        {util.renderIf(this.props.token,
-          <button onClick={this.onLogout}>logout</button>
-        )}
+        <ul>
+          <li>
+            <div id='gear' onClick={}>
+              <img
+                src='https://d30y9cdsu7xlg0.cloudfront.net/png/1241-200.png'
+              />
+            </div>
+          </li>
+        </ul>
       </header>
     )
   }
