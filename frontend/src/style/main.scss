@@ -100,6 +100,8 @@ li {
     }
 
     &>ul {
+      margin: 0;
+      padding: 0;
       background: grey;
       height: 50vh;
       width: 20vw;
@@ -109,8 +111,21 @@ li {
       li {
         margin: 0;
         padding: 0;
+        height: 10vh;
+        width: 100%;
         float: right;
         background: none;
+        margin-bottom: 1vh;
+
+        h5, p {
+          padding: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          width: 70%;
+          height: 2vh;
+          font-size: 2vh;
+        }
+
       }
     }
     form {
@@ -133,6 +148,22 @@ li {
       height: 7vh;
       margin-right: 2vw;
       color: white;
+    }
+  }
+  .sent-message {
+    h5, p {
+      float: right;
+      text-align: right;
+      margin-right: 5%;
+    }
+
+  }
+
+  .recieved-message {
+    h5, p {
+      float: left;
+      text-align: left;
+      margin-left: 5%;
     }
   }
 
