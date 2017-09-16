@@ -6,13 +6,14 @@ import * as util from '../../../lib/util.js';
 import * as authActions from '../../../action/auth-action.js';
 import * as profileActions from '../../../action/profile-action.js';
 import * as socketActions from '../../../action/socket-action.js';
+
 import GoogleLogin from 'react-google-login';
 import superagent from 'superagent';
 import GoogleButton from 'react-google-button';
 import querystring from 'querystring';
 import Iframe from 'react-iframe'
 
-
+import AuthPage from '../../auth-page'
 
 let newLink = (link, text) => (
   <li>
@@ -30,14 +31,15 @@ let newLink = (link, text) => (
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      modelToggler: false
+      modalToggler: false
     }
 
     this.validateRoute = this.validateRoute.bind(this);
     this.onLogout = this.onLogout.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
+    this.modalSwitch = this.modalSwitch.bind(this);
   }
   componentDidMount() {
     this.validateRoute();
@@ -73,6 +75,11 @@ class NavBar extends React.Component {
     superagent('')
   }
 
+  modalSwitch() {
+    let flip = this.state.modalToggler ? false : true;
+    this.setState({modalToggler: flip});
+  }
+
   render() {
     let {url} = this.props.match;
 
@@ -91,13 +98,18 @@ class NavBar extends React.Component {
         <h1>Giggle</h1>
         <ul>
           <li>
-            <div id='gear' onClick={}>
+            <div id='gear' onClick={this.modalSwitch}>
               <img
                 src='https://d30y9cdsu7xlg0.cloudfront.net/png/1241-200.png'
               />
             </div>
           </li>
         </ul>
+        {util.renderIf(this.state.modalToggler,
+          <AuthPage
+            closeModal={this.modalSwitch}
+          />
+        )}
       </header>
     )
   }

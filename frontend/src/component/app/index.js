@@ -10,6 +10,10 @@ import NavBar from '../navbar-components/navbar';
 import MsgBar from '../msg-components/messanger-bar'
 
 class App extends React.Component {
+  
+  responseGoogle(response) {
+    superagent('')
+  }
 
   render() {
     return(
