@@ -19,7 +19,7 @@ class ConvoContainer extends React.Component {
     this.setState({displayed: newState});
   }
   render() {
-    console.log('__PROPS__:', this.props);
+    console.log('__STATE__:', this.state);
     return(
       <section
         className={this.state.displayed}

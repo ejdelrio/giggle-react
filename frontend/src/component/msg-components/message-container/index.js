@@ -31,9 +31,9 @@ class MessageContainer extends React.Component {
       <div
         className={this.state.displayed}
       >
-        <div className='convo-header' onClick={this.onClick}>
-          <p >{joinedMembers}</p>
+        <div className='message-header' onClick={this.onClick}>
           <button onClick={() => this.props.hideConvo(convo)}>X</button>
+          <p >{joinedMembers}</p>  
         </div>
         {util.renderIf(this.state.displayed === 'displayed-convo',
           <ul>

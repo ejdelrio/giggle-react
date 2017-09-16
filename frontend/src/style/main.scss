@@ -2,3 +2,140 @@
   display: inline-block;
   text-decoration: none;
 }
+
+li {
+  list-style: none;
+}
+
+.messanger-bar {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 7vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: grey;
+  overflow: visible;
+  outline: 1px solid black;
+
+  &>* {
+    float: right;
+  }
+
+  section {
+    width: 20vw;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    background: grey;
+    outline: 1px solid black;
+    transition: 350ms all;
+  }
+
+  .visible-chat {
+    height: 100vh;
+
+    ul {
+      float: right;
+      width: 100%;
+      height: 60vh;
+
+      li {
+        width: 100%;
+        height: 7vh;
+        float: right;
+        border-bottom: 1px solid black;
+        &:hover {
+          background: black;
+          color: white;
+        }
+      }
+    }
+  }
+  .chat-header {
+    background: black;
+    color: white;
+    width: 100%;
+    height: 7vh;
+    h5 {
+      float: right;
+      margin-right: 2vw;
+    }
+  }
+
+  &>ul {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 80vw;
+    background: pink;
+    margin-right: 20vw;
+
+    li {
+      margin: 0;
+      padding: 0;
+      float: right;
+      width: 20vw;
+      height: 7vh;
+      background: black;
+      transition: 350ms all;
+      bottom: 0;
+
+
+    }
+
+    ul, form {
+      display: none;
+    }
+  }
+
+  .displayed-convo {
+    height: 50vh;
+    transition: 350ms all;
+    &>ul, &>form {
+      display: block;
+    }
+
+    &>ul {
+      background: grey;
+      height: 50vh;
+      width: 20vw;
+      overflow-x: scroll;
+      outline: 1px solid black;
+
+      li {
+        margin: 0;
+        padding: 0;
+        float: right;
+        background: none;
+      }
+    }
+    form {
+      width: 20vw;
+      height: 7vh;
+      background: black;
+    }
+
+  }
+
+  .message-header {
+    width: 100%;
+    height: 7vh;
+    & * {
+      float: right;
+    }
+    &>p {
+      margin: 0;
+      padding: 0;
+      height: 7vh;
+      margin-right: 2vw;
+      color: white;
+    }
+  }
+
+
+
+}

@@ -39,12 +39,7 @@ closeChat(convo) {
   render() {
     console.log('__CONVO_ACTIONS__:', this.props.newConvo)
     return(
-      <span>
-        <ConvoContainer
-          openConvo={this.openChat}
-          convos={this.props.conversation}
-          createConvo={this.props.newConvo}
-        />
+      <span className='messanger-bar'>
         <ul>
           {this.state.activeChats.map((convo, ind) => {
             return(
@@ -60,6 +55,11 @@ closeChat(convo) {
             )
           })}
         </ul>
+        <ConvoContainer
+          openConvo={this.openChat}
+          convos={this.props.conversation}
+          createConvo={this.props.newConvo}
+        />
       </span>
     )
   }
