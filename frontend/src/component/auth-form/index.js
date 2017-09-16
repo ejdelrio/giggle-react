@@ -44,7 +44,7 @@ class AuthForm extends React.Component {
           passWord: '',
           email: ''
         });
-        this.props.history();
+        this.props.modalClose();
       })
       .catch(error => {
         this.setState({ error });

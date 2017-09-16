@@ -41,6 +41,7 @@ class AuthPage extends React.Component{
             onComplete={this.props.login}
             auth={'login'}
             history={() => this.props.history.replace('/')}
+            modalClose={this.props.closeModal}
           />
           <div>
           </div>
@@ -48,6 +49,7 @@ class AuthPage extends React.Component{
             onComplete={this.props.signup}
             auth={'signup'}
             history={() => this.props.history.replace('/')}
+            modalClose={this.props.closeModal}
           />
           <meta name="google-signin-client_id" content={__GOOGLE_CLIENT_ID__} />
           <a className='googleLink' href={googleLoginURL}>

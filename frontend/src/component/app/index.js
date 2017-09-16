@@ -10,7 +10,7 @@ import NavBar from '../navbar-components/navbar';
 import MsgBar from '../msg-components/messanger-bar'
 
 class App extends React.Component {
-  
+
   responseGoogle(response) {
     superagent('')
   }
@@ -22,7 +22,6 @@ class App extends React.Component {
           <Route exact path='*' component={NavBar} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/settings' component={ProfileView} />
-          <Route exact path='/welcome/:auth' component={Landing} />
           {util.renderIf(this.props.profile,
             <Route exact path='*' component={MsgBar} />
           )}

@@ -13,7 +13,8 @@ import GoogleButton from 'react-google-button';
 import querystring from 'querystring';
 import Iframe from 'react-iframe'
 
-import AuthPage from '../../auth-page'
+import AuthPage from '../../auth-page';
+import GearMenu from '../gear-menu';
 
 let newLink = (link, text) => (
   <li>
@@ -29,7 +30,7 @@ class NavBar extends React.Component {
 
     this.state = {
       modalToggler: false,
-      menuToggle: 'menu-visible'
+      menuToggle: 'menu-hidden'
     }
 
     this.validateRoute = this.validateRoute.bind(this);
@@ -65,7 +66,12 @@ class NavBar extends React.Component {
       this.props.disconnectSocket();
       this.props.logoutProfile();
     }
-    this.props.history.push('/welcome/login');
+    this.props.history.push('/');
+    this.setState({
+      modalToggler: false,
+      menuToggle: 'menu-hidden'
+    });
+
   }
 
   modalSwitch() {
@@ -96,6 +102,9 @@ class NavBar extends React.Component {
                 src='https://d30y9cdsu7xlg0.cloudfront.net/png/1241-200.png'
               />
             </div>
+            {util.renderIf(this.state.menuToggle === 'menu-visible',
+              <GearMenu logout={this.onLogout} />
+            )}
           </li>
         </ul>
         {util.renderIf(this.state.modalToggler,
