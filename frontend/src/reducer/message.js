@@ -12,11 +12,12 @@ module.exports = (state={}, action) => {
       });
       return newState;
     case 'CONVERSATION_CREATE':
-      return {...state, [payload.id]: []}
+      return {...state, [payload._id]: []}
     case 'MESSAGE_CREATE':
-      let {convoID} = payload;
+      let convoID = payload.convoID;
       let convoMessages = state[convoID];
-      return {...state, [convoID]: [...convoMessages, payload]};
+      console.log('____TEST___',state)
+      return {...state, convoID: [...convoMessages, payload]};
     default:
       return state;
   }

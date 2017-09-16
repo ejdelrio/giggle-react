@@ -21,6 +21,11 @@ class MessengerBar extends React.Component {
 
 openChat(convo) {
   let currentState = this.state.activeChats;
+  for (let i = 0; i < currentState.length; i++) {
+    if(currentState[i]._id === convo._id) {
+      return;
+    }
+  }
   currentState.push(convo);
   this.setState({activeChats: currentState});
 }

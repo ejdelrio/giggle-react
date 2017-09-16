@@ -19,13 +19,13 @@ class MessageContainer extends React.Component {
     let newState = this.state.displayed === 'hidden-convo' ?
     'displayed-convo' : 'hidden-convo';
     this.setState({displayed: newState});
+    console.log(this.state.displayed);
   }
 
   render() {
     let convo = this.props.convo;
     let joinedMembers = convo.members.join(', ');
     let messages = this.props.messages;
-    console.log(convo);
     return (
       <div
         className={this.state.displayed}
