@@ -17,24 +17,27 @@ class MessengerBar extends React.Component {
     this.openChat = this.openChat.bind(this);
     this.closeChat = this.closeChat.bind(this);
   }
+  componentDidMount() {
+    if(this.props.profile) this.props.fetchConvos();
 
-
-openChat(convo) {
-  let currentState = this.state.activeChats;
-  for (let i = 0; i < currentState.length; i++) {
-    if(currentState[i]._id === convo._id) {
-      return;
-    }
   }
-  currentState.push(convo);
-  this.setState({activeChats: currentState});
-}
-closeChat(convo) {
-  let currentState = this.state.activeChats
-  .filter(val => val._id !== convo._id);
-  this.setState({activeChats: currentState});
 
-}
+  openChat(convo) {
+    let currentState = this.state.activeChats;
+    for (let i = 0; i < currentState.length; i++) {
+      if(currentState[i]._id === convo._id) {
+        return;
+      }
+    }
+    currentState.push(convo);
+    this.setState({activeChats: currentState});
+  }
+  closeChat(convo) {
+    let currentState = this.state.activeChats
+    .filter(val => val._id !== convo._id);
+    this.setState({activeChats: currentState});
+
+  }
 
   render() {
     console.log('__CONVO_ACTIONS__:', this.props.newConvo)
@@ -72,7 +75,9 @@ let mapStateToProps = state => ({
 
 let mapDispatchToProps = dispatch => ({
   newConvo: data => dispatch(convoActions.newConvo(data)),
-  createMessage: msg => dispatch(msgActions.emitSocketMessage(msg))
+  createMessage: msg => dispatch(msgActions.emitSocketMessage(msg)),
+  fetchConvos: data => dispatch(convoActions.requestConvos())
 })
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessengerBar);
