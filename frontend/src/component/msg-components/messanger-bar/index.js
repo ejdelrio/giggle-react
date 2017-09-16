@@ -27,15 +27,17 @@ closeChat(convo) {
   let currentState = this.state.activeChats
   .filter(val => val._id !== convo._id);
   this.setState({activeChats: currentState});
-  
+
 }
 
   render() {
+    console.log('__CONVO_ACTIONS__:', this.props.newConvo)
     return(
       <span>
         <ConvoContainer
           openConvo={this.openChat}
           convos={this.props.conversation}
+          createConvo={this.props.newConvo}
         />
         <ul>
           {this.state.activeChats.map((convo, ind) => {
@@ -62,7 +64,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = dispatch => ({
-
+  newConvo: data => dispatch(convoActions.newConvo(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessengerBar);

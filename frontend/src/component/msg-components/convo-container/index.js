@@ -1,11 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import ConvoForm from '../convo-form';
+
 class ConvoContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayed: 'hidden-chat';
+      displayed: 'hidden-chat'
     }
     this.displayToggle = this.displayToggle.bind(this);
   }
@@ -16,6 +18,7 @@ class ConvoContainer extends React.Component {
     this.setState({displayed: newState});
   }
   render() {
+    console.log('__PROPS__:', this.props);
     return(
       <section
         className={this.state.displayed}
@@ -26,6 +29,9 @@ class ConvoContainer extends React.Component {
         >
           <h5>Chat</h5>
         </div>
+        <ConvoForm
+          onComplete={this.props.createConvo}
+        />
         <ul>
           {this.props.convos.map((val, ind) => {
             let title = val.members.join(', ');
@@ -34,7 +40,7 @@ class ConvoContainer extends React.Component {
                 key={ind}
                 onClick={() => this.props.openConvo(val)}
               >
-                <p>title</p>
+                <p>{title}</p>
               </li>
             )
           })}

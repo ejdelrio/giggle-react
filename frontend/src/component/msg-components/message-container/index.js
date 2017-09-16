@@ -6,7 +6,7 @@ class MessageContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayed: 'hidden-convo';
+      displayed: 'hidden-convo'
     }
     this.onClick = this.onClick.bind(this);
   }

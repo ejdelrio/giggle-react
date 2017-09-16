@@ -34,7 +34,7 @@ class NavBar extends React.Component {
   }
 
   validateRoute() {
-    let { match, history } = this.props;
+    let {match, history} = this.props;
 
     let giggleToken = this.props.token ?
     this.props.token:
