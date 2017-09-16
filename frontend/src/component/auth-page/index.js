@@ -18,6 +18,10 @@ class AuthPage extends React.Component{
     super(props);
   }
 
+  responseGoogle(response) {
+    superagent('')
+  }
+
   render() {
     let googleLoginBaseURL = 'https://accounts.google.com/o/oauth2/v2/auth';
     let googleLoginQuery = querystring.stringify({

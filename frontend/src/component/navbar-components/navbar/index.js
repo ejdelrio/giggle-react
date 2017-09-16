@@ -23,23 +23,20 @@ let newLink = (link, text) => (
   </li>
 )
 
-// <meta name="google-signin-client_id" content={__GOOGLE_CLIENT_ID__} />
-// <a className='googleLink' href={googleLoginURL}>
-//   <GoogleButton />
-// </a>
-
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      modalToggler: false
+      modalToggler: false,
+      menuToggle: 'menu-visible'
     }
 
     this.validateRoute = this.validateRoute.bind(this);
-    this.onLogout = this.onLogout.bind(this);
-    this.responseGoogle = this.responseGoogle.bind(this);
+    this.onLogout = this.onLogout.bind(this);;
     this.modalSwitch = this.modalSwitch.bind(this);
+    this.switchSwitch = this.switchSwitch.bind(this);
+    this.menuSwitch = this.menuSwitch.bind(this);
   }
   componentDidMount() {
     this.validateRoute();
@@ -71,34 +68,30 @@ class NavBar extends React.Component {
     this.props.history.push('/welcome/login');
   }
 
-  responseGoogle(response) {
-    superagent('')
-  }
-
   modalSwitch() {
     let flip = this.state.modalToggler ? false : true;
     this.setState({modalToggler: flip});
+  }
+  menuSwitch() {
+    let newClass = this.state.menuToggle === 'menu-visible' ?
+    'menu-hidden' : 'menu-visible';
+    this.setState({menuToggle: newClass});
+  }
+
+  switchSwitch() {
+    if(this.props.profile) return this.menuSwitch();
+    return this.modalSwitch();
   }
 
   render() {
     let {url} = this.props.match;
 
-    let googleLoginBaseURL = 'https://accounts.google.com/o/oauth2/v2/auth';
-    let googleLoginQuery = querystring.stringify({
-      client_id: __GOOGLE_CLIENT_ID__,
-      response_type: 'code',
-      redirect_uri: `${__API_URL__}/oauth/google/code`,
-      scope: 'openid profile email',
-      prompt: __DEBUG__ ? 'consent' : undefined
-    });
-
-    let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
     return (
       <header>
         <h1>Giggle</h1>
         <ul>
           <li>
-            <div id='gear' onClick={this.modalSwitch}>
+            <div id='gear' onClick={this.switchSwitch}>
               <img
                 src='https://d30y9cdsu7xlg0.cloudfront.net/png/1241-200.png'
               />
