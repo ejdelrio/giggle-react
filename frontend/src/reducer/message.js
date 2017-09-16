@@ -14,10 +14,9 @@ module.exports = (state={}, action) => {
     case 'CONVERSATION_CREATE':
       return {...state, [payload._id]: []}
     case 'MESSAGE_CREATE':
-      let convoID = payload.convoID;
+      let {convoID} = payload;
       let convoMessages = state[convoID];
-      console.log('____TEST___',state)
-      return {...state, convoID: [...convoMessages, payload]};
+      return {...state, [convoID]: [...convoMessages, payload]};
     default:
       return state;
   }

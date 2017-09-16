@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import ConvoForm from '../convo-form';
+import * as util from '../../../lib/util.js';
 
 class ConvoContainer extends React.Component {
   constructor(props) {
@@ -29,22 +30,26 @@ class ConvoContainer extends React.Component {
         >
           <h5>Chat</h5>
         </div>
-        <ConvoForm
-          onComplete={this.props.createConvo}
-        />
-        <ul>
-          {this.props.convos.map((val, ind) => {
-            let title = val.members.join(', ');
-            return(
-              <li
-                key={ind}
-                onClick={() => this.props.openConvo(val)}
-              >
-                <p>{title}</p>
-              </li>
-            )
-          })}
-        </ul>
+        {util.renderIf(this.state.displayed === 'visible-chat',
+          <ConvoForm
+            onComplete={this.props.createConvo}
+          />
+        )}
+        {util.renderIf(this.state.displayed === 'visible-chat',
+          <ul>
+            {this.props.convos.map((val, ind) => {
+              let title = val.members.join(', ');
+              return(
+                <li
+                  key={ind}
+                  onClick={() => this.props.openConvo(val)}
+                >
+                  <p>{title}</p>
+                </li>
+              )
+            })}
+          </ul>
+        )}
       </section>
     )
   }
