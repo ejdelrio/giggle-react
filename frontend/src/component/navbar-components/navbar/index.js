@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import * as util from '../../lib/util.js';
-import * as authActions from '../../action/auth-action.js';
-import * as profileActions from '../../action/profile-action.js';
-import * as socketActions from '../../action/socket-action.js';
+import * as util from '../../../lib/util.js';
+import * as authActions from '../../../action/auth-action.js';
+import * as profileActions from '../../../action/profile-action.js';
+import * as socketActions from '../../../action/socket-action.js';
 import GoogleLogin from 'react-google-login';
 import superagent from 'superagent';
 import GoogleButton from 'react-google-button';
@@ -44,14 +44,18 @@ class NavBar extends React.Component {
 
     this.props.restoreSession(giggleToken);
     this.props.fetchProfile()
-    .catch(err => console.error('NO PROFILE :D'));
+    .then(res => {
+      if(!res) return history.push('/settings');
+    })
   }
 
   onLogout() {
-    this.props.socket.disconnect();
     this.props.logout();
-    this.props.disconnectSocket();
-    this.props.logoutProfile();
+    if(this.props.profile) {
+      this.props.socket.disconnect();
+      this.props.disconnectSocket();
+      this.props.logoutProfile();
+    }
     this.props.history.push('/welcome/login');
   }
 

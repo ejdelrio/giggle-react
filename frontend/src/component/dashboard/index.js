@@ -19,7 +19,8 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.profile) this.props.fetchConvos();
+    let {history, profile} = this.props;
+    if(!profile) return history.push('/settings');
 
   }
 

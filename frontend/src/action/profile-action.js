@@ -21,11 +21,13 @@ export const getProfile = () => (dispatch, getState) => {
   return superagent.get(`${__API_URL__}/api/profile`)
   .set('Authorization', `Bearer ${token}`)
   .then(res => {
-    dispatch(createProfile(res.body));
-    dispatch(socketActions.connectSocket(res.body));
-    return res;
+    if(res.body) {
+      dispatch(createProfile(res.body));
+      dispatch(socketActions.connectSocket(res.body));
+      return res;
+    }
+    return null;
   })
-  .catch(err => console.error(err));
 }
 
 export const putProfile = profile => (dispatch, getState) => {
@@ -46,10 +48,13 @@ export const postProfile = profile => (dispatch, getState) => {
   .set('Authorization', `Bearer ${token}`)
   .send(profile)
   .then(res => {
-    dispatch(createProfile(res.body));
-    dispatch(socketActions.connectSocket(res.body));
-    return res;
-  });
+    if(res.body) {
+      dispatch(createProfile(res.body));
+      dispatch(socketActions.connectSocket(res.body));
+      return res;
+    }
+  })
+  .catch(err => err);
 }
 
 export const updateLocation = () => (dispatch, getState) => {

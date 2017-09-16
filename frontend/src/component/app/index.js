@@ -6,13 +6,10 @@ import * as util from '../../lib/util.js';
 import Dashboard from '../dashboard';
 import ProfileView from '../profile-view';
 import Landing from '../landing';
-import NavBar from '../navbar';
+import NavBar from '../navbar-components/navbar';
 import MsgBar from '../msg-components/messanger-bar'
 
 class App extends React.Component {
-  componentDidMount() {
-
-  }
 
   render() {
     return(
