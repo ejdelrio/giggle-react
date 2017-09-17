@@ -8,6 +8,7 @@ import ProfileView from '../profile-components/profile-view';
 import Landing from '../landing';
 import NavBar from '../navbar-components/navbar';
 import MsgBar from '../msg-components/messanger-bar'
+import ProfileSettings from '../profile-components/profile-settings'
 
 class App extends React.Component {
 
@@ -21,7 +22,7 @@ class App extends React.Component {
         <span>
           <Route exact path='*' component={NavBar} />
           <Route exact path='/dashboard' component={ProfileView} />
-          <Route exact path='/settings' component={ProfileView} />
+          <Route exact path='/settings' component={ProfileSettings} />
           {util.renderIf(this.props.profile,
             <Route exact path='*' component={MsgBar} />
           )}

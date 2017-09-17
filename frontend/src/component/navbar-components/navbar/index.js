@@ -78,7 +78,7 @@ class NavBar extends React.Component {
   }
 
   switchSwitch(switchName) {
-    if(this.props.profile) return this[switchName]();
+    if(this.props.token) return this[switchName]();
     return this.modalSwitch();
   }
 

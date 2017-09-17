@@ -9,7 +9,7 @@ import * as profileAct from '../../../action/profile-action.js';
 class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state =
+    this.state = this.props.profile ? this.props.profile :
     {
       bio: '',
       avatar: '',
@@ -17,7 +17,7 @@ class ProfileForm extends React.Component {
       type: 'band',
       city: '',
       state: '',
-      coords: '',
+      location: '',
       error: null
     };
 
@@ -34,23 +34,23 @@ class ProfileForm extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    console.log('__PROF_FORM__:', this.state);
-  }
 
   onSubmit(e) {
     e.preventDefault();
+    let {history} = this.props;
     let {bio, city, state} = this.state;
     if(!city || !state || !bio) return this.setState({error: true});
 
     this.useCityLocation()
     .then(loc => {
       let newProfile = {...this.state};
-      newProfile.coords = loc.coords;
+      newProfile.location = loc;
       return this.props.profile?
-      this.props.updateProfile(this.state):
-      this.props.createProfile(this.state);
+      this.props.updateProfile(newProfile):
+      this.props.createProfile(newProfile);
+
     })
+    .then(() => history.replace('/'))
     .catch(error => {
       this.setState({error});
     })
@@ -72,7 +72,7 @@ class ProfileForm extends React.Component {
         .end((error, res) => {
           if(error) reject({error});
           let {lat, lng} = res.body.results[0].geometry.location;
-          resolve({coords: [lat, lng]});
+          resolve([parseFloat(lat), parseFloat(lng)]);
         });
       });
     }
@@ -82,17 +82,20 @@ class ProfileForm extends React.Component {
     let type = this.state.type;
     return(
       <form className={this.props.className} onSubmit={this.onSubmit}>
+        <label>Type of Account:</label>
         <select name='type' onChange={this.onChange}>
           <option value='band'>Band</option>
           <option value='venue'>Venue</option>
         </select>
         <p>{this.state.genre.join(', ')}</p>
+        <label>Genres of music:</label>
         <SingleInput
           name='singleGenre'
           onComplete={this.addGenre}
           placeholder='Enter a Genre'
           buttonText='Add Genre'
         />
+        <label>City:</label>
         <input
           name='city'
           type='text'
@@ -100,6 +103,7 @@ class ProfileForm extends React.Component {
           value={this.state.city}
           onChange={this.onChange}
         />
+        <label>State:</label>
         <input
           name='state'
           type='text'
@@ -107,7 +111,7 @@ class ProfileForm extends React.Component {
           value={this.state.state}
           onChange={this.onChange}
         />
-
+        <label>Bio:</label>
         <textarea
           type='text'
           name='bio'
@@ -125,7 +129,6 @@ class ProfileForm extends React.Component {
 }
 
 let mapStateToProps = store => ({
-  profile: store.profile
 });
 
 let mapDispatchToProps = dispatch => ({
