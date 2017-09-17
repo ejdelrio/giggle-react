@@ -1,6 +1,8 @@
 import React from 'react';
 
-import SingleInput from '../../../single-input';
+import SingleInput from '../single-input-form';
+import CustomDropDown from '../custom-dropdown';
+import DateDropDown from '../date-drop-down';
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -19,8 +21,9 @@ class SearchForm extends React.Component {
   }
 
   addGenre(entry) {
-    let genre = this.state.genre;
-    for(let i = 0 i < genre.length; i++) {
+    console.log(entry);
+    let genre = this.state.genres;
+    for(let i = 0; i < genre.length; i++) {
       if(genre[i].toLowerCase() === entry.toLowerCase()) {
         return;
       }
@@ -29,7 +32,8 @@ class SearchForm extends React.Component {
     this.setState({genre});
   }
   onCustomChange(obj) {
-    this.setState(obj)
+    this.setState(obj);
+    console.log(this.state);
   }
 
   render() {
@@ -40,6 +44,7 @@ class SearchForm extends React.Component {
     let timeIncrements = {}
     return(
       <form className='search-form'>
+        <p>{this.state.genres.join(', ')}</p>
         <SingleInput
           name='genre'
           buttonText='Add Genre'
@@ -48,23 +53,25 @@ class SearchForm extends React.Component {
         />
         <CustomDropDown
           name='maxDistance'
+          placeholder='mi.'
           data={radiusIncrements}
           onComplete={this.onCustomChange}
         />
-        <CustomDropDown
+        <DateDropDown
           name='startDate'
-          data={radiusIncrements}
+          className='search-date'
           onComplete={this.onCustomChange}
         />
-        <CustomDropDown
+        <DateDropDown
           name='endDate'
-          data={radiusIncrements}
+          className='search-date'
           onComplete={this.onCustomChange}
         />
-        
+      </form>
+
 
     )
   }
 }
 
-export default
+export default SearchForm;

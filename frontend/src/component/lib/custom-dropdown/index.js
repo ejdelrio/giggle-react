@@ -19,9 +19,9 @@ class CustomDropDown extends React.Component {
     this.setState({dropClass: dropClass});
   }
 
-  onSubmit(val, propName) {
+  onSubmit(val, propName, key) {
     this.setState({
-      someKey: val,
+      someKey: key,
       dropClass: 'hide-drop'
     })
     this.props.onComplete({[propName]: val});
@@ -46,7 +46,7 @@ class CustomDropDown extends React.Component {
             let val = this.props.data[key];
             return(
               <li
-                onClick={() => this.onSubmit(val, propName)}
+                onClick={() => this.onSubmit(val, propName, key)}
                 key={ind}
               >
                 <p>{key}</p>
