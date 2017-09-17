@@ -4,7 +4,7 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import * as util from '../../lib/util.js';
 
 import Dashboard from '../dashboard';
-import ProfileView from '../profile-view';
+import ProfileView from '../profile-components/profile-view';
 import Landing from '../landing';
 import NavBar from '../navbar-components/navbar';
 import MsgBar from '../msg-components/messanger-bar'
@@ -20,8 +20,8 @@ class App extends React.Component {
       <BrowserRouter>
         <span>
           <Route exact path='*' component={NavBar} />
-          <Route exact path='/dashboard' component={Dashboard} />
-          <Route exact path='/settings' component={Landing} />
+          <Route exact path='/dashboard' component={ProfileView} />
+          <Route exact path='/settings' component={ProfileView} />
           {util.renderIf(this.props.profile,
             <Route exact path='*' component={MsgBar} />
           )}

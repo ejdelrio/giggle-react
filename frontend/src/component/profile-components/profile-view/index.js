@@ -7,7 +7,9 @@ class ProfileView extends React.Component{
   }
   render() {
     return(
-      <ProfileForm />
+      <section id='profile-view'>
+        <ProfileForm />
+      </section>
     )
   }
 }
