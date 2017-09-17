@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import * as util from '../../lib/util.js';
-import SingleInput from '../single-input-form';
+import SingleInput from '../lib/single-input-form';
 import * as profileAct from '../../action/profile-action.js';
 
 class ProfileForm extends React.Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import SingleForm from '../../single-input-form';
+import SingleForm from '../../lib/single-input-form';
 
 class ConvoForm extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class ConvoForm extends React.Component {
       content: this.state.content,
       senderName: this.state.senderName
     };
-    
+
     let data = {
       members: [this.props.profile.userName, ...this.state.members],
       message

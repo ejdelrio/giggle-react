@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import * as authAction from '../../action/auth-action.js';
 
-import Modal from '../modal';
+import Modal from '../lib/modal';
 import AuthForm from '../auth-form';
 
 import GoogleLogin from 'react-google-login';

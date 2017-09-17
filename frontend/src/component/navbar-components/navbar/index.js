@@ -7,22 +7,8 @@ import * as authActions from '../../../action/auth-action.js';
 import * as profileActions from '../../../action/profile-action.js';
 import * as socketActions from '../../../action/socket-action.js';
 
-import GoogleLogin from 'react-google-login';
-import superagent from 'superagent';
-import GoogleButton from 'react-google-button';
-import querystring from 'querystring';
-import Iframe from 'react-iframe'
-
 import AuthPage from '../../auth-page';
 import GearMenu from '../gear-menu';
-
-let newLink = (link, text) => (
-  <li>
-    <Link to={`/${link}`}>
-      {text}
-    </Link>
-  </li>
-)
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -30,7 +16,8 @@ class NavBar extends React.Component {
 
     this.state = {
       modalToggler: false,
-      menuToggle: 'menu-hidden'
+      menuToggle: false,
+      bellToggle: false
     }
 
     this.validateRoute = this.validateRoute.bind(this);
@@ -69,7 +56,8 @@ class NavBar extends React.Component {
     this.props.history.push('/');
     this.setState({
       modalToggler: false,
-      menuToggle: 'menu-hidden'
+      menuToggle: false,
+      bellToggle: false
     });
 
   }
@@ -79,33 +67,52 @@ class NavBar extends React.Component {
     this.setState({modalToggler: flip});
   }
   menuSwitch() {
-    let newClass = this.state.menuToggle === 'menu-visible' ?
-    'menu-hidden' : 'menu-visible';
+    let newClass = this.state.menuToggle ?
+    false : true;
     this.setState({menuToggle: newClass});
   }
+  bellSwitch() {
+    let newClass = this.state.menuToggle ?
+    false : true;
+    this.setState({bellToggle: newClass});
+  }
 
-  switchSwitch() {
-    if(this.props.profile) return this.menuSwitch();
+  switchSwitch(switchName) {
+    if(this.props.profile) return this[switchName]();
     return this.modalSwitch();
   }
 
   render() {
     let {url} = this.props.match;
+    let bellIcon = (
+      <li>
+        <div id='bell' onClick={() => this.switchSwitch('bellSwitch')}>
+          <img
+            src='https://maxcdn.icons8.com/Android_L/PNG/512/Holidays/bell-512.png'
+          />
+        </div>
+        {util.renderIf(this.state.bellToggle,
+
+        )}
+      </li>
+    )
+
 
     return (
       <header>
         <h1>Giggle</h1>
         <ul>
           <li>
-            <div id='gear' onClick={this.switchSwitch}>
+            <div id='gear' onClick={() => this.switchSwitch('menuSwitch')}>
               <img
                 src='https://d30y9cdsu7xlg0.cloudfront.net/png/1241-200.png'
               />
             </div>
-            {util.renderIf(this.state.menuToggle === 'menu-visible',
+            {util.renderIf(this.state.menuToggle,
               <GearMenu logout={this.onLogout} />
             )}
           </li>
+          {util.renderIf(this.props.profile, bellIcon)}
         </ul>
         {util.renderIf(this.state.modalToggler,
           <AuthPage
@@ -131,5 +138,6 @@ let mapDispatchToProps = dispatch => ({
   logoutProfile: () => dispatch(profileActions.deleteProfile()),
   disconnectSocket: () => dispatch(socketActions.socketDelete())
 });
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
