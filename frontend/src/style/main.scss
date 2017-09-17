@@ -335,14 +335,15 @@ header {
 }
 
 .search-form {
-  width: 60vw;
+  width: 70vw;
   height: 40vh;
   float: left;
-  margin-left: 20vw;
+  margin-left: 15vw;
   margin-top: 20vh;
   border: 1px solid black;
   border-radius: 10px;
   background: grey;
+
 
   &>p {
     width: 20vw;
@@ -406,20 +407,64 @@ header {
   }
 
   .search-date {
-    width: 15vw;
+    width: 18vw;
     height: 5vh;
-    outline: 1px solid black;
+    margin-left: 2vw;
     float: left;
     &>* {
       float: left;
     }
     &>div{
-      width: 15vw;
+      width: 8vw;
       height: 5vh;
+      margin: 0;
+      p {
+        float: left;
+        margin: 0;
+        padding: 0;
+      }
     }
 
-    &>div>div {
 
+    &>div>div {
+      display: inline-block;
+      background: pink;
+      width: 7vw;
+      height: 5vh;
+      margin: 0;
+      outline: 1px solid black;
+
+      p {
+        margin: 0;
+        float: left;
+      }
+
+      &>div {
+        position: relative;
+        width: 5vh;
+        height: 5vh;
+        background: orange;
+        margin: 0;
+        float: right;
+      }
+    }
+
+    .custom-drop {
+      width: 7vw;
+      float: left;
+      margin: 0;
+      padding: 0;
+      background: white;
+      outline: 1px solid black;
+      height: 20vh;
+      overflow-x: scroll;
+      li {
+        margin: 0;
+        padding: 0;
+        float: left;
+        width: 100%;
+        background: white;
+      }
     }
   }
 }

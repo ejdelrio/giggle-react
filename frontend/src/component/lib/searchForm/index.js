@@ -57,6 +57,7 @@ class SearchForm extends React.Component {
           data={radiusIncrements}
           onComplete={this.onCustomChange}
         />
+        <p>Between:</p>
         <DateDropDown
           name='startDate'
           className='search-date'
