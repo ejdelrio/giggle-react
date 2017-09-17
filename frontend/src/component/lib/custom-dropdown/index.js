@@ -5,35 +5,58 @@ class CustomDropDown extends React.Component {
     super(props);
 
     this.state = {
-      this.props.name: null;
-      dropClass: ''
+      someKey: '',
+      dropClass: 'hide-drop'
     }
     this.classToggle = this.classToggle.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
   }
   classToggle() {
-    let dropClass = this.state.dropClass === '' ?
+    let dropClass = this.state.dropClass === 'hide-drop' ?
     'custom-drop':
-    '';
+    'hide-drop';
 
-    this.setState({dropClass});
+    this.setState({dropClass: dropClass});
   }
 
-  onSubmit(val) {
-    this.onComplete({this.props.name: val});
+  onSubmit(val, propName) {
+    this.setState({
+      someKey: val,
+      dropClass: 'hide-drop'
+    })
+    this.props.onComplete({[propName]: val});
   }
   render() {
-    let paraText = this.state[this.props.name] ?
+    let propName = this.props.name;
+    let paraText = this.state.someKey === '' ?
     this.props.placeholder :
-    this.props.name;
+    this.state.someKey;
     return(
-      <div>
-        <p
-          className={this.state.dropClass}
-          onClick={this.dropClass}
-        >
-          {paraText}
-        </p>
-      </p>
+      <div className={this.props.className}>
+        <div onClick={this.classToggle}>
+          <p>
+            {paraText}
+          </p>
+          <div className='dropdown-button'  >
+            <img src=''/>
+          </div>
+        </div>
+        <ul className={this.state.dropClass}>
+          {Object.keys(this.props.data).map((key, ind) => {
+            let val = this.props.data[key];
+            return(
+              <li
+                onClick={() => this.onSubmit(val, propName)}
+                key={ind}
+              >
+                <p>{key}</p>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     )
   }
 }
+
+export default CustomDropDown;

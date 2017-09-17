@@ -21,7 +21,7 @@ class App extends React.Component {
         <span>
           <Route exact path='*' component={NavBar} />
           <Route exact path='/dashboard' component={Dashboard} />
-          <Route exact path='/settings' component={ProfileView} />
+          <Route exact path='/settings' component={Landing} />
           {util.renderIf(this.props.profile,
             <Route exact path='*' component={MsgBar} />
           )}
