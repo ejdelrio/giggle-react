@@ -1,3 +1,5 @@
+
+
 .googleLink {
   display: inline-block;
   text-decoration: none;
@@ -465,6 +467,58 @@ header {
         width: 100%;
         background: white;
       }
+    }
+  }
+}
+
+#profile-settings {
+  float: left;
+  width: 40vw;
+  height: 80vh;
+  margin-top: 10vh;
+  margin-left: 30vw;
+  background: pink;
+  border-radius: 10px;
+
+  &>p {
+    float: left;
+    width: 20vw;
+    text-align: left;
+    margin-left: 5vw;
+  }
+
+  &>form {
+    float: left;
+    width: 30vw;
+    height: 60vh;
+    border-radius: 10px;
+    margin-left: 5vw;
+    p {
+      width: 100%;
+      height: 5vh;
+      font-size: 2.5vh;
+      float: left;
+    }
+    label {
+      float: left;
+      width: 100%;
+    }
+    select {
+      width: 40%;
+      float: left;
+      height: 5vh;
+    }
+
+    input {
+      float: left;
+      width: 100%;
+      height: 5vh;
+    }
+    textarea {
+      float: left;
+      width: 100%;
+      height: 15vh;
+
     }
   }
 }
