@@ -27,14 +27,12 @@ class GoogleButton extends React.Component {
     let googleLoginQuery = querystring.stringify({
       client_id: __GOOGLE_CLIENT_ID__,
       response_type: 'code',
-      redirect_uri: `${__API_URL__}/oauth/google/code`,
+      redirect_uri: `${__API_URL__}/oauth/google`,
       scope: 'openid profile email',
       prompt: __DEBUG__ ? 'consent' : undefined
     });
 
     let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
-
-
 
     return (
       <div>
