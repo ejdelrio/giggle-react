@@ -1,3 +1,4 @@
+import './_google-button.scss';
 import * as querystring from 'querystring';
 import React from 'react';
 
