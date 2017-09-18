@@ -13,8 +13,10 @@ class DateDropDown extends React.Component{
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(obj) {
-    this.setState(obj);
+  onChange(e) {
+    let {name, value} = e.target
+    console.log(name, value)
+    this.setState({[name]: value})
     let propName = this.props.name;
     let newDate = new Date(
       '2017',
@@ -37,19 +39,27 @@ class DateDropDown extends React.Component{
     }
 
     return(
-      <div className={this.props.className}>
-        <CustomDropDown
-          name='month'
-          placeholder='month'
-          data={months}
-          onComplete={this.onChange}
-        />
-        <CustomDropDown
-          name='day'
-          placeholder='day'
-          data={days}
-          onComplete={this.onChange}
-        />
+      <div className='date-dropdown'>
+        <select name='month' onChange={this.onChange}>
+          {Object.keys(months).map((val, ind) => {
+            return(
+              <option
+                key={ind}
+                val={months[val]}
+              >{val}</option>
+            )
+          })}
+        </select>
+        <select name='day' onChange={this.onChange}>
+          {Object.keys(days).map((val, ind) => {
+            return(
+              <option
+                key={ind}
+                val={val}
+              >{val}</option>
+            )
+          })}
+        </select>
       </div>
     )
   }
