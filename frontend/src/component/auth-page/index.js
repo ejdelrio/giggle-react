@@ -30,7 +30,7 @@ class AuthPage extends React.Component{
       response_type: 'code',
       redirect_uri: `${__API_URL__}/oauth/google`,
       scope: 'openid profile email',
-      prompt: __DEBUG__ ? 'consent' : undefined
+      prompt: 'consent'
     });
 
     
