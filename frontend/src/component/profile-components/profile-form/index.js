@@ -13,6 +13,7 @@ class ProfileForm extends React.Component {
     {
       bio: '',
       avatar: '',
+      preview: '',
       genre: [],
       type: 'band',
       city: '',
@@ -32,6 +33,15 @@ class ProfileForm extends React.Component {
     this.setState({
       [name]: value
     });
+
+    if (name === 'avatar') {
+      let {files} = e.target;
+      let avatar = files[0];
+      this.setState({avatar});
+      util.photoToDataURL(avatar)
+      .then(preview => this.setState({preview}))
+      .catch(console.error);
+    }
   }
 
 
@@ -82,6 +92,7 @@ class ProfileForm extends React.Component {
     let type = this.state.type;
     return(
       <form className={this.props.className} onSubmit={this.onSubmit}>
+        <img src={this.state.preview} />
         <label>Type of Account:</label>
         <select name='type' onChange={this.onChange}>
           <option value='band'>Band</option>
@@ -119,6 +130,12 @@ class ProfileForm extends React.Component {
           value={this.state.bio}
           onChange={this.onChange}
         ></textarea>
+        <label>Avatar:</label>
+        <input
+          type='file'
+          name='avatar'
+          onChange={this.onChange}
+        />
         <button type='submit'>Create Profile</button>
       </form>
     )
