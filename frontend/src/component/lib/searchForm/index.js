@@ -29,8 +29,8 @@ class SearchForm extends React.Component {
 
     this.state = {
       genres: [],
-      startDate: '',
-      endDate: '',
+      startDate: new Date(),
+      endDate: new Date(),
       time: '',
       maxDistance: 10,
       error: false
@@ -75,12 +75,12 @@ class SearchForm extends React.Component {
           onComplete={this.addGenre}
         />
         <p>Search Radius:</p>
-        <select name='distance' onChange={this.onChange}>
+        <select name='maxDistance' onChange={this.onChange}>
           {Object.keys(radiusIncrements).map((val, ind) => {
             return(
               <option
                 key={ind}
-                val={radiusIncrements[val]}
+                value={radiusIncrements[val]}
               >{val}</option>
             )
           })}
@@ -89,6 +89,10 @@ class SearchForm extends React.Component {
         <DateDropDown
           onComplete={this.onDateChange}
           name='startDate'
+        />
+        <DateDropDown
+          onComplete={this.onDateChange}
+          name='endDate'
         />
       </form>
     )
