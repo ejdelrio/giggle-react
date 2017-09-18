@@ -61,11 +61,16 @@ class SearchForm extends React.Component {
   onDateChange(obj) {
     this.setState(obj);
   }
+  onComplete(e) {
+    e.preventDefault();
+    this.onComplete(this.state);
+  }
 
   render() {
 
     return(
-      <form className='search-form'>
+      <form className='search-form' onSubmit={this.onComplete}>
+        <h5>{this.props.banner}</h5>
         <p>Genres:</p>
         <p>{this.state.genres.join(', ')}</p>
         <SingleInput
@@ -94,6 +99,7 @@ class SearchForm extends React.Component {
           onComplete={this.onDateChange}
           name='endDate'
         />
+        <button type='submit'>Search!</button>
       </form>
     )
   }
