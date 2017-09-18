@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import * as util from '../../../lib/util.js'
 
 let newLink = (link, text) => (
   <li>
@@ -19,7 +20,7 @@ class GearMenu extends React.Component {
     return(
       <ul className={this.props.className}>
         {newLink('settings', 'Settings')}
-        {newLink(`profile/${this.props.profile.userName}`, 'My Profile')}
+    
         {newLink('bookings', 'My Bookings')}
         {newLink('media', 'My Media')}
         <li onClick={this.props.logout}>
