@@ -11,7 +11,7 @@ class ProfileSettings extends React.Component {
       <span id='profile-settings'>
         <p>Edit Profile:</p>
         <ProfileForm
-          profle={this.props.profile}
+          profile={this.props.profile}
         />
       </span>
 

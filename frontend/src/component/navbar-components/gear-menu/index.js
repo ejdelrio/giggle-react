@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 let newLink = (link, text) => (
   <li>
@@ -18,7 +19,7 @@ class GearMenu extends React.Component {
     return(
       <ul className={this.props.className}>
         {newLink('settings', 'Settings')}
-        {newLink('profile', 'My Profile')}
+        {newLink(`profile/${this.props.profile.userName}`, 'My Profile')}
         {newLink('bookings', 'My Bookings')}
         {newLink('media', 'My Media')}
         <li onClick={this.props.logout}>
@@ -28,6 +29,8 @@ class GearMenu extends React.Component {
     )
   }
 }
+let mapStateToProps = state => ({
+  profile: state.profile
+})
 
-
-export default GearMenu;
+export default connect(mapStateToProps, undefined)(GearMenu);

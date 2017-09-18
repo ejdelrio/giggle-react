@@ -329,12 +329,8 @@ header {
     background: orange;
     float: right;
   }
-
 }
 
-.hide-drop {
-  display: none;
-}
 
 .search-form {
   width: 70vw;
@@ -346,129 +342,6 @@ header {
   border-radius: 10px;
   background: grey;
 
-
-  &>p {
-    width: 20vw;
-    height: 5vh;
-    font-size: 2vh;
-    margin-left: 2vw;
-  }
-  div:first-of-type {
-    margin-left: 2vw;
-    width: 20vw;
-
-    input {
-      float: left;
-      padding: 1vh 0;
-      border-radius: 5px;
-      width: 15vw;
-    }
-
-    button {
-      width: 4vw;
-      float: left;
-      border: none;
-      border-radius: 5px;
-    }
-  }
-
-  &>:nth-child(3) {
-    margin-left: 2vw;
-    float: left;
-    width: 6vw;
-    height: 5vh;
-    background: white;
-    position: relative;
-    &>div{
-      width: 6vw;
-      height: 5vh;
-      float: left;
-      margin: 0;
-    }
-    &>div>p {
-      float: left;
-      width: 1vw;
-    }
-    &>div>div {
-      width: 5vh;
-      height: 5vh;
-      background: orange;
-      float: right;
-
-    }
-    .custom-drop {
-      width: 100%;
-      float: left;
-      margin: 0;
-      padding: 0;
-      background: white;
-      outline: 1px solid black;
-      height: 20vh;
-      overflow-x: scroll;
-    }
-  }
-
-  .search-date {
-    width: 18vw;
-    height: 5vh;
-    margin-left: 2vw;
-    float: left;
-    &>* {
-      float: left;
-    }
-    &>div{
-      width: 8vw;
-      height: 5vh;
-      margin: 0;
-      p {
-        float: left;
-        margin: 0;
-        padding: 0;
-      }
-    }
-
-
-    &>div>div {
-      display: inline-block;
-      background: pink;
-      width: 7vw;
-      height: 5vh;
-      margin: 0;
-      outline: 1px solid black;
-
-      p {
-        margin: 0;
-        float: left;
-      }
-
-      &>div {
-        position: relative;
-        width: 5vh;
-        height: 5vh;
-        background: orange;
-        margin: 0;
-        float: right;
-      }
-    }
-
-    .custom-drop {
-      width: 7vw;
-      float: left;
-      margin: 0;
-      padding: 0;
-      background: white;
-      outline: 1px solid black;
-      height: 20vh;
-      overflow-x: scroll;
-      li {
-        margin: 0;
-        padding: 0;
-        float: left;
-        width: 100%;
-        background: white;
-      }
-    }
-  }
 }
 
 #profile-settings {
@@ -499,6 +372,9 @@ header {
       font-size: 2.5vh;
       float: left;
     }
+    button {
+      float: left;
+    }
     label {
       float: left;
       width: 100%;
@@ -507,18 +383,60 @@ header {
       width: 40%;
       float: left;
       height: 5vh;
+      border: none;
     }
 
     input {
       float: left;
       width: 100%;
       height: 5vh;
+      border: none;
+      border-radius: 5px;
     }
     textarea {
       float: left;
       width: 100%;
       height: 15vh;
+      border: none;
+      border-radius: 5px;
 
+    }
+  }
+}
+
+#profile-view {
+  float: left;
+  width: 70vw;
+  height: 80vh;
+  margin: 10vh 5vw;
+  outline: 1px solid black;
+  &>div {
+    float: left;
+    &>img {
+      float: left;
+      height: 35vh;
+      width: 25vw;
+      background: blue;
+
+    }
+
+    h4 {
+      margin: 0;
+      padding: 0;
+      float: left;
+      margin-left: 2vw;
+      height: 5vh;
+      width: 25vw;
+      outline: 1px solid black;
+    }
+    &>p:first-of-type {
+      margin: 0;
+      padding: 0;
+      float: left;
+      width: 25vw;
+      height: 30vh;
+      margin-left: 2vw;
+      outline: 1px solid black;
     }
   }
 }

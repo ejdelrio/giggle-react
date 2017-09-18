@@ -9,7 +9,7 @@ import * as profileAct from '../../../action/profile-action.js';
 class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = this.props.profile ? this.props.profile :
+    this.state = !!this.props.profile ? this.props.profile :
     {
       bio: '',
       avatar: '',
@@ -120,15 +120,13 @@ class ProfileForm extends React.Component {
           onChange={this.onChange}
         ></textarea>
         <button type='submit'>Create Profile</button>
-        <button onClick={() => this.props.userQuery(5, ['blues'])}>
-          Test searches
-        </button>
       </form>
     )
   }
 }
 
-let mapStateToProps = store => ({
+let mapStateToProps = state => ({
+  prof: state.profile
 });
 
 let mapDispatchToProps = dispatch => ({

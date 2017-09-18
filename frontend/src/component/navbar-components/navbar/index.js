@@ -10,6 +10,14 @@ import * as socketActions from '../../../action/socket-action.js';
 import AuthPage from '../../auth-page';
 import GearMenu from '../gear-menu';
 
+let newLink = (link, text) => (
+  <li>
+    <Link to={`/${link}`}>
+      {text}
+    </Link>
+  </li>
+)
+
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
@@ -102,6 +110,7 @@ class NavBar extends React.Component {
       <header>
         <h1>Giggle</h1>
         <ul>
+
           <li>
             <div id='gear' onClick={() => this.switchSwitch('menuSwitch')}>
               <img
@@ -113,6 +122,8 @@ class NavBar extends React.Component {
             )}
           </li>
           {util.renderIf(this.props.profile, bellIcon)}
+          {util.renderIf(this.props.profile, newLink('dashboard', 'Dashboard'))}
+          {newLink('', 'Home')}    
         </ul>
         {util.renderIf(this.state.modalToggler,
           <AuthPage
