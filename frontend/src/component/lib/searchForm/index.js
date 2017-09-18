@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import SingleInput from '../single-input-form';
@@ -33,24 +32,26 @@ class SearchForm extends React.Component {
       endDate: new Date(),
       time: '',
       maxDistance: 10,
+      limit: 10,
       error: false
     }
     this.addGenre = this.addGenre.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidUpdate() {
     console.log('NEW_STATE: ', this.state);
   }
   addGenre(entry) {
-    let genre = this.state.genres;
-    for(let i = 0; i < genre.length; i++) {
-      if(genre[i].toLowerCase() === entry.toLowerCase()) {
+    let genres = this.state.genres;
+    for(let i = 0; i < genres.length; i++) {
+      if(genres[i].toLowerCase() === entry.toLowerCase()) {
         return;
       }
     }
-    genre.push(entry);
-    this.setState({genre});
+    genres.push(entry);
+    this.setState({genres});
   }
 
   onChange(e) {
@@ -61,15 +62,15 @@ class SearchForm extends React.Component {
   onDateChange(obj) {
     this.setState(obj);
   }
-  onComplete(e) {
+  onSubmit(e) {
     e.preventDefault();
-    this.onComplete(this.state);
+    this.props.onComplete(this.state);
   }
 
   render() {
 
     return(
-      <form className='search-form' onSubmit={this.onComplete}>
+      <form className='search-form' onSubmit={this.onSubmit}>
         <h5>{this.props.banner}</h5>
         <p>Genres:</p>
         <p>{this.state.genres.join(', ')}</p>
@@ -82,6 +83,16 @@ class SearchForm extends React.Component {
         <p>Search Radius:</p>
         <select name='maxDistance' onChange={this.onChange}>
           {Object.keys(radiusIncrements).map((val, ind) => {
+            return(
+              <option
+                key={ind}
+                value={radiusIncrements[val]}
+              >{val}</option>
+            )
+          })}
+        </select>
+        <select name='limit' onChange={this.onChange}>
+          {Object.keys({10:10, 20:20, 30:30}).map((val, ind) => {
             return(
               <option
                 key={ind}
