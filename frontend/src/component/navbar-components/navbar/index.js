@@ -123,11 +123,7 @@ class NavBar extends React.Component {
           </li>
           {util.renderIf(this.props.profile, bellIcon)}
           {util.renderIf(this.props.profile, newLink('dashboard', 'Dashboard'))}
-<<<<<<< HEAD
-          {newLink('', 'Home')}    
-=======
           {newLink('', 'Home')}
->>>>>>> profile-feature
         </ul>
         {util.renderIf(this.state.modalToggler,
           <AuthPage
