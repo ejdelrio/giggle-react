@@ -1,3 +1,4 @@
+inmport './_convo-container.scss';
 import React from 'react';
 import {connect} from 'react-redux';
 

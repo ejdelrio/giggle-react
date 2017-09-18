@@ -1,3 +1,4 @@
+import './_profile-view.scss';
 import React from 'react';
 import ProfileForm from '../profile-form';
 

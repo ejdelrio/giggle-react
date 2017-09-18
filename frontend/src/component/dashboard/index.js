@@ -1,3 +1,4 @@
+import './_dashboard.scss';
 import React from 'react';
 import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';

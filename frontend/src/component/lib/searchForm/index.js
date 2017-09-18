@@ -1,3 +1,4 @@
+import './_searchForm.scss';
 import React from 'react';
 
 import SingleInput from '../../../single-input';

@@ -1,3 +1,4 @@
+import './_gear-menu.scss';
 import React from 'react';
 import {Link} from 'react-router-dom';
 
