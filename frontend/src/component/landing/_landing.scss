@@ -2,11 +2,16 @@
 
 @import '../../style/lib/_vars.scss';
 
+// --- BACKGROUND --- //
+body {
+ background-image: url('../../style/lib/pictures/UltraMusicFestival.jpg');
+}
 // --- GIGGLE STYLE --- //
 .giggle-landing {
   text-align: center;
-  color: $primary;
+  color: $secondary;
   font-size: 10vw;
   margin-top: 15vw;
   margin-bottom: 2vw;
+  -webkit-text-stroke: 2px $primary;
 }
