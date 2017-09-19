@@ -4,6 +4,8 @@ import SingleInput from '../single-input-form';
 import CustomDropDown from '../custom-dropdown';
 import DateDropDown from '../date-drop-down';
 
+import * as util from '../../../lib/util.js';
+
 let radiusIncrements = {};
 let months = {};
 let days = {};
@@ -50,7 +52,8 @@ class SearchForm extends React.Component {
         return;
       }
     }
-    genres.push(entry);
+    console.log(this.state.genres);
+    genres.push(entry.toLowerCase());
     this.setState({genres});
   }
 
@@ -65,17 +68,18 @@ class SearchForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.onComplete(this.state);
+    this.setState({genres: []})
   }
 
   render() {
-
+    let joinedGenres = this.state.genres.join(', ')
     return(
       <form className='search-form' onSubmit={this.onSubmit}>
         <h5>{this.props.banner}</h5>
         <p>Genres:</p>
-        <p>{this.state.genres.join(', ')}</p>
+        <p>{joinedGenres}</p>
         <SingleInput
-          name='genre'
+          name='genres'
           buttonText='Add Genre'
           placeholder='Enter a Genre'
           onComplete={this.addGenre}
@@ -106,10 +110,12 @@ class SearchForm extends React.Component {
           onComplete={this.onDateChange}
           name='startDate'
         />
-        <DateDropDown
-          onComplete={this.onDateChange}
-          name='endDate'
-        />
+        {util.renderIf(this.props.type !== 'booking',
+          <DateDropDown
+            onComplete={this.onDateChange}
+            name='endDate'
+          />
+        )}
         <button type='submit'>Search!</button>
       </form>
     )

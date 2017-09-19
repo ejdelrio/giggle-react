@@ -25,8 +25,8 @@ class Dashboard extends React.Component {
     superagent.get(`${__API_URL__}/api/userQuery`)
     .set('Authorization', `Bearer ${this.props.token}`)
     .query(query)
-    .end(res => {
-      console.log(res);
+    .then(res => {
+      this.setState({queryResults: res.body})
     })
   }
 
@@ -40,6 +40,17 @@ class Dashboard extends React.Component {
           banner='Search for Venues'
           onComplete={this.executeSearch}
         />
+        <ul>
+          {this.state.queryResults.map((prof, ind) => {
+            return(
+              <li key={ind}>
+                <p>{prof.userName}</p>
+                <p>{prof.genre.join(', ')}</p>
+                <p>{`Location: ${prof.city}, ${prof.state}`}</p>
+              </li>
+            )
+          })}
+        </ul>
       </section>
     )
   }
