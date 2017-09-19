@@ -54,6 +54,7 @@ class ProfileView extends React.Component{
           >
             <BookingForm
               target={this.state.target}
+              buttonText='Request Booking'
             />
           </Modal>
         )}

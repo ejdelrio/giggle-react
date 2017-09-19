@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import * as bookingAction from '../../../action/booking-action.js';
+
 class BookingForm extends React.Component {
   constructor(props) {
     super(props);
@@ -16,10 +18,11 @@ class BookingForm extends React.Component {
     {
       bandName: target.userName,
       venueName: profile.userName,
-      coords: profile.coords,
+      location: profile.ocation,
       city: profile.city,
       state: profile.state,
-      date: new Date()
+      date: new Date(),
+      time: ''
     }
 
     this.state = {
@@ -42,8 +45,12 @@ class BookingForm extends React.Component {
     });
   }
 
-  onSubmit() {
-
+  onSubmit(e) {
+    e.preventDefault();
+    let booking = this.state;
+    booking.date = new Date(`${booking.date} ${booking.time}`);
+    console.log(booking)
+    this.props.createBooking(booking);
   }
 
   render() {
@@ -69,18 +76,18 @@ class BookingForm extends React.Component {
         <p>Please Enter a Cover Chare:</p>
         <input
           type='number'
-          name='cover'
+          name='coverCharge'
           placeholder='0$'
           value={this.state.cover}
-          onChange={this.state.onChange}
+          onChange={this.onChange}
         />
         <p>Please Enter a Compensation Amount:</p>
         <input
           type='number'
           name='compensation'
           placeholder='0$'
-          value={this.state.cover}
-          onChange={this.state.onChange}
+          value={this.state.compensation}
+          onChange={this.onChange}
         />
         <p>Description:</p>
         <textarea
@@ -88,8 +95,9 @@ class BookingForm extends React.Component {
           type='text'
           placeholder='Please enter a description'
           value={this.state.description}
-          onChange={this.state.onChange}
+          onChange={this.onChange}
         ></textarea>
+        <button type='submit'>{this.props.buttonText}</button>
       </form>
     )
   }
@@ -99,7 +107,7 @@ let mapStateToProps = state => ({
   socket: state.socket
 });
 let mapDispatchToProps = dispatch => ({
-
+  createBooking: booking => dispatch(bookingAction.requestBooking(booking))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookingForm);
