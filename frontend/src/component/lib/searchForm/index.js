@@ -1,9 +1,10 @@
-
 import React from 'react';
 
 import SingleInput from '../single-input-form';
 import CustomDropDown from '../custom-dropdown';
 import DateDropDown from '../date-drop-down';
+
+import * as util from '../../../lib/util.js';
 
 let radiusIncrements = {};
 let months = {};
@@ -29,28 +30,31 @@ class SearchForm extends React.Component {
 
     this.state = {
       genres: [],
-      startDate: '',
-      endDate: '',
+      startDate: new Date(),
+      endDate: new Date(),
       time: '',
       maxDistance: 10,
+      limit: 10,
       error: false
     }
     this.addGenre = this.addGenre.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidUpdate() {
     console.log('NEW_STATE: ', this.state);
   }
   addGenre(entry) {
-    let genre = this.state.genres;
-    for(let i = 0; i < genre.length; i++) {
-      if(genre[i].toLowerCase() === entry.toLowerCase()) {
+    let genres = this.state.genres;
+    for(let i = 0; i < genres.length; i++) {
+      if(genres[i].toLowerCase() === entry.toLowerCase()) {
         return;
       }
     }
-    genre.push(entry);
-    this.setState({genre});
+    console.log(this.state.genres);
+    genres.push(entry.toLowerCase());
+    this.setState({genres});
   }
 
   onChange(e) {
@@ -61,26 +65,42 @@ class SearchForm extends React.Component {
   onDateChange(obj) {
     this.setState(obj);
   }
+  onSubmit(e) {
+    e.preventDefault();
+    this.props.onComplete(this.state);
+    this.setState({genres: []})
+  }
 
   render() {
-
+    let joinedGenres = this.state.genres.join(', ')
     return(
-      <form className='search-form'>
+      <form className='search-form' onSubmit={this.onSubmit}>
+        <h5>{this.props.banner}</h5>
         <p>Genres:</p>
-        <p>{this.state.genres.join(', ')}</p>
+        <p>{joinedGenres}</p>
         <SingleInput
-          name='genre'
+          name='genres'
           buttonText='Add Genre'
           placeholder='Enter a Genre'
           onComplete={this.addGenre}
         />
         <p>Search Radius:</p>
-        <select name='distance' onChange={this.onChange}>
+        <select name='maxDistance' onChange={this.onChange}>
           {Object.keys(radiusIncrements).map((val, ind) => {
             return(
               <option
                 key={ind}
-                val={radiusIncrements[val]}
+                value={radiusIncrements[val]}
+              >{val}</option>
+            )
+          })}
+        </select>
+        <select name='limit' onChange={this.onChange}>
+          {Object.keys({10:10, 20:20, 30:30}).map((val, ind) => {
+            return(
+              <option
+                key={ind}
+                value={radiusIncrements[val]}
               >{val}</option>
             )
           })}
@@ -90,6 +110,13 @@ class SearchForm extends React.Component {
           onComplete={this.onDateChange}
           name='startDate'
         />
+        {util.renderIf(this.props.type !== 'booking',
+          <DateDropDown
+            onComplete={this.onDateChange}
+            name='endDate'
+          />
+        )}
+        <button type='submit'>Search!</button>
       </form>
     )
   }

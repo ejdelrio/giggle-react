@@ -21,6 +21,7 @@ class App extends React.Component {
       <BrowserRouter>
         <span>
           <Route exact path='*' component={NavBar} />
+          <Route exact path='/' component={Landing} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/settings' component={ProfileSettings} />
           {util.renderIf(this.props.profile,
