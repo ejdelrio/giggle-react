@@ -1,6 +1,6 @@
+import './_auth-form.scss';
 import React from 'react';
 import * as util from '../../lib/util.js';
-
 
 class AuthForm extends React.Component {
   constructor(props) {

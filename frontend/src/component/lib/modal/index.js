@@ -1,3 +1,4 @@
+import './_modal.scss';
 import React from 'react';
 
 class Modal extends React.Component {

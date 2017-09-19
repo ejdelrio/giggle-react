@@ -1,3 +1,4 @@
+import './_profile-form.scss';
 import React from 'react';
 import {connect} from 'react-redux';
 import superagent from 'superagent';

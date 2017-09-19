@@ -1,3 +1,4 @@
+import './_profile_settings.scss';
 import React from 'react';
 import {connect} from 'react-redux';
 
