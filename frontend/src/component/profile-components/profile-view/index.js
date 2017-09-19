@@ -3,41 +3,60 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import superagent from 'superagent';
+
 import * as util from '../../../lib/util';
+
+import Modal from '../../lib/modal';
+import BookingForm from '../booking-form';
 
 
 class ProfileView extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      profile: null,
+      target: null,
+      bookingModalToggle: false,
       error: null
     }
 
     this.requestBooking = this.requestBooking.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
   }
-
+  componentDidUpdate() {
+    console.log(this.state);
+  }
   componentDidMount() {
     let {params} = this.props.match;
     superagent.get(`${__API_URL__}/api/profile/${params.userName}`)
     .end((error, res) => {
       if(error) return this.setState({error});
-      this.setState({profile: res.body});
+      this.setState({target: res.body});
     })
   }
-  requestBooking() {
 
+  requestBooking() {
+    let newState = this.state.bookingModalToggle ? false : true;
+    this.setState({bookingModalToggle: newState});
   }
 
   sendMessage() {
 
   }
   render() {
-    if(!this.state.profile) return (<section></section>)
-    let profile = this.state.profile;
+    if(!this.state.target) return (<section></section>)
+    let profile = this.state.target;
     return(
+
       <section id='profile-view'>
+        {util.renderIf(this.state.bookingModalToggle,
+          <Modal
+            closeModal={this.requestBooking}
+          >
+            <BookingForm
+              target={this.state.target}
+            />
+          </Modal>
+        )}
         <div id='profile-display'>
           {//<img src={profile.avatar} />
           }
@@ -75,6 +94,10 @@ class ProfileView extends React.Component{
     )
   }
 }
+
+let mapStateToProps = state => ({
+  profile: state.profile
+})
 
 
 export default ProfileView;

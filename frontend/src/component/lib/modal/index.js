@@ -7,7 +7,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    console.log(this.props.children)
+
     return(
       <section className='modal'>
         <button onClick={this.props.closeModal}>X</button>

@@ -57,6 +57,7 @@ class SearchForm extends React.Component {
 
   onChange(e) {
     let {name, value} = e.target;
+    console.log(value);
     this.setState({[name]: value});
   }
 
@@ -104,15 +105,19 @@ class SearchForm extends React.Component {
           })}
         </select>
         <p>Between:</p>
-        <DateDropDown
-          onComplete={this.onDateChange}
+        <input
+          type='date'
           name='startDate'
+          value={this.state.startDate}
+          onChange={this.onChange}
         />
         {util.renderIf(this.props.type !== 'booking',
-          <DateDropDown
-            onComplete={this.onDateChange}
-            name='endDate'
-          />
+        <input
+          type='date'
+          name='endDate'
+          value={this.state.endDate}
+          onChange={this.onChange}
+        />
         )}
         <button type='submit'>Search!</button>
       </form>

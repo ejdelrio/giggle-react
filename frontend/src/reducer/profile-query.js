@@ -1,7 +1,7 @@
 module.exports = (state=null, action) => {
   let {type, payload} = action;
 
-  switch(payload) {
+  switch(type) {
     case 'PROFILE_QUERY_CREATE':
       return payload;
     default:

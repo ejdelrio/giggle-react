@@ -5,6 +5,7 @@ import superagent from 'superagent'
 
 import SearchForm from '../../lib/searchForm';
 import SearchResults from '../../lib/search-results';
+import * as queryActions from '../../../action/profile-query-action.js';
 
 let singleResult = (val, ind) => {
   return (
@@ -19,10 +20,19 @@ let singleResult = (val, ind) => {
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      queryResults: []
-    }
+    let queryResults = this.props.profileQuery
+
+    this.state =
+    {queryResults: []};
+
     this.executeSearch = this.executeSearch.bind(this);
+  }
+
+  componentWillMount() {
+    console.log(queryActions)
+    if(this.props.profileQuery) {
+      return this.setState({queryResults: this.props.profileQuery})
+    }
   }
 
   executeSearch(query) {
@@ -38,8 +48,8 @@ class Dashboard extends React.Component {
     .set('Authorization', `Bearer ${this.props.token}`)
     .query(query)
     .then(res => {
-      console.log(res)
-      this.setState({queryResults: res.body})
+      this.props.profileSearch(res.body);
+      this.setState({queryResults: res.body});
     })
   }
 
@@ -67,11 +77,12 @@ class Dashboard extends React.Component {
 
 let mapStateToProps = state => ({
   profile: state.profile,
-  token: state.token
+  token: state.token,
+  profileQuery: state.profileQuery
 })
 
-let mapDispatchToProps = dispatch => ( {
-
+let mapDispatchToProps = dispatch => ({
+  profileSearch: results => dispatch(queryActions.createProfileQuery(results))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
