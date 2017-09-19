@@ -1,3 +1,4 @@
+import './_landing.scss';
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import {connect} from 'react-redux';

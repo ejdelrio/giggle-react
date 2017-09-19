@@ -1,3 +1,4 @@
+import './_date-drop-down.scss';
 import React from 'react';
 
 import CustomDropDown from '../custom-dropdown';

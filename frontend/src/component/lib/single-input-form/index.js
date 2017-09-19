@@ -1,3 +1,4 @@
+import './_single-input-form.scss';
 import React from 'react';
 
 class SingleInput extends React.Component {
