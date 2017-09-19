@@ -109,9 +109,8 @@ class NavBar extends React.Component {
 
     return (
       <header>
-        <h1>Giggle</h1>
+        <h2>Giggle</h2>
         <ul>
-
           <li>
             <div id='gear' onClick={() => this.switchSwitch('menuSwitch')}>
               <img

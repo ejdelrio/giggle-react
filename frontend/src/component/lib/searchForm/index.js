@@ -86,7 +86,7 @@ class SearchForm extends React.Component {
           onComplete={this.addGenre}
         />
         <p>Search Radius:</p>
-        <select name='maxDistance' onChange={this.onChange}>
+        <select className='maxDistance' name='maxDistance' onChange={this.onChange}>
           {Object.keys(radiusIncrements).map((val, ind) => {
             return(
               <option
@@ -96,7 +96,7 @@ class SearchForm extends React.Component {
             )
           })}
         </select>
-        <select name='limit' onChange={this.onChange}>
+        <select className='minDistance' name='limit' onChange={this.onChange}>
           {Object.keys({10:10, 20:20, 30:30}).map((val, ind) => {
             return(
               <option

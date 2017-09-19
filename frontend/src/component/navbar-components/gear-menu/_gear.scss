@@ -1,0 +1,25 @@
+// ::::: $COG$ ::::: //
+@import '../../../style/lib/_vars.scss';
+
+// --- COG STYLES/ANIMATIONS --- //
+#gear, #bell {
+  height: 5vh;
+  width: 5vh;
+  border-radius: 5px;
+  float: right;
+  margin-right: 1vw;
+  margin-top: 1vh;
+  background: $white;
+
+  img {
+    height: 4vh;
+    width: 4vh;
+    float: left;
+    margin: 0.5vh;
+    transition: 350ms all;
+
+    &:hover {
+      transform: rotate(65deg);
+    }
+  }
+}

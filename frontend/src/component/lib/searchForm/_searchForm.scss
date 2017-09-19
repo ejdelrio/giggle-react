@@ -1,13 +1,55 @@
 // ::::: $SEARCH-FORM ::::: // 
+@import '../../../style/lib/_vars.scss';
 
+
+// --- SEARCH FORM DIV --- //
 .search-form {
-  width: 70vw;
-  height: 40vh;
-  float: left;
-  margin-left: 15vw;
-  margin-top: 20vh;
-  border: 1px solid black;
-  border-radius: 10px;
-  background: grey;
+  width: 75%;
+  height: 10vw;
+  margin-top: 20%;
+  margin: 0% 12.5%;
+  border: 2px solid black;
+  border-radius: 3px;
+  background: $grey;
+  padding: 7px;
 
+  .maxDistance {
+    float: left;
+    background: $primary;
+    color: $secondary;
+  } 
+
+  .minDistance {
+    float: left;
+    background: $primary;
+    color: $secondary;
+  }
+
+  .startDate {
+    float: left;
+    background: $primary;
+    color: $secondary;
+  }
+
+  .endDate {
+    float: left;
+    background: $primary;
+    color: $secondary;
+  }
+
+  button {
+    border: 1px solid $black;
+    border-radius: $border-radius;
+    height: 3vw;
+    font-size: 18px;
+    margin-left: 10px;
+    background: $primary;
+    color: $secondary;
+
+    &:hover {
+      cursor: pointer;
+      background: $secondary;
+      color: $primary;
+    }
+  }
 }
