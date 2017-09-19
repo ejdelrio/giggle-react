@@ -17,24 +17,14 @@
     float: left;
     background: $primary;
     color: $secondary;
+    display: inline-block;
   } 
 
   .minDistance {
     float: left;
     background: $primary;
     color: $secondary;
-  }
-
-  .startDate {
-    float: left;
-    background: $primary;
-    color: $secondary;
-  }
-
-  .endDate {
-    float: left;
-    background: $primary;
-    color: $secondary;
+    display: inline-block;
   }
 
   button {
@@ -45,6 +35,7 @@
     margin-left: 10px;
     background: $primary;
     color: $secondary;
+    display: inline-block;
 
     &:hover {
       cursor: pointer;

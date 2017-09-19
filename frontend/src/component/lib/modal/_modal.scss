@@ -1,7 +1,11 @@
+// ::::: $MODAL$ ::::: //
+@import '../../../style/lib/_vars.scss';
+
+// --- MODAL LAYOUT && DESIGN --- //
 .modal {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  height: 100vw;
   background: rgba(0,0,0,0.75);
 
   &>button {
@@ -14,30 +18,33 @@
     height: 70vh;
     margin-left: 25vh;
     margin-top: 15vh;
-    background: blue;
+    background: $tertiary;
     border-radius: 10px;
 
     * {
       float: left;
     }
+    
     div {
       width: 1%;
       height: 50vh;
       margin-top: 1vh;
-      background: black;
+      background: $black;
       border-radius: 10px;
       margin-left: 10%;
 
     }
+
     form {
       width: 30%;
       height: 40vh;
-      background: pink;
+      background: $grey;
       margin-left: 10%;
       margin-top: 5%;
       margin-bottom: 5%;
       border-radius: 10px;
     }
+
     a {
       clear: both;
       float: left;
