@@ -1,0 +1,36 @@
+#profile-view {
+  float: left;
+  width: 70vw;
+  height: 80vh;
+  margin: 10vh 5vw;
+  outline: 1px solid black;
+  &>div {
+    float: left;
+    &>img {
+      float: left;
+      height: 35vh;
+      width: 25vw;
+      background: blue;
+
+    }
+
+    h4 {
+      margin: 0;
+      padding: 0;
+      float: left;
+      margin-left: 2vw;
+      height: 5vh;
+      width: 25vw;
+      outline: 1px solid black;
+    }
+    &>p:first-of-type {
+      margin: 0;
+      padding: 0;
+      float: left;
+      width: 25vw;
+      height: 30vh;
+      margin-left: 2vw;
+      outline: 1px solid black;
+    }
+  }
+}
