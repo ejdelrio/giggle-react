@@ -72,7 +72,7 @@ class ProfileForm extends React.Component {
         .end((error, res) => {
           if(error) reject({error});
           let {lat, lng} = res.body.results[0].geometry.location;
-          resolve([parseFloat(lat), parseFloat(lng)]);
+          resolve([parseFloat(lng), parseFloat(lat)]);
         });
       });
     }

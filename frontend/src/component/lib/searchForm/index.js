@@ -42,9 +42,7 @@ class SearchForm extends React.Component {
     this.onDateChange = this.onDateChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  componentDidUpdate() {
-    console.log('NEW_STATE: ', this.state);
-  }
+
   addGenre(entry) {
     let genres = this.state.genres;
     for(let i = 0; i < genres.length; i++) {
@@ -52,7 +50,6 @@ class SearchForm extends React.Component {
         return;
       }
     }
-    console.log(this.state.genres);
     genres.push(entry.toLowerCase());
     this.setState({genres});
   }

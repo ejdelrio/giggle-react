@@ -26,6 +26,7 @@ class Dashboard extends React.Component {
     .set('Authorization', `Bearer ${this.props.token}`)
     .query(query)
     .then(res => {
+      console.log(res)
       this.setState({queryResults: res.body})
     })
   }
@@ -42,6 +43,8 @@ class Dashboard extends React.Component {
         />
         <ul>
           {this.state.queryResults.map((prof, ind) => {
+
+            console.log(prof);
             return(
               <li key={ind}>
                 <p>{prof.userName}</p>
