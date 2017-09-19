@@ -1,8 +1,8 @@
 import './_landing.scss';
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as querystring from 'querystring';
+import {connect} from 'react-redux';
+import superagent from 'superagent';
 
 import * as util from '../../lib/util.js';
 import AuthForm from '../auth-form';
@@ -14,20 +14,25 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: ''
+      queryResults: []
     }
-    this.testComplete = this.testComplete.bind(this);
+    this.executeSearch = this.executeSearch.bind(this);
   }
 
-  testComplete(val) {
-    this.setState(val);
+  executeSearch(query) {
+
   }
+
 
   render() {
 
     return(
       <section>
-        <SearchForm />
+        <SearchForm
+          type='booking'
+          banner='Search for Shows'
+          onComplete={this.executeSearch}
+        />
       </section>
     )
   }

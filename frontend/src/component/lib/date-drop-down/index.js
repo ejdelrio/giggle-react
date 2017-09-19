@@ -16,15 +16,17 @@ class DateDropDown extends React.Component{
 
   onChange(e) {
     let {name, value} = e.target
-    console.log(name, value)
-    this.setState({[name]: value})
     let propName = this.props.name;
+    let {day, month} = this.state;
+
     let newDate = new Date(
       '2017',
-      this.state.month.toString(),
-      this.state.day.toString()
+      name === 'month' ? value.toString(): this.state.month.toString(),
+      name === 'day' ? value.toString(): this.state.day.toString()
     )
+    console.log(newDate);
     this.props.onComplete({[propName]: newDate});
+    this.setState({[name]: value})
   }
 
   render() {
@@ -33,7 +35,7 @@ class DateDropDown extends React.Component{
     for(let i = 1; i < 13; i++) {
       let month = new Date('0', i.toString(), '0')
       .toString().split(' ')[1];
-      months[month] = i;
+      months[month] = i - 1;
     }
     for (let i = 0; i < 30; i++) {
       days[i + 1] = i;
@@ -46,7 +48,7 @@ class DateDropDown extends React.Component{
             return(
               <option
                 key={ind}
-                val={months[val]}
+                value={months[val]}
               >{val}</option>
             )
           })}
@@ -56,7 +58,7 @@ class DateDropDown extends React.Component{
             return(
               <option
                 key={ind}
-                val={val}
+                value={val}
               >{val}</option>
             )
           })}
