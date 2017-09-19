@@ -3,6 +3,17 @@ import {connect} from 'react-redux';
 import superagent from 'superagent'
 
 import SearchForm from '../../lib/searchForm';
+import SearchResults from '../../lib/search-results';
+
+let singleResult = (val, ind) => {
+  return (
+    <li key={ind}>
+      <p>{val.userName}</p>
+      <p>{val.genre}</p>
+      <p>{`Location: ${val.city}, ${val.state}`}</p>
+    </li>
+  )
+}
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -41,19 +52,13 @@ class Dashboard extends React.Component {
           banner='Search for Venues'
           onComplete={this.executeSearch}
         />
-        <ul>
-          {this.state.queryResults.map((prof, ind) => {
-
-            console.log(prof);
-            return(
-              <li key={ind}>
-                <p>{prof.userName}</p>
-                <p>{prof.genre.join(', ')}</p>
-                <p>{`Location: ${prof.city}, ${prof.state}`}</p>
-              </li>
-            )
-          })}
-        </ul>
+        <SearchResults
+          data={this.state.queryResults}
+          path='profile'
+          keyName='userName'
+          className='profile-search'
+          template={singleResult}
+        />
       </section>
     )
   }

@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import superagent from 'superagent';
+import * as util from '../../../lib/util';
 
 
 class ProfileView extends React.Component{
@@ -17,11 +18,10 @@ class ProfileView extends React.Component{
     this.sendMessage = this.sendMessage.bind(this);
   }
 
-  componentWillMount() {
-    if(this.props.profile) return this.setState({profile: this.props.profile});
+  componentDidMount() {
     let {params} = this.props.match;
-    superagent.get(`/api/profile/${params.userName}`)
-    .end((err, res) => {
+    superagent.get(`${__API_URL__}/api/profile/${params.userName}`)
+    .end((error, res) => {
       if(error) return this.setState({error});
       this.setState({profile: res.body});
     })
@@ -34,11 +34,13 @@ class ProfileView extends React.Component{
 
   }
   render() {
-    let {profile} = this.props
+    if(!this.state.profile) return (<section></section>)
+    let profile = this.state.profile;
     return(
       <section id='profile-view'>
         <div id='profile-display'>
-          <img src={profile.avatar} />
+          {//<img src={profile.avatar} />
+          }
           <h4>{profile.userName}</h4>
           <p>{profile.bio}</p>
           <button onClick={this.requestBooking}>Request Booking</button>
@@ -74,11 +76,5 @@ class ProfileView extends React.Component{
   }
 }
 
-let mapStateToProps = state => ({
-  profile: state.profile
-})
 
-let mapDispatchToProps = dispatch => ({
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileView);
+export default ProfileView;
