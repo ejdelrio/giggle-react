@@ -1,6 +1,5 @@
 import './_custom-dropdown.scss';
 import React from 'react';
-
 class CustomDropDown extends React.Component {
   constructor(props) {
     super(props);

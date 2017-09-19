@@ -1,6 +1,5 @@
 import './_message.scss';
 import React from 'react';
-
 class Message extends React.Component {
   render() {
     let {msg} = this.props;
