@@ -25,9 +25,13 @@ class HomePage extends React.Component {
 
 
   render() {
-
+   
     return(
       <section>
+        <div className="giggle-landing">
+          <h1>Giggle</h1>
+        </div>
+        
         <SearchForm
           type='booking'
           banner='Search for Shows'

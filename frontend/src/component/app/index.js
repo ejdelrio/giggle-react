@@ -8,8 +8,8 @@ import Dashboard from '../dashboard-components/dashboard';
 import ProfileView from '../profile-components/profile-view';
 import Landing from '../landing';
 import NavBar from '../navbar-components/navbar';
-import MsgBar from '../msg-components/messanger-bar'
-import ProfileSettings from '../profile-components/profile-settings'
+import MsgBar from '../msg-components/messanger-bar';
+import ProfileSettings from '../profile-components/profile-settings';
 
 class App extends React.Component {
 

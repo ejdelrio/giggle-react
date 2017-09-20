@@ -43,7 +43,7 @@ class DateDropDown extends React.Component{
 
     return(
       <div className='date-dropdown'>
-        <select name='month' onChange={this.onChange}>
+        <select className='selectMonth' name='month' onChange={this.onChange}>
           {Object.keys(months).map((val, ind) => {
             return(
               <option
@@ -53,7 +53,8 @@ class DateDropDown extends React.Component{
             )
           })}
         </select>
-        <select name='day' onChange={this.onChange}>
+        
+        <select className='selectDay' name='day' onChange={this.onChange}>
           {Object.keys(days).map((val, ind) => {
             return(
               <option

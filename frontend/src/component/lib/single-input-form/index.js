@@ -27,7 +27,7 @@ class SingleInput extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="add-genre">
         <input
           type='text'
           name={this.props.name}

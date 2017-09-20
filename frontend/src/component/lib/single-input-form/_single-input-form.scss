@@ -1,0 +1,27 @@
+// ::::: $SINGLE INPUT FORM STYLES$ ::::: //
+@import '../../../style/lib/_vars.scss';
+
+// --- GENRE SEARCH BAR STYLING --- //
+.add-genre {
+  input {
+    width: 70%;
+    height: 3vw;
+    font-size: 18px;
+  }
+
+  button {
+    border: 1px solid $black;
+    border-radius: $border-radius;
+    height: 3vw;
+    font-size: 18px;
+    margin-left: 10px;
+    background: $primary;
+    color: $secondary;
+
+    &:hover {
+      cursor: pointer;
+      background: $secondary;
+      color: $primary;
+    }
+  }
+}
