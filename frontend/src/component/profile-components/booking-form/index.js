@@ -36,6 +36,7 @@ class BookingForm extends React.Component {
 
     }
     this.state = {
+      genre: '',
       coverCharge: 0,
       compensation: 0,
       description: '',
@@ -86,6 +87,14 @@ class BookingForm extends React.Component {
           type='time'
           name='time'
           value={this.state.time}
+          onChange={this.onChange}
+        />
+        <p>Genre:</p>
+        <input
+          type='text'
+          name='genre'
+          placeholder='Enter a Genre'
+          value={this.state.genre}
           onChange={this.onChange}
         />
         <p>Please Enter a Cover Charge:</p>
