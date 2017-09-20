@@ -107,5 +107,6 @@ let mapStateToProps = state => ({
 let mapDispatchToProps = dispatch => ({
   updateBooking: booking => dispatch(bookingAction.requestUpdateBooking(booking)),
   confirmBooking: booking => dispatch(bookingAction.confirmBooking(booking))
-})
+});
+
 export default connect(mapStateToProps, mapDispatchToProps)(BookingView);

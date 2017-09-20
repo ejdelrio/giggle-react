@@ -73,7 +73,7 @@ class SearchForm extends React.Component {
   render() {
     let joinedGenres = this.state.genres.join(', ')
     return (
-      <form className='search-form' onSubmit={this.onSubmit}>
+      <form className={this.props.className} onSubmit={this.onSubmit}>
         <h5>{this.props.banner}</h5>
         <p>{`Genres: ${joinedGenres}`}</p>
         <SingleInput

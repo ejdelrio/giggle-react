@@ -65,6 +65,7 @@ class Dashboard extends React.Component {
         <SearchForm
           banner='Search for Venues'
           onComplete={this.executeSearch}
+          className='search-form'
         />
         <SearchResults
           data={this.state.queryResults}
