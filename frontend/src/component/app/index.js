@@ -8,8 +8,9 @@ import Dashboard from '../dashboard-components/dashboard';
 import ProfileView from '../profile-components/profile-view';
 import Landing from '../landing';
 import NavBar from '../navbar-components/navbar';
-import MsgBar from '../msg-components/messanger-bar'
-import ProfileSettings from '../profile-components/profile-settings'
+import MsgBar from '../msg-components/messanger-bar';
+import ProfileSettings from '../profile-components/profile-settings';
+import BookingView from '../booking-components/booking-view';
 
 class App extends React.Component {
 
@@ -25,6 +26,7 @@ class App extends React.Component {
           <Route exact path='/' component={Landing} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/settings' component={ProfileSettings} />
+          <Route exact path='/bookings/:userName' component={BookingView} />
           {util.renderIf(this.props.profile,
             <Route exact path='*' component={MsgBar} />
           )}

@@ -3,11 +3,10 @@ import {connect} from 'react-redux';
 
 import * as bookingAction from '../../../action/booking-action.js';
 
-class BookingForm extends React.Component {
-  constructor(props) {
-    super(props);
-    let {profile, target} = this.props;
-    let initialState = profile.type === 'band' ?
+let generateTemplate = (props, profile, target) => {
+  if(props.booking) return props.booking;
+  if(target) {
+    return profile.type === 'band' ?
     {
       bandName: profile.userName,
       venueName: target.userName,
@@ -24,19 +23,32 @@ class BookingForm extends React.Component {
       date: new Date(),
       time: ''
     }
+  }
+}
 
+class BookingForm extends React.Component {
+  constructor(props) {
+    super(props);
+    let {profile, target} = this.props;
+    let initialState = generateTemplate(this.props, profile, target);
+    console.log('__INIT_STATE__',initialState);
     this.state = {
-      ...initialState,
       coverCharge: 0,
       compensation: 0,
       description: '',
       time: '',
+      ...initialState
 
     }
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  componentDidMount() {
+    if(this.props.booking) return this.setState(this.props.booking);
+  }
+
   onChange(e) {
     let {name, value} = e.target;
     console.log(value);

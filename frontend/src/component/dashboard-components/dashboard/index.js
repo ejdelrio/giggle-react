@@ -2,18 +2,21 @@ import './_dashboard.scss';
 import React from 'react';
 import {connect} from 'react-redux';
 import superagent from 'superagent'
+import {Link} from 'react-router-dom';
 
 import SearchForm from '../../lib/searchForm';
 import SearchResults from '../../lib/search-results';
 import * as queryActions from '../../../action/profile-query-action.js';
 
-let singleResult = (val, ind) => {
-  return (
-    <li key={ind}>
-      <p>{val.userName}</p>
-      <p>{val.genre}</p>
-      <p>{`Location: ${val.city}, ${val.state}`}</p>
-    </li>
+let newLink = (url, path, val, ind) => {
+  return(
+    <Link to={`${path}/${url}`}>
+      <li key={ind}>
+        <p>{val.userName}</p>
+        <p>{val.genre}</p>
+        <p>{`Location: ${val.city}, ${val.state}`}</p>
+      </li>
+    </Link>
   )
 }
 
@@ -68,7 +71,7 @@ class Dashboard extends React.Component {
           path='profile'
           keyName='userName'
           className='profile-search'
-          template={singleResult}
+          template={newLink}
         />
       </section>
     )
