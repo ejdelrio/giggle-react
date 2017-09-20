@@ -29,10 +29,6 @@ class HomePage extends React.Component {
     })
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
 
   render() {
 

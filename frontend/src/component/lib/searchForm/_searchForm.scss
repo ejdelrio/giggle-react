@@ -5,11 +5,27 @@
 // --- SEARCH FORM DIV --- //
 .search-form {
   width: 75%;
-  height: 30vh;
+  height: 40vh;
   margin-left: 12.5%;
   border-radius: 5px;
   background: $primary;
   padding: 5px;
+
+  &>input {
+    background: $white;
+    width: 20vw;
+    height: 3.5vh;
+    padding: 0.5vh 0;
+    margin-left: $gutter-sm;
+    border: none;
+    border-radius: 3px;
+    font-size: 3vh;
+    margin-top: 1vh;
+    &:focus{
+      background: $black;
+      color: $white;
+    }
+  }
 
   h5 {
     float: left;
@@ -27,6 +43,43 @@
     font-family: $font-primary;
     font-size: 2.5vh;
   }
+  ul {
+    width: 90%;
+    height: 4vh;
+
+    li {
+      width: auto;
+      max-width: 15vw;
+      min-width: 5vw;
+      height: 4vh;
+      border: 1px solid $black;
+      background: rgba(0.1, 0.1, 0.1, 0.5);
+      border-radius: 5px;
+      display: inline-block;
+      margin-left: $gutter-sm;
+
+      & * {
+        display: inline-block;
+      }
+
+      p:first-of-type {
+        width: auto;
+        height: 3vh;
+        margin-top: 0.75vh;
+        color: $white;
+        margin-left: 0.5vh;
+      }
+      &>:last-child {
+        float: right;
+        width: 1vw;
+        height: 3vh;
+        margin-top: 1vh;
+        color: $primary;
+        margin-right: 0.5vh;
+      }
+    }
+  }
+
   .add-genre {
     width: 100%;
 
@@ -37,6 +90,7 @@
       margin-top: $gutter-sm/2;
       border-radius: 3px;
       border: none;
+      background: $white;
       transition: 350ms all;
       &:focus {
         background: $black;
