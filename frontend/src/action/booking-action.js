@@ -36,7 +36,7 @@ export const requestUpdateBooking = booking => (dispatch, getState) => {
   });
 };
 
-export const requestFetchBookings = (dispatch, getState()) => {
+export const requestFetchBookings = () => (dispatch, getState) => {
   let {token} = getState();
 
   return superagent.get(`${__API_URL__}/api/booking`)
