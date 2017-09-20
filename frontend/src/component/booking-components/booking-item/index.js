@@ -31,7 +31,7 @@ class BookingItem extends React.Component {
           <p>{`Cover Charge: ${booking.coverCharge}`}</p>
           <p>{`Location: ${booking.city},${booking.state}`}</p>
           <button onClick={this.onUpdate}>Update Booking</button>
-          <button onClick={this.confirmBooking}>Confirm Booking</button>
+          <button onClick={this.onConfirm}>Confirm Booking</button>
       </li>
     )
   }

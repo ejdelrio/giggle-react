@@ -89,6 +89,7 @@ class BookingView extends React.Component {
                 booking={val}
                 ind={ind}
                 renderModal={this.onUpdate}
+                confirmBooking={this.props.confirmBooking}
               />
             )
           })}
@@ -104,6 +105,7 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = dispatch => ({
-  updateBooking: booking => dispatch(bookingAction.requestUpdateBooking(booking))
+  updateBooking: booking => dispatch(bookingAction.requestUpdateBooking(booking)),
+  confirmBooking: booking => dispatch(bookingAction.confirmBooking(booking))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(BookingView);

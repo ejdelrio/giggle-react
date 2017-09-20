@@ -26,6 +26,17 @@ export const requestBooking = booking => (dispatch, getState) => {
   });
 };
 
+export const confirmBooking = booking => (dispatch, getState) => {
+  let {profile, socket} = getState();
+  profile.type === 'band' ?
+  booking.bandConfirm = true:
+  booking.venueConfirm = true;
+
+  booking.author = profile.userName;
+
+  socket.emit('confirmBooking', booking)
+};
+
 export const requestUpdateBooking = booking => (dispatch, getState) => {
   let {profile, socket} = getState();
   booking.author = profile.userName;
