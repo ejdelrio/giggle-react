@@ -11,12 +11,12 @@ let radiusIncrements = {};
 let months = {};
 let days = {};
 
-for (let i = 10; i < 101; i+=10) {
+for (let i = 10; i < 101; i += 10) {
   radiusIncrements[i] = i;
 }
-for(let i = 1; i < 13; i++) {
+for (let i = 1; i < 13; i++) {
   let month = new Date('0', i.toString(), '0')
-  .toString().split(' ')[1];
+    .toString().split(' ')[1];
   months[month] = i;
 }
 
@@ -46,19 +46,19 @@ class SearchForm extends React.Component {
 
   addGenre(entry) {
     let genres = this.state.genres;
-    for(let i = 0; i < genres.length; i++) {
-      if(genres[i].toLowerCase() === entry.toLowerCase()) {
+    for (let i = 0; i < genres.length; i++) {
+      if (genres[i].toLowerCase() === entry.toLowerCase()) {
         return;
       }
     }
     genres.push(entry.toLowerCase());
-    this.setState({genres});
+    this.setState({ genres });
   }
 
   onChange(e) {
-    let {name, value} = e.target;
+    let { name, value } = e.target;
     console.log(value);
-    this.setState({[name]: value});
+    this.setState({ [name]: value });
   }
 
   onDateChange(obj) {
@@ -67,59 +67,67 @@ class SearchForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.onComplete(this.state);
-    this.setState({genres: []})
+    this.setState({ genres: [] })
   }
 
   render() {
     let joinedGenres = this.state.genres.join(', ')
-    return(
+    return (
       <form className='search-form' onSubmit={this.onSubmit}>
-        <h5>{this.props.banner}</h5>
-        <p>Genres:</p>
-        <p>{joinedGenres}</p>
-        <SingleInput
-          name='genres'
-          buttonText='Add Genre'
-          placeholder='Enter a Genre'
-          onComplete={this.addGenre}
-        />
-        <p>Search Radius:</p>
-        <select className='maxDistance' name='maxDistance' onChange={this.onChange}>
-          {Object.keys(radiusIncrements).map((val, ind) => {
-            return(
-              <option
-                key={ind}
-                value={radiusIncrements[val]}
-              >{val}</option>
-            )
-          })}
-        </select>
-        <select className='minDistance' name='limit' onChange={this.onChange}>
-          {Object.keys({10:10, 20:20, 30:30}).map((val, ind) => {
-            return(
-              <option
-                key={ind}
-                value={radiusIncrements[val]}
-              >{val}</option>
-            )
-          })}
-        </select>
-        <p>Between:</p>
-        <input
-          type='date'
-          name='startDate'
-          value={this.state.startDate}
-          onChange={this.onChange}
-        />
+        <section className="bunchofThings">
+          <h5>{this.props.banner}</h5>
+          <p>Genres:</p>
+          <p>{joinedGenres}</p>
+          <SingleInput
+            name='genres'
+            buttonText='+'
+            placeholder='Enter a Genre'
+            onComplete={this.addGenre}
+          />
+          <p>Search Radius:</p>
+
+
+          <p>Between:</p>
+          <input
+            type='date'
+            name='startDate'
+            value={this.state.startDate}
+            onChange={this.onChange}
+          />
+          <select className='maxDistance' name='maxDistance' onChange={this.onChange}>
+            {Object.keys(radiusIncrements).map((val, ind) => {
+              return (
+                <option
+                  key={ind}
+                  value={radiusIncrements[val]}
+                >{val}</option>
+              )
+            })}
+          </select>
+          <select className='minDistance' name='limit' onChange={this.onChange}>
+            {Object.keys({ 10: 10, 20: 20, 30: 30 }).map((val, ind) => {
+              return (
+                <option
+                  key={ind}
+                  value={radiusIncrements[val]}
+                >{val}</option>
+              )
+            })}
+          </select>
+        </section>
+
+
+
+
         {util.renderIf(this.props.type !== 'booking',
-        <input
-          type='date'
-          name='endDate'
-          value={this.state.endDate}
-          onChange={this.onChange}
-        />
+          <input
+            type='date'
+            name='endDate'
+            value={this.state.endDate}
+            onChange={this.onChange}
+          />
         )}
-        <button type='submit'>Search!</button>
+
       </form>
     )
   }
