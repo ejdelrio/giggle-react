@@ -10,7 +10,7 @@ export const updateBooking = booking => ({
   payload: booking
 })
 
-export const featchBooking = bookings => ({
+export const fetchBooking = bookings => ({
   type: 'BOOKING_FETCH',
   payload: bookings
 })
@@ -26,12 +26,24 @@ export const requestBooking = booking => (dispatch, getState) => {
   });
 };
 
-// export const updateBooking = booking => (dispatch, getState) => {
-//   let {profile, socket} = getState();
-//   booking.author = profile.userName;
-//
-//   socket.emit('updateBooking', booking);
-//   socket.on(`updateBooking-${profile.userName}`, booking => {
-//     dispatch(updateBooking(booking));
-//   });
-// };
+export const requestUpdateBooking = booking => (dispatch, getState) => {
+  let {profile, socket} = getState();
+  booking.author = profile.userName;
+
+  socket.emit('updateBooking', booking);
+  socket.on(`updateBooking-${profile.userName}`, booking => {
+    dispatch(updateBooking(booking));
+  });
+};
+
+export const requestFetchBookings = (dispatch, getState()) => {
+  let {token} = getState();
+
+  return superagent.get(`${__API_URL__}/api/booking`)
+  .set('Authorization', `Bearer ${token}`)
+  .end((error, res) => {
+    if(error) return console.error(error);
+    dispatch(fetchBooking(res.body));
+    return res;
+  })
+}

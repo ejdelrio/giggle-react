@@ -49,7 +49,6 @@ class BookingForm extends React.Component {
     e.preventDefault();
     let booking = this.state;
     booking.date = new Date(`${booking.date} ${booking.time}`);
-    console.log(booking)
     this.props.createBooking(booking);
   }
 
@@ -77,7 +76,6 @@ class BookingForm extends React.Component {
         <input
           type='number'
           name='coverCharge'
-          placeholder='0$'
           value={this.state.cover}
           onChange={this.onChange}
         />
@@ -85,7 +83,6 @@ class BookingForm extends React.Component {
         <input
           type='number'
           name='compensation'
-          placeholder='0$'
           value={this.state.compensation}
           onChange={this.onChange}
         />
