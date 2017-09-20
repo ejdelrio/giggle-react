@@ -1,33 +1,17 @@
-.test-drop {
-  width: 30vw;
-  height: 10vh;
-  margin-top: 30vh;
-  outline: 1px solid black;
-  &>div {
-    width: 100%;
-    height: 10vh;
-  }
-  p{
-    float: left;
-    width: 15vw;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: scroll;
-    height: 20vh;
-    outline: 1px solid black;
-    li {
-      float: right;
-      width: 100%;
-    }
-  }
+// ::::: $LANDING/HOME PAGE ::::: //
 
-  .dropdown-button {
-    width: 10vh;
-    height: 10vh;
-    background: orange;
-    float: right;
-  }
+@import '../../style/lib/_vars.scss';
+
+// --- BACKGROUND --- //
+body {
+ background-image: url('../../style/lib/pictures/UltraMusicFestival.jpg');
+}
+// --- GIGGLE STYLE --- //
+.giggle-landing {
+  text-align: center;
+  color: $secondary;
+  font-size: 10vw;
+  margin-top: 15vw;
+  margin-bottom: 2vw;
+  -webkit-text-stroke: 2px $primary;
 }

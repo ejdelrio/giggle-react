@@ -1,0 +1,21 @@
+// ::::: $DATE-DROP$ ::::: //
+@import '../../../style/lib/_vars.scss';
+
+// --- DATE:DROP-DOWN MENUS --- //
+.date-dropdown {
+  // display: flex;
+  
+  .selectMonth {
+    flex-direction: row;
+    float: left;
+    background: $primary;
+    color: $secondary;
+  }
+  
+  .selectDay {
+    flex-direction: row;
+    float: left;
+    background: $primary;
+    color: $secondary;
+  }
+}
