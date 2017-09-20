@@ -14,6 +14,13 @@ $btn-primary: #4C4C4C;
 // --- FONTS --- //
 $font-primary: 'Ubuntu', sans-serif;
 
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('https://fonts.googleapis.com/css?family=Ubuntu');
+  font-weight: normal;
+  font-style: normal;
+}
+
 // --- TRANSITIONS --- //
 $transition-primary: 350ms all;
 
