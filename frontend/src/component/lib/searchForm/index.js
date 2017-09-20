@@ -121,32 +121,38 @@ class SearchForm extends React.Component {
           placeholder='Enter a Genre'
           onComplete={this.addGenre}
         />
-        <p>Date:</p>
-        <input
-          type='date'
-          name='startDate'
-          value={this.state.startDate}
-          onChange={this.onChange}
-        />
-        <p>Time:</p>
-        <input
-          type='time'
-          name='time'
-          value={this.state.time}
-          onChange={this.onChange}
-        />
-        <p>Search Radius:</p>
-        <select className='maxDistance' name='maxDistance' onChange={this.onChange}>
-          {Object.keys(radiusIncrements).map((val, ind) => {
-            return (
-              <option
-                key={ind}
-                value={radiusIncrements[val]}
-              >{val}</option>
-            )
-          })}
-        </select>
-        <select className='minDistance' name='limit' onChange={this.onChange}>
+        <div className='search-date'>
+          <p>Date:</p>
+          <input
+            type='date'
+            name='startDate'
+            value={this.state.startDate}
+            onChange={this.onChange}
+          />
+        </div>
+        <div className='search-time'>
+          <p>Time:</p>
+          <input
+            type='time'
+            name='time'
+            value={this.state.time}
+            onChange={this.onChange}
+          />
+        </div>
+        <div className='search-radius'>
+          <p>Search Radius:</p>
+          <select className='maxDistance' name='maxDistance' onChange={this.onChange}>
+            {Object.keys(radiusIncrements).map((val, ind) => {
+              return (
+                <option
+                  key={ind}
+                  value={radiusIncrements[val]}
+                >{val}</option>
+              )
+            })}
+          </select>
+        </div>
+        <select className='limit' name='limit' onChange={this.onChange}>
           {Object.keys({ 10: 10, 20: 20, 30: 30 }).map((val, ind) => {
             return (
               <option
