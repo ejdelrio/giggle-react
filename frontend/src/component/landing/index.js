@@ -17,15 +17,31 @@ class HomePage extends React.Component {
       queryResults: [],
       error: null
     }
-    this.executeSearch = this.executeSearch.bind(this);
+    this.getBookings = this.getBookings.bind(this);
   }
 
-  executeSearch(query) {
-    return superagent.get(`${__API_URL__}`)
-    .send(query)
-    .end((error, res) => {
-      if(error) return this.setState({error});
-      return this.setState({queryResults: res.body});
+  useCityLocation(prop) {
+    let {state, city} = prop;
+    return new Promise((resolve, reject) => {
+      superagent.get(`http://maps.google.com/maps/api/geocode/json?address=\+${city},+${state}`)
+      .end((error, res) => {
+        if(error) reject({error});
+        let {lat, lng} = res.body.results[0].geometry.location;
+        prop.location = [parseFloat(lng), parseFloat(lat)];
+        resolve(prop);
+      });
+    });
+  }
+
+  getBookings(prop) {
+    this.useCityLocation(prop)
+    .then(queryObj => {
+      superagent.get(`${__API_URL__}/api/booking-query`)
+      .query(queryObj)
+      .end((error, res) => {
+        if(error) return this.setState({error});
+        this.setState({queryResults: res.body});
+      })
     })
   }
 
@@ -43,7 +59,7 @@ class HomePage extends React.Component {
           type='booking'
           banner='Search for Shows'
           data={this.props.queryResults}
-          onComplete={this.executeSearch}
+          onComplete={this.getBookings}
         />
       </section>
     )
