@@ -1,5 +1,7 @@
 import superagent from 'superagent';
 import * as socketActions from './socket-action.js';
+import * as bookingActions from './booking-action.js';
+
 
 export const createProfile = profile => ({
   type: 'PROFILE_CREATE',
@@ -24,6 +26,7 @@ export const getProfile = () => (dispatch, getState) => {
     if(res.body) {
       dispatch(createProfile(res.body));
       dispatch(socketActions.connectSocket(res.body));
+      dispatch(bookingActions.requestFetchBookings());
       return res;
     }
     return null;
