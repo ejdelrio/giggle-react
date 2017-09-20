@@ -3,11 +3,27 @@
 
 // --- GENRE SEARCH BAR STYLING --- //
 .add-genre {
+  display: flex;
+  flex-direction: row;
+ 
   input {
     width: 70%;
     height: 3vw;
     font-size: 18px;
   }
+
+  .genre-elements {
+    width: 100%;
+  }
+
+  .searchInput {
+    display: inline;
+  }
+
+  .searchButtons {
+    display: inline-block;
+  }
+
 
   button {
     border: 1px solid $black;
