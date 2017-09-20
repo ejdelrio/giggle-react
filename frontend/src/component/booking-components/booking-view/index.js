@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import superagent from 'superagent'
 import {Link} from 'react-router-dom';
+
 import * as util from '../../../lib/util.js';
+import * as bookingAction from '../../../action/booking-action.js';
 
 
 import SearchResults from '../../lib/search-results';
@@ -25,10 +27,7 @@ class BookingView extends React.Component {
     }
     this.onUpdate = this.onUpdate.bind(this);
     this.modalToggle = this.modalToggle.bind(this);
-  }
-
-  componentDidUpdate() {
-    console.log(this.state);
+    this.updateBookingAndRenderModal = this.updateBookingAndRenderModal.bind(this);
   }
 
   componentWillMount() {
@@ -65,6 +64,10 @@ class BookingView extends React.Component {
     false : true;
     this.setState({modalSwitch: newState});
   }
+  updateBookingAndRenderModal(booking) {
+    this.props.updateBooking(booking);
+    this.modalToggle();
+  }
 
   render() {
     return(
@@ -73,6 +76,8 @@ class BookingView extends React.Component {
           <Modal closeModal={this.modalToggle}>
             <BookingForm
               booking={this.state.modalBooking}
+              createBooking={this.updateBookingAndRenderModal}
+              buttonText='Update Booking'
             />
           </Modal>
         )}
@@ -99,6 +104,6 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = dispatch => ({
-
+  updateBooking: booking => dispatch(bookingAction.requestUpdateBooking(booking))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(BookingView);

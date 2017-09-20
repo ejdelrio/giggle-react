@@ -105,7 +105,7 @@ class NavBar extends React.Component {
         )}
       </li>
     )
-    
+
     return (
       <header>
         <h2>Giggle</h2>

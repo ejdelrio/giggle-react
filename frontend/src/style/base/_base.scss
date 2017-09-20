@@ -1,3 +1,5 @@
+@import '../lib/vars';
+
 // ::::: BASE STYLES ::::: //
 .googleLink {
   display: inline-block;
@@ -6,4 +8,12 @@
 
 li {
   list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: $white;
 }

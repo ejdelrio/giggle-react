@@ -74,47 +74,43 @@ class SearchForm extends React.Component {
     let joinedGenres = this.state.genres.join(', ')
     return (
       <form className='search-form' onSubmit={this.onSubmit}>
-        <section className="bunchofThings">
-          <h5>{this.props.banner}</h5>
-          <p>Genres:</p>
-          <p>{joinedGenres}</p>
-          <SingleInput
-            name='genres'
-            buttonText='+'
-            placeholder='Enter a Genre'
-            onComplete={this.addGenre}
-          />
-          <p>Search Radius:</p>
-
-
-          <p>Between:</p>
-          <input
-            type='date'
-            name='startDate'
-            value={this.state.startDate}
-            onChange={this.onChange}
-          />
-          <select className='maxDistance' name='maxDistance' onChange={this.onChange}>
-            {Object.keys(radiusIncrements).map((val, ind) => {
-              return (
-                <option
-                  key={ind}
-                  value={radiusIncrements[val]}
-                >{val}</option>
-              )
-            })}
-          </select>
-          <select className='minDistance' name='limit' onChange={this.onChange}>
-            {Object.keys({ 10: 10, 20: 20, 30: 30 }).map((val, ind) => {
-              return (
-                <option
-                  key={ind}
-                  value={radiusIncrements[val]}
-                >{val}</option>
-              )
-            })}
-          </select>
-        </section>
+        <h5>{this.props.banner}</h5>
+        <p>{`Genres: ${joinedGenres}`}</p>
+        <SingleInput
+          className='add-genre'
+          name='genres'
+          buttonText='Add Genre'
+          placeholder='Enter a Genre'
+          onComplete={this.addGenre}
+        />
+        <p>Search Radius:</p>
+        <p>Between:</p>
+        <input
+          type='date'
+          name='startDate'
+          value={this.state.startDate}
+          onChange={this.onChange}
+        />
+        <select className='maxDistance' name='maxDistance' onChange={this.onChange}>
+          {Object.keys(radiusIncrements).map((val, ind) => {
+            return (
+              <option
+                key={ind}
+                value={radiusIncrements[val]}
+              >{val}</option>
+            )
+          })}
+        </select>
+        <select className='minDistance' name='limit' onChange={this.onChange}>
+          {Object.keys({ 10: 10, 20: 20, 30: 30 }).map((val, ind) => {
+            return (
+              <option
+                key={ind}
+                value={radiusIncrements[val]}
+              >{val}</option>
+            )
+          })}
+        </select>
 
 
 
@@ -127,7 +123,7 @@ class SearchForm extends React.Component {
             onChange={this.onChange}
           />
         )}
-
+        <button type='submit'>Search!</button>
       </form>
     )
   }

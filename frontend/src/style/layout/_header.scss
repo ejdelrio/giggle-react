@@ -5,13 +5,13 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 8.5%;
-  background: rgba(7, 190, 77, 0.8);
+  height: 7vh;
+  background: $black;
 
   h2 {
     float: left;
-    font-size: 3.5vw;
-    color: $secondary;
+    font-size: 5vh;
+    color: $primary;
     margin-left: 2.5%;
     text-align: center;
     margin-top: .5%;
@@ -21,27 +21,53 @@ header {
   ul {
     float: right;
     width: 30vw;
-    height: 7vw;
-
+    height: 7vh;
     li {
+      float: left;
+      margin-left: $gutter-sm;
       display: inline-block;
+
+      a {
+        color: $primary;
+        float: left;
+        height: 3vh;
+        font-size: 2.5vh;
+        margin-top: 2vh;
+      }
+    }
+
+    &>:first-child, &>:nth-child(2) {
       float: right;
-      height: 7vw;
-      width: 7vw;
-      margin-top: .5%;
+      margin-right: $gutter-sm;
+      position: relative;
 
       ul {
         width: 20vw;
-        height: 50vw;
-        background: $grey;
-        margin-top: 1vw;
+        height: auto;
+        background: $black;
+        margin-top: 7vh;
+        position: absolute;
+        right: 0;
+
 
         li {
+          float: left;
           width: 100%;
           height: 10vh;
-          outline: 1px solid $black;
+          color: $primary;
+          transition: 350ms all;
+          font-size: 3vh;
+
+          &:hover {
+            background: $primary;
+            color: $black;
+            a {
+              color: $black;
+            }
+          }
         }
       }
     }
+
   }
 }

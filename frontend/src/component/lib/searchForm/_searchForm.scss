@@ -1,40 +1,79 @@
-// ::::: $SEARCH-FORM ::::: // 
+// ::::: $SEARCH-FORM ::::: //
 @import '../../../style/lib/_vars.scss';
 
 
 // --- SEARCH FORM DIV --- //
 .search-form {
   width: 75%;
-  height: 50%;
-  margin-top: 20%;
-  margin: 0% 12.5%;
-  border: 2px solid black;
-  border-radius: 3px;
-  background: $grey;
-  padding: 7px;
-  
-  .maxDistance {
-    float: left;
-    background: $primary;
-    color: $secondary;
-    display: inline-block;
-  } 
+  height: 30vh;
+  margin-left: 12.5%;
+  border-radius: 5px;
+  background: $primary;
+  padding: 5px;
 
-  .minDistance {
+  h5 {
     float: left;
-    background: $primary;
-    color: $secondary;
-    display: inline-block;
+    width: 100%;
+    height: 2vh;
+    text-align: center;
+    font-size: 2.5vh;
+    margin-top: 1vh;
+    font-family: $font-primary;
   }
 
-  button {
-    border: 1px solid $black;
-    border-radius: $border-radius;
-    height: 3vw;
+  p:first-of-type, {
+    width: 20%;
+    margin-left: $gutter-sm;
+    font-family: $font-primary;
+    font-size: 2.5vh;
+  }
+  .add-genre {
+    width: 100%;
+
+    input[type="text"] {
+      height: 4vh;
+      float: left;
+      margin-left: $gutter-sm;
+      margin-top: $gutter-sm/2;
+      border-radius: 3px;
+      border: none;
+      transition: 350ms all;
+      &:focus {
+        background: $black;
+        color: $primary;
+      }
+    }
+    button {
+      height: 4.5vh;
+      width: 10vw;
+      background: $black;
+      margin-top: $gutter-sm/2;
+      color: $white;
+      outline: none;
+      border: none;
+    }
+  }
+
+  .maxDistance, .minDistance {
+    float: left;
+    background: $white;
+    color: $black;
+    height: 5vh;
+    width: 5vw;
+    display: inline-block;
+    margin-left: $gutter-sm;
+  }
+
+  &>button {
+    border-radius: 5px;
+    border: none;
+    height: 5vh;
+    width: 10vw;
+    text-align: center;
     font-size: 18px;
     margin-left: 10px;
-    background: $primary;
-    color: $secondary;
+    background: $black;
+    color: $white;
     display: inline-block;
 
     &:hover {
@@ -42,5 +81,16 @@
       background: $secondary;
       color: $primary;
     }
+  }
+
+  input[name="startDate"] {
+    width: 15vw;
+    padding: 1.20vh;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    background: $white;
+    font-size: 1.75vh;
+    margin-left: 24.5vw;
   }
 }

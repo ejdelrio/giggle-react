@@ -8,7 +8,10 @@ module.exports = (state=[], action) => {
     case 'BOOKING_CREATE':
       return [...state, payload];
     case 'BOOKING_UPDATE':
-      return state.filter(booking => booking._id !== payload._id);
+      console.log('Chick Dinner :D');
+      return state.map(booking => {
+        return booking._id !== payload._id ? booking : payload;
+      });
     default:
       return state;
   }
