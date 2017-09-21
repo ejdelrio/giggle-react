@@ -57,10 +57,13 @@ class HomePage extends React.Component {
 
 
   render() {
+    let headerClassName = this.state.queryResults.length > 0 ?
+    'giggle-landing-hidden':
+    'giggle-landing';
 
     return(
       <section>
-        <div className="giggle-landing">
+        <div className={headerClassName}>
           <h1>Giggle</h1>
         </div>
 
