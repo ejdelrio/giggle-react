@@ -3,12 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
+  "jest": {
+    "globals": {
+      "__DEBUG__": false,
+      "process.env": {
+        "NODE_ENV": "testing"
+      }
+    }
+  },
   "engines": {
     "node": "v6.11.1"
   },
   "scripts": {
     "build": "webpack",
-    "watch": "webpack-dev-server --inline --hot",
+    "watch": "webpack-dev-server --inline 
+    --hot",
+    "test": "jest --coverage",
+    "test-watch": "jest --watchAll",
     "heroku-postbuild": "webpack -p --progress"
   },
   "keywords": [],
@@ -27,7 +38,7 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
-    "jest": "^21.0.2",
+    "jest": "^21.1.0",
     "node-sass": "^4.5.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
