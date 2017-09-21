@@ -46,7 +46,6 @@ class NavBar extends React.Component {
     this.props.token:
     JSON.parse(util.readCookie('Giggle-Token'));
 
-    if(!giggleToken) return history.replace('/signup');
 
     this.props.restoreSession(giggleToken);
     this.props.fetchProfile()
