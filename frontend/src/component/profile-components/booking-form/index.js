@@ -1,3 +1,5 @@
+import './_booking-form.scss';
+
 import React from 'react';
 import {connect} from 'react-redux';
 
