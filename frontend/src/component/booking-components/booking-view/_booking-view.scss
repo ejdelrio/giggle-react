@@ -1,0 +1,60 @@
+@import '../../../style/lib/_vars.scss';
+
+#booking-view {
+  float: left;
+  width: 90vw;
+  height: 70vh;
+  margin-left: 5vw;
+  margin-top: 10vh;
+  background: $black;
+  border-radius: 5px;
+  overflow-x: scroll;
+
+  h5 {
+    color: $primary;
+    width: 100%;
+    height: 4vh;
+    padding: 1vh 0;
+    font-size: 3vh;
+    text-align: center;
+    font-family: helvetica;
+  }
+
+  ul {
+    width: 90%;
+    margin-left: 5%;
+    height: auto;
+
+    li {
+      width: 100%;
+      height: 25vh;
+      background: $primary;
+      margin-top: 5vh;
+      padding-top: 0.5vh;
+      border-radius: 5px;
+
+      &>* {
+        display: block;
+        font-size: 2.5vh;
+        margin-top: 1vh;
+        margin-left: $gutter-sm;
+        font-family: helvetica;
+      }
+    }
+
+    button:first-of-type {
+      clear: both;
+    }
+    button {
+      float: right;
+      margin-right: $gutter-sm;
+      width: 20vh;
+      height: 5vh;
+      border: none;
+      border-radius: 5px;
+      background: $black;
+      color: $white;
+      font-size: 2vh;
+    }
+  }
+}

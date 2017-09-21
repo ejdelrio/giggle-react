@@ -26,7 +26,6 @@ class GearMenu extends React.Component {
         {newLink('settings', 'Settings')}
         {util.renderIf(userName, newLink(`profile/${userName}`, 'My Profile'))}
         {newLink(`bookings/${userName}`, 'My Bookings')}
-        {newLink('media', 'My Media')}
         <li onClick={this.props.logout}>
           Logout
         </li>

@@ -81,12 +81,11 @@ class SearchForm extends React.Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    this.props.onComplete(this.state);
     this.setState({genres: this.state.genres});
+    this.props.onComplete(this.state);
   }
 
   render() {
-    let joinedGenres = this.state.genres.join(', ')
     return (
       <form className={this.props.className} onSubmit={this.onSubmit}>
         <h5>{this.props.banner}</h5>
@@ -116,6 +115,7 @@ class SearchForm extends React.Component {
             )
           })}
         </ul>
+
         <SingleInput
           className='add-genre'
           name='genres'
@@ -154,28 +154,6 @@ class SearchForm extends React.Component {
             })}
           </select>
         </div>
-        <select className='limit' name='limit' onChange={this.onChange}>
-          {Object.keys({ 10: 10, 20: 20, 30: 30 }).map((val, ind) => {
-            return (
-              <option
-                key={ind}
-                value={radiusIncrements[val]}
-              >{val}</option>
-            )
-          })}
-        </select>
-
-
-
-
-        {util.renderIf(this.props.type !== 'booking',
-          <input
-            type='date'
-            name='endDate'
-            value={this.state.endDate}
-            onChange={this.onChange}
-          />
-        )}
         <button type='submit'>Search!</button>
       </form>
     )

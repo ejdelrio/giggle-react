@@ -13,6 +13,7 @@ class ProfileSettings extends React.Component {
         <p>Edit Profile:</p>
         <ProfileForm
           profile={this.props.profile}
+          className='profile-form'
         />
       </span>
 

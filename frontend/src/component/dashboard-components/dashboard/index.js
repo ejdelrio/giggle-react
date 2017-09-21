@@ -12,8 +12,8 @@ let newLink = (url, path, val, ind) => {
   return(
     <Link to={`${path}/${url}`}>
       <li key={ind}>
-        <p>{val.userName}</p>
-        <p>{val.genre}</p>
+        <p>{`User Name: ${val.userName}`}</p>
+        <p>{`User Genres: ${val.genre}`}</p>
         <p>{`Location: ${val.city}, ${val.state}`}</p>
       </li>
     </Link>
