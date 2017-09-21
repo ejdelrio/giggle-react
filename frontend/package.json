@@ -9,7 +9,8 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack-dev-server --inline --hot",
-    "heroku-postbuild": "webpack -p --progress"
+    "heroku-postbuild": "webpack -p --progress",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
