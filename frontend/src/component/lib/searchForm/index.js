@@ -54,7 +54,7 @@ class SearchForm extends React.Component {
   }
 
   addGenre(entry) {
-    if(entry === '') return;
+    if (entry === '') return;
     let genres = this.state.genres;
     for (let i = 0; i < genres.length; i++) {
       if (genres[i].toLowerCase() === entry.toLowerCase()) {
@@ -67,7 +67,7 @@ class SearchForm extends React.Component {
 
   removeGenre(genre) {
     let newGenreArray = this.state.genres.filter(val => val !== genre);
-    this.setState({genres: newGenreArray});
+    this.setState({ genres: newGenreArray });
   }
 
   onChange(e) {
@@ -108,7 +108,7 @@ class SearchForm extends React.Component {
         <p>Genres:</p>
         <ul>
           {this.state.genres.map(genre => {
-            return(
+            return (
               <li>
                 <p>{genre}</p>
                 <p onClick={() => this.removeGenre(genre)}>X</p>
