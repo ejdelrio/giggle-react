@@ -21,4 +21,20 @@ describe('Booking Reducer', () => {
     expect(result).toEqual(1);
     expect(result[0]).toBe(action.payload);
   })
-})
+
+  test('BOOKING_UPDATE should update a booking', () => {
+    let newBooking = {
+      id: '1234',
+      timestamp: new Date(),
+      name: 'new name',
+    }
+
+    let action = {
+      type: 'BOOKING_UPDATE',
+      payload: newBooking
+    }
+
+    let result = bookingReducer(state, action);
+    expect(result[0]).toBe(action.payload);
+  })
+});
