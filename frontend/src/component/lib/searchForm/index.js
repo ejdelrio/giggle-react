@@ -28,12 +28,14 @@ for (let i = 0; i < 30; i++) {
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-
+    let ISODate = new Date().toISOString().split('T');
+    let initDate = ISODate[0];
+    let initTime = ISODate[1].split('.')[0];
     this.state = {
       genres: [],
-      startDate: new Date(),
-      endDate: new Date(),
-      time: '',
+      startDate: initDate,
+      endDate: initDate,
+      time: initTime,
       city: '',
       state: '',
       maxDistance: 10,
@@ -80,7 +82,7 @@ class SearchForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.onComplete(this.state);
-    this.setState({ genres: [] })
+    this.setState({genres: this.state.genres});
   }
 
   render() {

@@ -19,7 +19,9 @@ class HomePage extends React.Component {
     }
     this.getBookings = this.getBookings.bind(this);
   }
-
+  componentDidUpdate() {
+    console.log(this.state);
+  }
   useCityLocation(prop) {
     let {state, city} = prop;
     return new Promise((resolve, reject) => {
@@ -34,10 +36,17 @@ class HomePage extends React.Component {
   }
 
   getBookings(prop) {
+
     this.useCityLocation(prop)
     .then(queryObj => {
+      queryObj.genres = queryObj.genres.join(' ');
+      let {time, startDate} = queryObj;
+      time = time.split(':').filter((val, ind) => ind !== 2).join(':');
+      startDate = new Date(`${startDate}T${time}:00`);
+      queryObj.startDate = startDate.toString();
+
       superagent.get(`${__API_URL__}/api/booking-query`)
-      .query(queryObj)
+      .query({...queryObj})
       .end((error, res) => {
         if(error) return this.setState({error});
         this.setState({queryResults: res.body});
