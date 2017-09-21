@@ -10,8 +10,7 @@ import * as profileAct from '../../../action/profile-action.js';
 class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = !!this.props.profile ? this.props.profile :
-    {
+    this.state =  {
       bio: '',
       avatar: '',
       genre: [],
@@ -25,7 +24,16 @@ class ProfileForm extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.addGenre = this.addGenre.bind(this);
+    this.removeGenre = this.removeGenre.bind(this);
     this.useCityLocation = this.useCityLocation.bind(this);
+  }
+
+  componentWillMount() {
+    if(this.props.profile) return this.setState(this.props.profile)
+  }
+  componentDidMount() {
+    console.log(this.state)
+    console.log(this.props.profile)
   }
 
   onChange(e) {
@@ -57,9 +65,21 @@ class ProfileForm extends React.Component {
     })
   }
 
-  addGenre(genre) {
-    this.state.genre.push(genre.toLowerCase());
-    this.setState(this.state);
+  addGenre(entry) {
+    if (entry === '') return;
+    let genre = this.state.genre;
+    for (let i = 0; i < genre.length; i++) {
+      if (genre[i].toLowerCase() === entry.toLowerCase()) {
+        return;
+      }
+    }
+    genre.push(entry.toLowerCase());
+    this.setState({ genre });
+  }
+
+  removeGenre(genre) {
+    let newGenreArray = this.state.genre.filter(val => val !== genre);
+    this.setState({ genre: newGenreArray });
   }
 
   useCityLocation() {
@@ -88,8 +108,17 @@ class ProfileForm extends React.Component {
           <option value='band'>Band</option>
           <option value='venue'>Venue</option>
         </select>
-        <p>{this.state.genre.join(', ')}</p>
-        <label>Genres of music:</label>
+        <ul>
+          {this.state.genre.map(genre => {
+            return (
+              <li>
+                <p>{genre}</p>
+                <p onClick={() => this.removeGenre(genre)}>X</p>
+              </li>
+            )
+          })}
+        </ul>
+        <label>genre of music:</label>
         <SingleInput
           name='singleGenre'
           onComplete={this.addGenre}

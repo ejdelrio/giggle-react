@@ -116,6 +116,7 @@ class SearchForm extends React.Component {
             )
           })}
         </ul>
+        
         <SingleInput
           className='add-genre'
           name='genres'
