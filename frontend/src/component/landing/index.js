@@ -64,7 +64,7 @@ class HomePage extends React.Component {
     'giggle-landing-hidden':
     'giggle-landing';
 
-    let resultsclassName = this.state.queryResults.length > 0 ?
+    let resultsclassName = !this.state.queryResults.length > 0 ?
     'booking-search-results-hidden':
     'booking-search-results';
 

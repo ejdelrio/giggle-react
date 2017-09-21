@@ -63,7 +63,7 @@ class AuthForm extends React.Component {
 
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} className='auth-form'>
 
         <input
           name='userName'

@@ -1,0 +1,21 @@
+@import '../../style/lib/_vars.scss';
+
+.auth-modal {
+  float: left;
+  width: 80vw;
+  height: 50vh;
+  margin-left: 10vw;
+  margin-top: 25vh;
+  background: $black;
+  border-radius: 5px;
+
+  * {
+    float: left;
+  }
+  &>form {
+    height: 30vh;
+    width: 20vw;
+    background: black;
+    border: 5px;
+  }
+}
