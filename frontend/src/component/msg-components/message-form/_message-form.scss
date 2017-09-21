@@ -1,3 +1,5 @@
+@import '../../../style/lib/_vars.scss';
+
 .messanger-bar {
   margin: 0;
   padding: 0;
@@ -6,7 +8,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  background: grey;
+  background: $black;
   overflow: visible;
   outline: 1px solid black;
 
@@ -20,7 +22,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    background: grey;
+    background: $black;
     outline: 1px solid black;
     transition: 350ms all;
   }
@@ -28,33 +30,74 @@
   .visible-chat {
     height: 93vh;
 
+    form {
+      input{
+        width: 100%;
+        background: $white;
+        border: none;
+        height: 4vh;
+        padding: 1vh 1vw;
+        margin-top: 2vh;
+        font-size: 2vh;
+      }
+
+      button {
+        width: 100%;
+        background: $primary;
+        border: none;
+        height: 3vh;
+        padding: 0 1vh;
+        font-size: 2vh
+      }
+    }
+
     &>ul {
       margin: 0;
       padding: 0;
       float: right;
       width: 100%;
       height: 60vh;
+      margin-top: 2vh;
 
       li {
+        background: $black;
+        color: $white;
         width: 100%;
         height: 7vh;
         float: right;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $primary;
+        transition: 350ms all;
         &:hover {
-          background: black;
-          color: white;
+          background: $primary;
+          color: $black;
         }
+      }
+
+      p {
+        float: left;
+        width: 90%;
+        margin-left: 5%;
+        height: 5vh;
+        margin-top: 2vh;
+        font-size: 2vh;
+        font-family: helvetica;
       }
     }
   }
   .chat-header {
-    background: black;
-    color: white;
+    background: $primary;
+    color: $black;
     width: 100%;
     height: 7vh;
     h5 {
-      float: right;
-      margin-right: 2vw;
+      float: left;
+      width: 90%;
+      text-align: left;
+      font-size: 4vh;
+      height: 5vh;
+      margin-top: 2vh;
+      margin-left: 5%;
+      font-family: helvetica;
     }
   }
 
@@ -65,7 +108,7 @@
     right: 0;
     height: 100%;
     width: 80vw;
-    background: grey;
+    background: $black;
     margin-right: 20vw;
 
     li {
@@ -74,7 +117,7 @@
       float: right;
       width: 20vw;
       height: 7vh;
-      background: black;
+      background: $primary;
       transition: 350ms all;
       bottom: 0;
 
@@ -91,17 +134,19 @@
     transition: 350ms all;
     position: absolute;
     margin-bottom: 24vh;
-    background: black;
+    background: $primary;
+    outline: 1px solid $black;
     color: white;
     bottom: 0;
     &>ul, &>form {
       display: block;
     }
 
+
     &>ul {
       margin: 0;
       padding: 0;
-      background: grey;
+      background: $black;
       height: 50vh;
       width: 20vw;
       overflow-x: scroll;
@@ -123,17 +168,29 @@
           width: 70%;
           height: 2vh;
           font-size: 2vh;
-          color: black;
+          color: $white;
         }
 
       }
     }
     form {
-      width: 20vw;
+      width: 100%;
       height: 7vh;
       background: black;
+      input {
+        width: 100%;
+        background: $white;
+        height: 3vh;
+        border: none;
+      }
+      button {
+        width: 100%;
+        background: $primary;
+        color: $black;
+        border: none;
+        height: 3vh;
+      }
     }
-
   }
 
   .message-header {
@@ -143,14 +200,21 @@
       float: right;
     }
     &>p {
-      margin: 0;
-      padding: 0;
-      height: 7vh;
-      margin-right: 2vw;
-      color: white;
+      float: left;
+      width: 80%;
+      height: 5vh;
+      margin-top: 2vh;
+      color: black;
+      font-family: helvetica;
     }
     button {
-      margin-right: 2vw;
+      float: right;
+      background: none;
+      border: none;
+      color: $black;
+      margin-top: 2vh;
+      margin-right: 2vh;
+      font-size: 2vh;
     }
   }
   .sent-message {

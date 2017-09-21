@@ -199,3 +199,24 @@
     margin-top: $gutter-sm/2;
   }
 }
+
+.profile-search {
+  margin-left: 2vw;
+  background: $black;
+  width: 75vw;
+  padding: 1 0.5vw;
+  border-radius: 5px;
+  height: auto;
+  min-height: 35vh;
+  overflow-y: scroll;
+
+  li {
+    display: inline-block;
+    width: 35%;
+    background: white;
+    height: 20vh;
+    border-radius: 5px;
+    margin-left: 10%;
+    margin-top: 3vh;
+  }
+}

@@ -12,8 +12,8 @@ let newLink = (url, path, val, ind) => {
   return(
     <Link to={`${path}/${url}`}>
       <li key={ind}>
-        <p>{val.userName}</p>
-        <p>{val.genre}</p>
+        <p>{`User Name: ${val.userName}`}</p>
+        <p>{`User Genres: ${val.genre}`}</p>
         <p>{`Location: ${val.city}, ${val.state}`}</p>
       </li>
     </Link>
@@ -52,10 +52,7 @@ class Dashboard extends React.Component {
     .query(query)
     .then(res => {
       this.props.profileSearch(res.body);
-      this.setState({
-        queryResults: res.body,
-        genres: this.state.genres
-      });
+      this.setState({queryResults: res.body});
     })
   }
 
