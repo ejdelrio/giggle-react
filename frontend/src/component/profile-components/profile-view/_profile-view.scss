@@ -14,7 +14,6 @@
     h2 {
       margin: 0;
       padding: 0;
-      outline: 1px solid black;
       align-self: center;
       color: $primary;
       font-size: 4em;
@@ -37,12 +36,13 @@
       align-items: stretch;
       flex-direction: column;
       justify-content: flex-end;
-      padding-bottom: 12%;
+      padding-bottom: 1%;
     }
     .profile-contact {
       width: 65%;
       display: inline-flex;
       justify-content: flex-end;
+      align-self: flex-end;
     }
     .city-state {
       color: $primary;
