@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import superagent from 'superagent';
 
 import * as util from '../../../lib/util';
+import * as bookingAction from '../../../action/booking-action.js';
 
 import Modal from '../../lib/modal';
 import BookingForm from '../booking-form';
@@ -55,6 +56,7 @@ class ProfileView extends React.Component{
             <BookingForm
               target={this.state.target}
               buttonText='Request Booking'
+              createBooking={this.props.createBooking}
             />
           </Modal>
         )}
@@ -100,5 +102,9 @@ let mapStateToProps = state => ({
   profile: state.profile
 })
 
+let mapDispatchToProps = dispatch => ({
+  createBooking: booking => dispatch(bookingAction.requestBooking(booking))
+})
 
-export default ProfileView;
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileView);

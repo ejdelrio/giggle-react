@@ -10,18 +10,16 @@ let generateTemplate = (props, profile, target) => {
     {
       bandName: profile.userName,
       venueName: target.userName,
-      coords: target.coords,
+      location: target.coords,
       city: target.city,
       state: target.state
     }:
     {
       bandName: target.userName,
       venueName: profile.userName,
-      location: profile.ocation,
+      location: profile.location,
       city: profile.city,
       state: profile.state,
-      date: new Date(),
-      time: ''
     }
   }
 }
@@ -31,13 +29,20 @@ class BookingForm extends React.Component {
     super(props);
     let {profile, target} = this.props;
     let initialState = generateTemplate(this.props, profile, target);
-    console.log('__INIT_STATE__',initialState);
+    if(initialState.date) {
+      let ISOdate = new Date(initialState.date).toISOString().split('T');
+      initialState.date = ISOdate[0];
+      initialState.time = ISOdate[1].split('.')[0];
+
+    }
     this.state = {
+      genre: '',
       coverCharge: 0,
       compensation: 0,
       description: '',
-      time: '',
-      ...initialState
+      time: '12:00:00',
+      date: new Date(),
+      ...initialState,
 
     }
 
@@ -46,7 +51,7 @@ class BookingForm extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.booking) return this.setState(this.props.booking);
+    console.log(this.state);
   }
 
   onChange(e) {
@@ -84,11 +89,19 @@ class BookingForm extends React.Component {
           value={this.state.time}
           onChange={this.onChange}
         />
-        <p>Please Enter a Cover Chare:</p>
+        <p>Genre:</p>
+        <input
+          type='text'
+          name='genre'
+          placeholder='Enter a Genre'
+          value={this.state.genre}
+          onChange={this.onChange}
+        />
+        <p>Please Enter a Cover Charge:</p>
         <input
           type='number'
           name='coverCharge'
-          value={this.state.cover}
+          value={this.state.coverCharge}
           onChange={this.onChange}
         />
         <p>Please Enter a Compensation Amount:</p>
@@ -116,7 +129,7 @@ let mapStateToProps = state => ({
   socket: state.socket
 });
 let mapDispatchToProps = dispatch => ({
-  createBooking: booking => dispatch(bookingAction.requestBooking(booking))
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookingForm);

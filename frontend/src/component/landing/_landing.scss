@@ -10,9 +10,35 @@ body {
 .giggle-landing {
   font-family: $font-primary;
   text-align: center;
-  color: $secondary;
+  color: $primary;
+  height: 20vh;
+  width: 40vw;
   font-size: 10vw;
-  margin-top: 15vw;
-  margin-bottom: 2vw;
+  margin-top: 15vh;
+  margin-left: 30vw;
+  margin-bottom: 2vh;
   -webkit-text-stroke: 2px $primary;
+  position: relative;
+  transition: 1000ms all;
+  h1 {
+    position: absolute;
+    float: left;
+    width: 80%;
+    font-size: 15vh;
+    text-align: center;
+    margin-left: 10%;
+    transition: 1500ms all;
+  }
+}
+
+.giggle-landing-hidden {
+  transition: 1500ms all;
+  position: static;
+  margin-bottom: 4.8vh;
+
+  h1 {
+    top: 0;
+    left: 0;
+
+  }
 }

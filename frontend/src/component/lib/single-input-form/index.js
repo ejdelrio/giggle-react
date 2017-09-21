@@ -27,28 +27,16 @@ class SingleInput extends React.Component {
 
   render() {
     return (
-      <div className="add-genre">
-        <div className="genre-elements">
-          <div className="searchInput">
-
-            <input
-              type='text'
-              name={this.props.name}
-              placeholder={this.props.placeholder}
-              value={this.state[this.props.name]}
-              onChange={this.onChange}
-            />
-
-          </div>
-          <div className="searchButtons">
-            <button onClick={this.onSubmit}>{this.props.buttonText}</button>
-
-            <button type='submit'>Search!</button>
-          </div>
-        </div>
-
+      <div className={this.props.className}>
+        <input
+          type='text'
+          name={this.props.name}
+          placeholder={this.props.placeholder}
+          value={this.state[this.props.name]}
+          onChange={this.onChange}
+        />
+        <button onClick={this.onSubmit}>{this.props.buttonText}</button>
       </div>
-
     )
   }
 }

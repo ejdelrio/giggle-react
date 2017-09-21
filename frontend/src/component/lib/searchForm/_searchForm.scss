@@ -1,40 +1,144 @@
-// ::::: $SEARCH-FORM ::::: // 
+// ::::: $SEARCH-FORM ::::: //
 @import '../../../style/lib/_vars.scss';
 
 
 // --- SEARCH FORM DIV --- //
 .search-form {
   width: 75%;
-  height: 50%;
-  margin-top: 20%;
-  margin: 0% 12.5%;
-  border: 2px solid black;
-  border-radius: 3px;
-  background: $grey;
-  padding: 7px;
-  
-  .maxDistance {
-    float: left;
-    background: $primary;
-    color: $secondary;
-    display: inline-block;
-  } 
+  height: 35vh;
+  margin-left: 12.5%;
+  border-radius: 5px;
+  background: $primary;
+  padding: 5px;
 
-  .minDistance {
-    float: left;
-    background: $primary;
-    color: $secondary;
-    display: inline-block;
+  &>input {
+    background: $white;
+    width: 20vw;
+    height: 3.5vh;
+    padding: 0.5vh 0;
+    margin-left: $gutter-sm;
+    border: none;
+    border-radius: 3px;
+    font-size: 3vh;
+    margin-top: 1vh;
+    &:focus{
+      background: $black;
+      color: $white;
+    }
   }
 
-  button {
-    border: 1px solid $black;
-    border-radius: $border-radius;
-    height: 3vw;
+  h5 {
+    float: left;
+    width: 100%;
+    height: 2vh;
+    text-align: center;
+    font-size: 2.5vh;
+    font-family: $font-primary;
+  }
+
+  p:first-of-type, p:nth-child(5){
+    width: 100%;
+    margin-left: $gutter-sm;
+    font-family: $font-primary;
+    font-size: 2.5vh;
+  }
+  p:nth-child(5) {
+    margin-top: 0.5vh;
+  }
+
+  p{
+    display: inline-block;
+  }
+  ul {
+    width: 90%;
+    height: 4vh;
+
+    li {
+      width: auto;
+      max-width: 25vw;
+      min-width: 5vw;
+      height: 4vh;
+      border: 1px solid $black;
+      background: rgba(0.1, 0.1, 0.1, 0.5);
+      border-radius: 5px;
+      display: inline-block;
+      margin-left: $gutter-sm;
+
+      & * {
+        display: inline-block;
+      }
+
+      p:first-of-type {
+        width: auto;
+        max-width: 23vw;
+        height: 3vh;
+        margin-top: 0.75vh;
+        color: $white;
+        margin-left: 0.5vh;
+        overflow: hidden;
+      }
+      &>:last-child {
+        float: right;
+        width: 1vw;
+        height: 3vh;
+        margin-top: 1vh;
+        color: $primary;
+        margin-right: 0.5vh;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .add-genre {
+    width: 100%;
+
+    input[type="text"] {
+      height: 4vh;
+      float: left;
+      margin-left: $gutter-sm;
+      margin-top: $gutter-sm/2;
+      border-radius: 3px;
+      border: none;
+      background: $white;
+      transition: 350ms all;
+      &:focus {
+        background: $black;
+        color: $primary;
+      }
+    }
+    button {
+      height: 4.5vh;
+      width: 10vw;
+      background: $black;
+      margin-top: $gutter-sm/2;
+      color: $white;
+      outline: none;
+      border: none;
+    }
+  }
+  div:last-child {
+    width: 100%;
+  }
+
+  .maxDistance, .minDistance {
+    background: $white;
+    color: $black;
+    height: 5vh;
+    width: 5vw;
+    display: inline-block;
+    margin-left: $gutter-sm;
+  }
+
+  &>button {
+    border-radius: 5px;
+    border: none;
+    height: 5vh;
+    width: 10vw;
+    text-align: center;
     font-size: 18px;
     margin-left: 10px;
-    background: $primary;
-    color: $secondary;
+    background: $black;
+    color: $white;
     display: inline-block;
 
     &:hover {
@@ -42,5 +146,53 @@
       background: $secondary;
       color: $primary;
     }
+  }
+  .search-date {
+    width: 15vw;
+    height: 10vh;
+    margin-left: $gutter-sm;
+    margin-top: $gutter-sm/2;
+    display: inline-block;
+    float: left;
+    p {
+      width: 100%;
+    }
+
+    input[name="startDate"] {
+      width: 100%;
+      padding: 1.20vh 0;
+      text-align: center;
+      border-radius: 5px;
+      border: none;
+      background: $white;
+      font-size: 1.75vh;
+      margin-top: $gutter-sm/2;
+    }
+  }
+
+  .search-time {
+    width: 10vw;
+    height: 15vh;
+    margin-left: $gutter-sm;
+    margin-top: $gutter-sm/2;
+    display: inline-block;
+    float: left;
+    p {
+      width: 100%;
+    }
+    input {
+      width: 50%;
+      margin-top: $gutter-sm/2;
+      background: $white;
+      border-radius: 5px;
+      border: none;
+      height: 5vh;
+    }
+  }
+  .search-radius {
+    width: 10vw;
+    height: 15vh;
+    float: left;
+    margin-top: $gutter-sm/2;
   }
 }

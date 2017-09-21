@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+import * as util from '../../../lib/util';
+
 class BookingItem extends React.Component {
   constructor(props) {
     super(props);
@@ -30,8 +32,12 @@ class BookingItem extends React.Component {
           <p>{`Date: ${booking.date}`}</p>
           <p>{`Cover Charge: ${booking.coverCharge}`}</p>
           <p>{`Location: ${booking.city},${booking.state}`}</p>
-          <button onClick={this.onUpdate}>Update Booking</button>
-          <button onClick={this.confirmBooking}>Confirm Booking</button>
+          {util.renderIf(this.props.public,
+            <button onClick={this.onUpdate}>Update Booking</button>
+          )}
+          {util.renderIf(this.props.public,
+            <button onClick={this.onConfirm}>Confirm Booking</button>
+          )}
       </li>
     )
   }
