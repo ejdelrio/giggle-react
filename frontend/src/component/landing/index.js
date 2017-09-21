@@ -49,6 +49,7 @@ class HomePage extends React.Component {
       .query({...queryObj})
       .end((error, res) => {
         if(error) return this.setState({error});
+        console.log(res);
         this.setState({queryResults: res.body});
       })
     })
