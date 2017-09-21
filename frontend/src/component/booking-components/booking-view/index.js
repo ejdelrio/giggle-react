@@ -90,7 +90,7 @@ class BookingView extends React.Component {
                 ind={ind}
                 renderModal={this.onUpdate}
                 confirmBooking={this.props.confirmBooking}
-                public={false}
+                public={true}
               />
             )
           })}

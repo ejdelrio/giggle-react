@@ -19,6 +19,7 @@ body {
   -webkit-text-stroke: 2px $primary;
   position: relative;
   transition: 1000ms all;
+  z-index: -1;
   h1 {
     position: absolute;
     float: left;
@@ -39,5 +40,48 @@ body {
     top: 0;
     left: 0;
 
+  }
+}
+.booking-search-results {
+  width: 75%;
+  height: auto;
+  background: $primary;
+  margin-left: 12.5%;
+  margin-top: 1vh;
+  min-height: 45vh;
+  overflow-x: scroll;
+  border-radius: 5px;
+
+  &>ul {
+    width: 95%;
+    margin-left: 2.5%;
+  }
+
+  &>ul>li {
+    width: 100%;
+    height: 20vh;
+    background: $white;
+    margin-top: 2vh;
+    border-radius: 5px;
+    padding: 1vh 0;
+
+    &>a {
+      float: left;
+      width: 95%;
+      height: 4vh;
+      margin-left: 2.5%;
+      p {
+        width: 100%;
+        font-size: 2.5vh;
+      }
+    }
+
+    &>p{
+      float: left;
+      width: 95%;
+      height: 4vh;
+      margin-left: 2.5%;
+      font-size: 2.5vh;
+    }
   }
 }

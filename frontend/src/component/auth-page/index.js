@@ -25,7 +25,7 @@ class AuthPage extends React.Component{
 
   render() {
     let googleLoginBaseURL = 'https://accounts.google.com/o/oauth2/v2/auth';
-    
+
     let googleLoginQuery = querystring.stringify({
       client_id: __GOOGLE_CLIENT_ID__,
       response_type: 'code',
@@ -34,13 +34,13 @@ class AuthPage extends React.Component{
       prompt: 'consent'
     });
 
-    
+
     let googleLoginURL = `${googleLoginBaseURL}?${googleLoginQuery}`;
-    
+
     console.log(googleLoginURL)
     return(
       <Modal closeModal={this.props.closeModal}>
-        <div>
+        <div className='auth-modal'>
           <AuthForm
             onComplete={this.props.login}
             auth={'login'}

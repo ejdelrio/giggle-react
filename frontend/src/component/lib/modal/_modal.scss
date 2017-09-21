@@ -12,46 +12,13 @@
 
   &>button {
     float: right;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3vh;
+    margin-right: 2vw;
+    margin-top: 2vh;
+    cursor: pointer;
   }
 
-  &>div {
-    float: left;
-    width: 70vw;
-    height: 70vh;
-    margin-left: 25vh;
-    margin-top: 15vh;
-    background: $tertiary;
-    border-radius: 10px;
-
-    * {
-      float: left;
-    }
-    
-    div {
-      width: 1%;
-      height: 50vh;
-      margin-top: 1vh;
-      background: $black;
-      border-radius: 10px;
-      margin-left: 10%;
-
-    }
-
-    form {
-      width: 30%;
-      height: 40vh;
-      background: $grey;
-      margin-left: 10%;
-      margin-top: 5%;
-      margin-bottom: 5%;
-      border-radius: 10px;
-    }
-
-    a {
-      clear: both;
-      float: left;
-      margin-left: 35%;
-
-    }
-  }
 }
