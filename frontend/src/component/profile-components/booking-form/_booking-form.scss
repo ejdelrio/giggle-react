@@ -4,24 +4,24 @@
   float: left;
   width: 30vw;
   height: 70vh;
-  margin-left: 40vw;
+  margin-left: 35vw;
   margin-top: 15vh;
   background: $black;
   border-radius: 5px;
 
   input, textarea, button {
-    float: left;
-    clear: both;
     margin-left: 5%;
     height: 4vh;
     border: none;
     border-radius: 5px;
   }
-  input[type='text'] {
+  input[type="text"] {
+    float: left;
+    clear: both;
     width: 90%;
   }
 
-  input[type='time'] {
-    clear: none;
+  input[type="time"], input[type="date"] {
+    float: left;
   }
 }
