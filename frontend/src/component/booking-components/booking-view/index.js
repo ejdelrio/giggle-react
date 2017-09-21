@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import superagent from 'superagent'
 import {Link} from 'react-router-dom';
+import './_booking-view.scss';
 
 import * as util from '../../../lib/util.js';
 import * as bookingAction from '../../../action/booking-action.js';
@@ -58,6 +59,7 @@ class BookingView extends React.Component {
       modalBooking: booking
     })
   }
+
 
   modalToggle() {
     let newState = this.state.modalSwitch === true ?

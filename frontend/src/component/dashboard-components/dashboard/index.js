@@ -52,7 +52,10 @@ class Dashboard extends React.Component {
     .query(query)
     .then(res => {
       this.props.profileSearch(res.body);
-      this.setState({queryResults: res.body});
+      this.setState({
+        queryResults: res.body,
+        genres: this.state.genres
+      });
     })
   }
 

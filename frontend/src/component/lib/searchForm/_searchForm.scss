@@ -140,6 +140,9 @@
     background: $black;
     color: $white;
     display: inline-block;
+    float: left;
+    margin-left: 16.5vw;
+    margin-top: 4.5vh;
 
     &:hover {
       cursor: pointer;
