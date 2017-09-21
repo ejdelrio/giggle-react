@@ -1,0 +1,26 @@
+@import '../../style/lib/_vars.scss';
+
+.auth-form {
+  input {
+    float: left;
+    width: 75%;
+    margin-left: 10%;
+    margin-top: $gutter-sm * 2;
+    padding: 1vh 2.5%;
+    height: 5vh;
+    border: none;
+    border-radius: 5px;
+    font-size: 2vh;
+  }
+  button {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: $gutter-sm * 2;
+    height: 5vh;
+    font-size: 3vh;
+    background: $primary;
+    color: $black;
+    border: none;
+    border-radius: 5px;
+  }
+}

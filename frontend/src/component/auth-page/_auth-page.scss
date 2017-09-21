@@ -3,19 +3,40 @@
 .auth-modal {
   float: left;
   width: 80vw;
-  height: 50vh;
+  height: 70vh;
   margin-left: 10vw;
-  margin-top: 25vh;
+  margin-top: 15vh;
   background: $black;
   border-radius: 5px;
 
   * {
     float: left;
   }
+  &>div {
+    width: 0.5vw;
+    height: 50vh;
+    background: black;
+    border-radius: 5px;
+    margin-left: 7.375vw;
+    margin-top: 4vh;
+  }
   &>form {
-    height: 30vh;
-    width: 20vw;
+    height: 40vh;
+    width: 25vw;
     background: black;
     border: 5px;
+    margin-left: 7.375vw;
+    margin-top: 8vh;
+    border-radius: 5px;
+  }
+
+  a {
+    clear: both;
+    margin-left: 31vw;
+    margin-top: 3vh;
+  }
+
+  span {
+    margin-left: 20px;
   }
 }
