@@ -1,28 +1,37 @@
 @import '../../../style/lib/_vars.scss';
   
+  body {
+    font-family: Helvetica, sans-serif
+    
+  }
   div { box-sizing: border-box; }
   
   .container {
-    background-color: $black;
-    background-image: $background_diamonds;
+    background: $primary;
+    background: -moz-linear-gradient(top, $primary 0%, $primary 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, $primary), color-stop(100%, $primary));
+    background: -webkit-linear-gradient(top, $primary 0%, $primary 100%);
+    background: -o-linear-gradient(top, $primary 0%, $primary 100%);
+    background: -ms-linear-gradient(top, $primary 0%, $primary 100%);
+    background: linear-gradient(to bottom, $primary 0%, $primary 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4d', endColorstr='$primary', GradientType=0 );
     display: flex;
     align-content: flex-start;
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
-    border: 1px solid #000000;
+    padding: 0 6em;
   
     h2 {
       margin: 0;
       padding: 0;
       align-self: center;
-      color: $primary;
+      color: $black;
       font-size: 4em;
       
     }
     &>p:first-of-type {
       margin: 0;
       padding: 0;
-      outline: 1px solid black;
     }
     
     .ident-content {
@@ -45,12 +54,16 @@
       align-self: flex-end;
     }
     .city-state {
-      color: $primary;
+      color: $black;
       font-size: 1.3em;
     }
   }
   .ident-content {
     width: 30%;
+  }
+
+  .profile-content{
+    margin-bottom: 0.5em;
   }
   
   .circle {
@@ -75,17 +88,42 @@
     text-align: center;
     margin-top: 89%;
   }
+
+  .sidebar {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    &>div{
+      margin-top: 2em;
+    }
+  }
   
+  #my-bookings {
+    width: 60%;
+    margin-top: 2em;
+    border-right: 1px solid #CBCBCB;
+
+  }
+
+  .profile-main {
+    height: 100vh;
+    margin: 0 6em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    h2 {
+      font-size: 2em;
+    }
+  }
 
 #profile-view {
   
   width: 100%;
   height: 80vh;
-  margin-top: 10vh; 
-  outline: 1px solid black;
+  margin-top: 7vh; 
 
   &>.profile-header {
-      border: 1px solid #000000;
+      border-bottom: 3px solid #ff910a;
 
   }
 }
