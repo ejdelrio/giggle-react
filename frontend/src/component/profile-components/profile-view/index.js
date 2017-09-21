@@ -66,17 +66,17 @@ class ProfileView extends React.Component {
 
             <div className="container">
               <div className="ident-content">
-              <div className="circle photo-ident">
+                <div className="circle photo-ident">
 
-                <button className="photo-update">
-                  Update image
+                  <button className="photo-update">
+                    Update image
                 </button>
-              </div>
-              <div className="text-ident">
-                <h2>{profile.userName}</h2>
+                </div>
+                <div className="text-ident">
+                  <h2>{profile.userName}</h2>
 
-                <p className='city-state'>{`${profile.city}, ${profile.state}`}</p>
-              </div>
+                  <p className='city-state'>{`${profile.city}, ${profile.state}`}</p>
+                </div>
 
               </div>
               <div className="profile-contact">
@@ -99,39 +99,49 @@ class ProfileView extends React.Component {
 
           <div className="profile-main">
             <div id='my-bookings'>
+              <h2 className='profile-content'>Bookings</h2>
               <ul>
+                No bookings yet.
                 {//Bookigs will be mapped here :D
                 }
               </ul>
             </div>
 
-            <div className="bio">
-              <h2>Bio:</h2>
-              <p>{profile.bio}</p>
+            <div className="sidebar">
+              <div className="bio">
+                <h2 className='profile-content'>Bio</h2>
+                <p>{profile.bio}</p>
 
-            </div>
+              </div>
 
-            <div className="media">
+              <div className="media">
 
-              <h2>Media</h2>
-              <ul>
+                <h2 className='profile-content'>Media</h2>
+                <ul>
+                  No media yet.
                 <Link to={`/profile/photos-${profile.userName}`}>
-                  <li>
-                    {/* <img src='https://assets3.thrillist.com/v1/image/1531235/size/tmg-slideshow_l.jpg' /> */}
-                  </li>
-                </Link>
-                <Link to={`/profile/videos-${profile.userName}`}>
-                  <li>
-                    <img src='' />
-                  </li>
-                </Link>
-                <Link to={`/profile/tracks-${profile.userName}`}>
-                  <li>
-                    <img src='' />
-                  </li>
-                </Link>
-              </ul>
+                    <li>
+                      {/* <img src='https://assets3.thrillist.com/v1/image/1531235/size/tmg-slideshow_l.jpg' /> */}
+                    </li>
+                  </Link>
+                  <Link to={`/profile/videos-${profile.userName}`}>
+                    <li>
+                      <img src='' />
+                    </li>
+                  </Link>
+                  <Link to={`/profile/tracks-${profile.userName}`}>
+                    <li>
+                      <img src='' />
+                    </li>
+                  </Link>
+                </ul>
+              </div>
+
             </div>
+
+
+
+
           </div>
         </div>
       </section>
