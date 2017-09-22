@@ -9,6 +9,9 @@
   background: $black;
   border-radius: 5px;
   overflow-x: scroll;
+  border: 0.5vw solid $black;
+  border-radius: 5px;
+
 
   h5 {
     color: $primary;
@@ -23,6 +26,7 @@
   &>ul {
     width: 95%;
     margin-left: 2.5%;
+    padding-bottom: 2vh;
 
 
   }
