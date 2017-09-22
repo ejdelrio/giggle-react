@@ -1,5 +1,6 @@
 import React from 'react';
 import * as util from '../../../lib/util.js';
+import './_avatar-form.scss';
 
 class AvatarForm extends React.Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class AvatarForm extends React.Component {
     .catch(error => this.setState({error}))
   }
 
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault();
     if(this.state.avatar === '') return this.setState({error: true});
     this.props.complete(this.state);
   }
@@ -37,7 +39,13 @@ class AvatarForm extends React.Component {
             name='avatar'
             onChange={this.onChange}
           />
-          <img src={this.state.preview} />
+          <div className='preview-container'>
+            <img
+              src={this.state.preview}
+            />
+          </div>
+
+          <button type='submit'>Add Photo</button>
       </form>
     )
   }
