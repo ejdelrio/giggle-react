@@ -11,6 +11,7 @@ import * as convoActions from '../../../action/convo-action.js';
 import Modal from '../../lib/modal';
 import BookingForm from '../booking-form';
 import ConvoForm from '../../msg-components/convo-form';
+import AvatarForm from '../../lib/avatar-form';
 
 
 class ProfileView extends React.Component {
@@ -20,6 +21,7 @@ class ProfileView extends React.Component {
       target: null,
       bookingModalToggle: false,
       messageModalToggle: false,
+      avatarModalToggle: false,
       owner: false,
       error: null
     }
@@ -27,6 +29,7 @@ class ProfileView extends React.Component {
     this.requestBooking = this.requestBooking.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
     this.messageToggle = this.messageToggle.bind(this);
+    this.avatarToggle = this.avatarToggle.bind(this);
   }
   componentWillMount() {
     let {params} = this.props.match;
@@ -53,9 +56,13 @@ class ProfileView extends React.Component {
     this.setState({ messageModalToggle: newState });
   }
   sendMessage(data) {
-    console.log('__DATA__',data);
     this.props.createConvo(data);
     this.messageToggle();
+  }
+
+  avatarToggle() {
+    let newState = this.state.avatarModalToggle ? false : true;
+    this.setState({ avatarModalToggle: newState });
   }
   render() {
     if (!this.state.target) return (<section></section>)
@@ -85,6 +92,16 @@ class ProfileView extends React.Component {
             />
           </Modal>
         )}
+
+        {util.renderIf(this.state.avatarModalToggle,
+          <Modal
+            closeModal={this.avatarToggle}
+          >
+            <AvatarForm
+              className='profile-avatar-form'
+            />
+          </Modal>
+        )}
         <div id='profile-view'>
           <div className="profile-header">
 
@@ -92,7 +109,7 @@ class ProfileView extends React.Component {
               <div className="ident-content">
                 <div className="circle photo-ident">
                   {util.renderIf(this.state.owner,
-                    <button className="photo-update">
+                    <button className="photo-update" onClick={this.avatarToggle}>
                       Update image
                     </button>
                   )}
