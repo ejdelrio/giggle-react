@@ -1,5 +1,5 @@
 import React from 'react';
-import * as util from '../../../util.js';
+import * as util from '../../../lib/util.js';
 
 class AvatarForm extends React.Component {
   constructor(props) {
@@ -15,11 +15,11 @@ class AvatarForm extends React.Component {
   }
   onChange(e) {
     let {files} = e.target;
-    avatar = files[0]
+    let avatar = files[0]
     this.setState({
       avatar
     })
-    util.photoToDataUrl(avatar)
+    util.photoToDataURL(avatar)
     .then(preview => this.setState({preview}))
     .catch(error => this.setState({error}))
   }
@@ -29,15 +29,17 @@ class AvatarForm extends React.Component {
     this.props.complete(this.state);
   }
   render() {
-    <form className={this.props.className} onSubmit={this.onSubmit}>
-        <p>Select a Photo to Upload</p>
-        <input
-          type='file'
-          name='avatar'
-          onChange={this.onChange}
-        />
-        <img src={this.state.preview} />
-    </form>
+    return(
+      <form className={this.props.className} onSubmit={this.onSubmit}>
+          <p>Select a Photo to Upload</p>
+          <input
+            type='file'
+            name='avatar'
+            onChange={this.onChange}
+          />
+          <img src={this.state.preview} />
+      </form>
+    )
   }
 }
 
