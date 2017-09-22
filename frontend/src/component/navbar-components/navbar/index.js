@@ -67,6 +67,7 @@ class NavBar extends React.Component {
       menuToggle: false,
       bellToggle: false
     });
+    sessionStorage.clear();
 
   }
 

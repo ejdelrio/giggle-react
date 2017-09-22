@@ -135,13 +135,12 @@
     width: 10vw;
     text-align: center;
     font-size: 18px;
-    margin-left: 10px;
     background: $black;
     color: $white;
     display: inline-block;
     float: left;
-    margin-left: 16.5vw;
-    margin-top: 4.5vh;
+    margin-left: 8.5vw;
+    margin-top: 4vh;
 
     &:hover {
       cursor: pointer;
@@ -192,7 +191,7 @@
     }
   }
   .search-radius {
-    width: 10vw;
+    width: 15vw;
     height: 15vh;
     float: left;
     margin-top: $gutter-sm/2;
@@ -202,12 +201,14 @@
 .profile-search {
   margin-left: 2vw;
   background: $black;
-  width: 75vw;
+  width: 76vw;
   padding: 1 0.5vw;
   border-radius: 5px;
   height: auto;
-  min-height: 35vh;
+  min-height: 5vh;
+  max-height: 40vh;
   overflow-y: scroll;
+  transition: 350ms all;
 
   li {
     display: inline-block;
@@ -215,8 +216,7 @@
     background: $primary;
     height: 24vh;
     border-radius: 5px;
-    margin-left: 16%;
-    margin-top: 3vh;
+    margin: 1.5vh 8%;
 
     div {
       width: 100%;
