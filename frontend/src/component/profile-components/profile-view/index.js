@@ -32,19 +32,19 @@ class ProfileView extends React.Component {
     this.avatarToggle = this.avatarToggle.bind(this);
   }
   componentWillMount() {
-    let {params} = this.props.match;
-    if(params.userName === this.props.profile.userName) {
-      this.setState({owner: true});
+    let { params } = this.props.match;
+    if (params.userName === this.props.profile.userName) {
+      this.setState({ owner: true });
     }
   }
 
   componentDidMount() {
     let { params } = this.props.match;
     superagent.get(`${__API_URL__}/api/profile/${params.userName}`)
-    .end((error, res) => {
-      if (error) return this.setState({ error });
-      this.setState({ target: res.body });
-    })
+      .end((error, res) => {
+        if (error) return this.setState({ error });
+        this.setState({ target: res.body });
+      })
   }
 
   requestBooking() {
@@ -129,14 +129,8 @@ class ProfileView extends React.Component {
                   </div>
                 )}
               </div>
-
-
             </div>
 
-
-
-
-            <p>{`${profile.genre.join(', ')}`}</p>
           </div>
 
           <div className="profile-main">
@@ -155,6 +149,15 @@ class ProfileView extends React.Component {
                 <p>{profile.bio}</p>
 
               </div>
+
+              <div className="genres">
+                <h2 className='profile-content'>Genres</h2>
+                <p>
+                {`${profile.genre.join(', ')}`}
+              </p>
+
+              </div>
+
 
               <div className="media">
 
