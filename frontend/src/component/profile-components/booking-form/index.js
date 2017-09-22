@@ -14,7 +14,8 @@ let generateTemplate = (props, profile, target) => {
       venueName: target.userName,
       location: target.coords,
       city: target.city,
-      state: target.state
+      state: target.state,
+      avatar: target.avatar
     }:
     {
       bandName: target.userName,
@@ -22,6 +23,7 @@ let generateTemplate = (props, profile, target) => {
       location: profile.location,
       city: profile.city,
       state: profile.state,
+      avatar: profile.avatar
     }
   }
 }
