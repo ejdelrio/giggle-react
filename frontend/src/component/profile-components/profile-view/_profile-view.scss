@@ -1,9 +1,9 @@
 @import '../../../style/lib/_vars.scss';
   
-  body {
-    font-family: Helvetica, sans-serif
-    
+  * {
+    font-family: $font-primary;
   }
+  
   div { box-sizing: border-box; }
   
   .container {
@@ -20,6 +20,8 @@
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     padding: 0 6em;
+
+
   
     h2 {
       margin: 0;
