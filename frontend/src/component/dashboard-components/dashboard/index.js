@@ -35,7 +35,6 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount() {
-    console.log(queryActions)
     if(this.props.profileQuery) {
       return this.setState({queryResults: this.props.profileQuery})
     }

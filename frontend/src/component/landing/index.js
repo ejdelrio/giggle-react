@@ -21,9 +21,14 @@ class HomePage extends React.Component {
     }
     this.getBookings = this.getBookings.bind(this);
   }
-  componentDidUpdate() {
-    console.log(this.state);
+
+  componentWillMount() {
+    if(sessionStorage.queryResults) {
+      let queryResults = JSON.parse(sessionStorage.queryResults);
+      this.setState({queryResults});
+    }
   }
+
   useCityLocation(prop) {
     let {state, city} = prop;
     return new Promise((resolve, reject) => {
@@ -53,6 +58,7 @@ class HomePage extends React.Component {
       .query({...queryObj})
       .end((error, res) => {
         if(error) return this.setState({error});
+        sessionStorage.queryResults = JSON.stringify(res.body);
         this.setState({queryResults: res.body});
       })
     })

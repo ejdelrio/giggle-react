@@ -20,26 +20,61 @@
     font-family: helvetica;
   }
 
-  ul {
-    width: 90%;
-    margin-left: 5%;
-    height: auto;
+  &>ul {
+    width: 95%;
+    margin-left: 2.5%;
 
-    li {
-      width: 100%;
-      height: 25vh;
-      background: $primary;
-      margin-top: 5vh;
-      padding-top: 0.5vh;
-      border-radius: 5px;
+  }
 
-      &>* {
-        display: block;
-        font-size: 2.5vh;
-        margin-top: 1vh;
-        margin-left: $gutter-sm;
-        font-family: helvetica;
+  &>ul>li {
+    width: 100%;
+    height: 23vh;
+    background: $white;
+    margin-top: 2vh;
+    border-radius: 5px;
+    padding: 1vh 0;
+    &>div:first-child {
+      background: $black;
+      width: 20%;
+      float: left;
+      max-width: 100%;
+      height: 18vh;
+      margin-top: 1vh;
+      margin-left: 2.5%;
+      img {
+        max-width: 100%;
+        max-height: 100%;
       }
+
+    }
+    &>:last-child {
+      float: left;
+      width: 70%;
+      margin-left: 2.5%;
+    }
+
+    &>div>a {
+      float: left;
+      width: 95%;
+      height: 4vh;
+      margin-left: 2.5%;
+      p {
+        width: 100%;
+        font-size: 2.5vh;
+      }
+    }
+
+    &>div>p {
+      float: left;
+      width: 95%;
+      height: 4vh;
+      margin-left: 2.5%;
+      font-size: 2.5vh;
+    }
+
+    &>div>p:last-child {
+      width: 10%;
+      float: right;
     }
 
     button:first-of-type {
@@ -58,10 +93,8 @@
     }
   }
 }
-
 .confirmed {
   margin-right: $gutter-sm;
-  float: right;
   font-size: 4vh;
   font-weight: bold;
 }
