@@ -103,7 +103,7 @@ class ProfileForm extends React.Component {
     let type = this.state.type;
     return(
       <form className={this.props.className} onSubmit={this.onSubmit}>
-        <label>Type of Account:</label>
+        <label>Account</label>
         <select name='type' onChange={this.onChange}>
           <option value='band'>Band</option>
           <option value='venue'>Venue</option>
@@ -118,14 +118,14 @@ class ProfileForm extends React.Component {
             )
           })}
         </ul>
-        <label>genre of music:</label>
+        <label>Genres</label>
         <SingleInput
           name='singleGenre'
           onComplete={this.addGenre}
           placeholder='Enter a Genre'
           buttonText='Add Genre'
         />
-        <label>City:</label>
+        <label>City</label>
         <input
           name='city'
           type='text'
@@ -133,7 +133,7 @@ class ProfileForm extends React.Component {
           value={this.state.city}
           onChange={this.onChange}
         />
-        <label>State:</label>
+        <label>State</label>
         <input
           name='state'
           type='text'
@@ -141,7 +141,7 @@ class ProfileForm extends React.Component {
           value={this.state.state}
           onChange={this.onChange}
         />
-        <label>Bio:</label>
+        <label>Bio</label>
         <textarea
           type='text'
           name='bio'
