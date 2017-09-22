@@ -12,6 +12,9 @@ let newLink = (url, path, val, ind) => {
   return(
     <Link to={`${path}/${url}`}>
       <li key={ind}>
+        <div className='profile-search-image'>
+          <img src={val.avatar}/>
+        </div>
         <p>{`User Name: ${val.userName}`}</p>
         <p>{`User Genres: ${val.genre}`}</p>
         <p>{`Location: ${val.city}, ${val.state}`}</p>
