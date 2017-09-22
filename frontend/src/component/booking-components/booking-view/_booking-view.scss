@@ -3,7 +3,7 @@
 #booking-view {
   float: left;
   width: 90vw;
-  height: 70vh;
+  height: 80vh;
   margin-left: 5vw;
   margin-top: 10vh;
   background: $black;
@@ -24,11 +24,12 @@
     width: 95%;
     margin-left: 2.5%;
 
+
   }
 
   &>ul>li {
     width: 100%;
-    height: 23vh;
+    height: 25vh;
     background: $white;
     margin-top: 2vh;
     border-radius: 5px;
@@ -50,7 +51,7 @@
     }
     &>:last-child {
       float: left;
-      width: 70%;
+      width: 90%;
       margin-left: 2.5%;
     }
 
