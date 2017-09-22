@@ -89,7 +89,7 @@ class ProfileForm extends React.Component {
       let state = this.state.state;
 
       return new Promise((resolve, reject) => {
-        superagent.get(`http://maps.google.com/maps/api/geocode/json?address=\+${city},+${state}`)
+        superagent.get(`https://maps.google.com/maps/api/geocode/json?address=\+${city},+${state}`)
         .end((error, res) => {
           if(error) reject({error});
           let {lat, lng} = res.body.results[0].geometry.location;
