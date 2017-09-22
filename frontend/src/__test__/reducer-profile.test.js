@@ -1,0 +1,1 @@
+import profileReducer from '../reducer/profile.js';

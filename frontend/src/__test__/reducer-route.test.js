@@ -1,0 +1,1 @@
+import routeReducer from '../reducer/route.js';

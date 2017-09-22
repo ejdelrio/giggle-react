@@ -8,7 +8,7 @@ module.exports = (state=[], action) => {
     case 'BOOKING_CREATE':
       return [...state, payload];
     case 'BOOKING_UPDATE':
-      console.log('Chick Dinner :D');
+      console.log('Chicken Dinner :D');
       return state.map(booking => {
         return booking._id !== payload._id ? booking : payload;
       });

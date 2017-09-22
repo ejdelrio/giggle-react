@@ -1,0 +1,1 @@
+import profileQueryReducer from '../reducer/profile-query.js';

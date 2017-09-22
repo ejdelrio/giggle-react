@@ -1,0 +1,1 @@
+import messageReducer from '../reducer/message';
