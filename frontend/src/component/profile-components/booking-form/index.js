@@ -44,7 +44,7 @@ class BookingForm extends React.Component {
       coverCharge: 0,
       compensation: 0,
       description: '',
-      time: '12:00:00',
+      time: '12:00',
       date: new Date(),
       ...initialState,
 

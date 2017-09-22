@@ -35,7 +35,7 @@ class SearchForm extends React.Component {
       genres: [],
       startDate: initDate,
       endDate: initDate,
-      time: initTime,
+      time: '12:00',
       city: '',
       state: '',
       maxDistance: 10,
