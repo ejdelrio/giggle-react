@@ -3,6 +3,21 @@ import {Link} from 'react-router-dom';
 
 import * as util from '../../../lib/util';
 
+function normalDate(date) {
+  let dateString = date.toString().split(':')[0].split(' ');
+  dateString.pop();
+  dateString = dateString.join(' ');
+
+  console.log(dateString)
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  if(minutes.length !== 2) minutes = `0${minutes}`;
+  return `${dateString} at ${hours}:${minutes}`;
+}
+
+
+
+
 class BookingItem extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +36,7 @@ class BookingItem extends React.Component {
 
   render() {
     let {booking} = this.props;
+    let date = new Date(booking.date);
     let confirmed = booking.venueConfirm && booking.bandConfirm;
     return(
       <li className='booking-list-item'>
@@ -34,7 +50,7 @@ class BookingItem extends React.Component {
           <Link to={`/profile/${booking.venueName}`}>
             <p>{`Venue: ${booking.venueName}`}</p>
           </Link>
-            <p>{`Date: ${booking.date}`}</p>
+            <p>{`Date: ${normalDate(date)}`}</p>
             <p>{`Cover Charge: ${booking.coverCharge}`}</p>
             <p>{`Location: ${booking.city},${booking.state}`}</p>
             {util.renderIf(this.props.public && !confirmed,
