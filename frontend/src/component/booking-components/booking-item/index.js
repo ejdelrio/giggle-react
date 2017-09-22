@@ -24,24 +24,29 @@ class BookingItem extends React.Component {
     let confirmed = booking.venueConfirm && booking.bandConfirm;
     return(
       <li className='booking-list-item'>
-        <Link to={`/profile/${booking.bandName}`}>
-          <p>{`Band: ${booking.bandName}`}</p>
-        </Link>
-        <Link to={`/profile/${booking.venueName}`}>
-          <p>{`Venue: ${booking.venueName}`}</p>
-        </Link>
-          <p>{`Date: ${booking.date}`}</p>
-          <p>{`Cover Charge: ${booking.coverCharge}`}</p>
-          <p>{`Location: ${booking.city},${booking.state}`}</p>
-          {util.renderIf(this.props.public && !confirmed,
-            <button onClick={this.onUpdate}>Update Booking</button>
-          )}
-          {util.renderIf(this.props.public && !confirmed,
-            <button onClick={this.onConfirm}>Confirm Booking</button>
-          )}
-          {util.renderIf(confirmed,
-            <p className='confirmed'>Confirmed!</p>
-          )}
+        <div className='booking-item-photo'>
+          <img src={booking.avatar}/>
+        </div>
+        <div>
+          <Link to={`/profile/${booking.bandName}`}>
+            <p>{`Band: ${booking.bandName}`}</p>
+          </Link>
+          <Link to={`/profile/${booking.venueName}`}>
+            <p>{`Venue: ${booking.venueName}`}</p>
+          </Link>
+            <p>{`Date: ${booking.date}`}</p>
+            <p>{`Cover Charge: ${booking.coverCharge}`}</p>
+            <p>{`Location: ${booking.city},${booking.state}`}</p>
+            {util.renderIf(this.props.public && !confirmed,
+              <button onClick={this.onUpdate}>Update Booking</button>
+            )}
+            {util.renderIf(this.props.public && !confirmed,
+              <button onClick={this.onConfirm}>Confirm Booking</button>
+            )}
+            {util.renderIf(confirmed && this.props.public,
+              <p className='confirmed'>Confirmed!</p>
+            )}
+          </div>
       </li>
     )
   }
