@@ -21,6 +21,7 @@ class BookingItem extends React.Component {
 
   render() {
     let {booking} = this.props;
+    let confirmed = booking.venueConfirm && booking.bandConfirm;
     return(
       <li className='booking-list-item'>
         <Link to={`/profile/${booking.bandName}`}>
@@ -32,11 +33,14 @@ class BookingItem extends React.Component {
           <p>{`Date: ${booking.date}`}</p>
           <p>{`Cover Charge: ${booking.coverCharge}`}</p>
           <p>{`Location: ${booking.city},${booking.state}`}</p>
-          {util.renderIf(this.props.public,
+          {util.renderIf(this.props.public && !confirmed,
             <button onClick={this.onUpdate}>Update Booking</button>
           )}
-          {util.renderIf(this.props.public,
+          {util.renderIf(this.props.public && !confirmed,
             <button onClick={this.onConfirm}>Confirm Booking</button>
+          )}
+          {util.renderIf(confirmed,
+            <p className='confirmed'>Confirmed!</p>
           )}
       </li>
     )

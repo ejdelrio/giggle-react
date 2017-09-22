@@ -24,8 +24,9 @@ header {
     height: 7vh;
     li {
       float: left;
-      margin-left: $gutter-sm;
+      margin-left: $gutter-sm * 3;
       display: inline-block;
+      font-family: helvetica;
 
       a {
         color: $primary;
@@ -39,6 +40,7 @@ header {
     &>:first-child, &>:nth-child(2) {
       float: right;
       margin-right: $gutter-sm;
+      margin-left: 0;
       position: relative;
 
       ul {
@@ -52,7 +54,9 @@ header {
 
         li {
           float: left;
-          width: 100%;
+          margin: 0 2.5%;
+          padding: 0;
+          width: 95%;
           height: 10vh;
           color: $primary;
           transition: 350ms all;

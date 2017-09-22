@@ -12,13 +12,16 @@
 
   &>button {
     float: right;
-    background: none;
+    background: $primary;
     border: none;
-    color: white;
+    color: $black;
     font-size: 3vh;
+    width: 5vh;
+    height: 5vh;
     margin-right: 2vw;
     margin-top: 2vh;
     cursor: pointer;
+    border-radius: 50px;
   }
 
 }

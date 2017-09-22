@@ -3,25 +3,47 @@
 #booking-form {
   float: left;
   width: 30vw;
-  height: 70vh;
+  height: 85vh;
   margin-left: 35vw;
-  margin-top: 15vh;
+  margin-top: 2vh;
   background: $black;
   border-radius: 5px;
+  padding: 2vh 0;
+  p {
+    color: $white;
+    clear: both;
+    margin-left: 5%;
+    font-family: helvetica;
+    font-size: 2.5vh;
+    margin-top: 1vh;
+  }
 
   input, textarea, button {
+    clear: both;
+    float: left;
     margin-left: 5%;
     height: 4vh;
     border: none;
     border-radius: 5px;
+    margin: 1vh 5%;
+    padding: 1vh 2.5%;
+    font-size: 2.5vh;
   }
   input[type="text"] {
-    float: left;
-    clear: both;
-    width: 90%;
+    width: 85%;
+
+
   }
 
-  input[type="time"], input[type="date"] {
-    float: left;
+  textarea {
+    height: 10vh;
+    width: 85%;
   }
+
+  button {
+    width: 90%;
+    background: $primary;
+    color: $black;
+  }
+
 }

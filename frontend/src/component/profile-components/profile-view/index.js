@@ -6,9 +6,11 @@ import superagent from 'superagent';
 
 import * as util from '../../../lib/util';
 import * as bookingAction from '../../../action/booking-action.js';
+import * as convoActions from '../../../action/convo-action.js';
 
 import Modal from '../../lib/modal';
 import BookingForm from '../booking-form';
+import ConvoForm from '../../msg-components/convo-form';
 
 
 class ProfileView extends React.Component {
@@ -17,31 +19,42 @@ class ProfileView extends React.Component {
     this.state = {
       target: null,
       bookingModalToggle: false,
+      messageModalToggle: false,
+      owner: false,
       error: null
     }
 
     this.requestBooking = this.requestBooking.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
+    this.messageToggle = this.messageToggle.bind(this);
   }
-  componentDidUpdate() {
-    console.log(this.state);
+  componentWillMount() {
+    let {params} = this.props.match;
+    if(params.userName === this.props.profile.userName) {
+      this.setState({owner: true});
+    }
   }
   componentDidMount() {
     let { params } = this.props.match;
     superagent.get(`${__API_URL__}/api/profile/${params.userName}`)
-      .end((error, res) => {
-        if (error) return this.setState({ error });
-        this.setState({ target: res.body });
-      })
+    .end((error, res) => {
+      if (error) return this.setState({ error });
+      this.setState({ target: res.body });
+    })
   }
 
   requestBooking() {
     let newState = this.state.bookingModalToggle ? false : true;
     this.setState({ bookingModalToggle: newState });
   }
-
-  sendMessage() {
-
+  messageToggle() {
+    let newState = this.state.messageModalToggle ? false : true;
+    this.setState({ messageModalToggle: newState });
+  }
+  sendMessage(data) {
+    console.log('__DATA__',data);
+    this.props.createConvo(data);
+    this.messageToggle();
   }
   render() {
     if (!this.state.target) return (<section></section>)
@@ -58,6 +71,16 @@ class ProfileView extends React.Component {
               target={this.state.target}
               buttonText='Request Booking'
               createBooking={this.props.createBooking}
+            />
+          </Modal>
+        )}
+        {util.renderIf(this.state.messageModalToggle,
+          <Modal
+            closeModal={this.messageToggle}
+          >
+            <ConvoForm
+              members={[this.props.match.params.userName]}
+              onComplete={this.sendMessage}
             />
           </Modal>
         )}
@@ -80,12 +103,12 @@ class ProfileView extends React.Component {
 
               </div>
               <div className="profile-contact">
-                <div className="contact-buttons">
-                  <button onClick={this.requestBooking}>Request Booking</button>
-                  <button onClick={this.sendMessage}>Send Message</button>
-                </div>
-
-
+                {util.renderIf(!this.state.owner,
+                  <div className="contact-buttons">
+                    <button onClick={this.requestBooking}>Request Booking</button>
+                    <button onClick={this.messageToggle}>Send Message</button>
+                  </div>
+                )}
               </div>
 
 
@@ -138,10 +161,6 @@ class ProfileView extends React.Component {
               </div>
 
             </div>
-
-
-
-
           </div>
         </div>
       </section>
@@ -154,7 +173,8 @@ let mapStateToProps = state => ({
 })
 
 let mapDispatchToProps = dispatch => ({
-  createBooking: booking => dispatch(bookingAction.requestBooking(booking))
+  createBooking: booking => dispatch(bookingAction.requestBooking(booking)),
+  createConvo: data => dispatch(convoActions.newConvo(data))
 })
 
 

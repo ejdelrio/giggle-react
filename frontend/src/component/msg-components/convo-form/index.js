@@ -2,10 +2,12 @@ import './_convo-form.scss';
 import React from 'react';
 import {connect} from 'react-redux';
 import SingleForm from '../../lib/single-input-form';
+import * as util from '../../../lib/util.js';
 
 class ConvoForm extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       members: [],
       content: '',
@@ -13,9 +15,14 @@ class ConvoForm extends React.Component {
       membersError: false,
       contentError: false,
     }
+
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.addMember = this.addMember.bind(this);
+  }
+
+  componentWillMount() {
+    if(this.props.members) return this.setState({members: this.props.members});
   }
 
   onChange(e) {
@@ -57,13 +64,15 @@ class ConvoForm extends React.Component {
         onSubmit={this.onSubmit}
         className='new-convo-form'
       >
-        <p>{this.state.members.join(', ')}</p>
-        <SingleForm
-          name='newMember'
-          placeholder='Enter User Names'
-          buttonText='Add User'
-          onComplete={this.addMember}
-        />
+        <p>{`Send To: ${this.state.members.join(', ')}`}</p>
+        {util.renderIf(!this.props.members,
+          <SingleForm
+            name='newMember'
+            placeholder='Enter User Names'
+            buttonText='Add User'
+            onComplete={this.addMember}
+          />
+        )}
         <input
           type='text'
           name='content'
