@@ -25,7 +25,7 @@ class HomePage extends React.Component {
   componentWillMount() {
     if(sessionStorage.queryResults) {
       let queryResults = JSON.parse(sessionStorage.queryResults);
-      this.setState({queryResults});
+      this.setState({queryResults})
     }
   }
 
