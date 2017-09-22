@@ -34,6 +34,7 @@ class ProfileView extends React.Component {
       this.setState({owner: true});
     }
   }
+
   componentDidMount() {
     let { params } = this.props.match;
     superagent.get(`${__API_URL__}/api/profile/${params.userName}`)
@@ -90,10 +91,11 @@ class ProfileView extends React.Component {
             <div className="container">
               <div className="ident-content">
                 <div className="circle photo-ident">
-
-                  <button className="photo-update">
-                    Update image
-                </button>
+                  {util.renderIf(this.state.owner,
+                    <button className="photo-update">
+                      Update image
+                    </button>
+                  )}
                 </div>
                 <div className="text-ident">
                   <h2>{profile.userName}</h2>
