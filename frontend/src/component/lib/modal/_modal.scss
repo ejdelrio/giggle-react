@@ -24,4 +24,43 @@
     border-radius: 50px;
   }
 
+  .new-convo-form {
+    float: left;
+    margin: 20vh 35vw;
+    padding: 2vh 2vw;
+    width: 30vw;
+    height: 20vh;
+    background: $black;
+    border-radius: 5px;
+
+    p {
+      float: left;
+      color: $primary;
+      font-size: 3vh;
+      width: 100%;
+      height: 3vh;
+      font-family: helvetica;
+    }
+    input {
+      width: 90%;
+      background: $white;
+      height: 4vh;
+      padding: 1vh 5%;
+      font-size: 3vh;
+      border: none;
+      border-radius: 5px;
+      margin-top: 2vh;
+    }
+    button {
+      width: 100%;
+      background: $primary;
+      color: $black;
+      height: 4vh;
+      font-size: 3vh;
+      border: none;
+      border-radius: 5px;
+      margin-top: 2vh;
+    }
+  }
+
 }
