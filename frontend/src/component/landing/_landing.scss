@@ -50,10 +50,11 @@ body {
   margin-left: 12.5%;
   margin-top: 1vh;
   min-height: 45vh;
-  overflow-x: scroll;
+  overflow-y: scroll;
   border-radius: 5px;
-  transition: 1500ms all;
   transition-delay: 1500ms height;
+  transition: 1500ms all;
+
 
   &>ul {
     width: 95%;
@@ -115,6 +116,7 @@ body {
   background: $white;
   margin-top: 1vh;
   border-radius: 5px;
-  transition: 1500ms all;
   transition-delay: 1500ms height;
+  transition: 1500ms all;
+
 }
