@@ -1,6 +1,12 @@
 // ::::: $MODAL$ ::::: //
 @import '../../../style/lib/_vars.scss';
 
+#send-to {
+  color: $grey;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
 // --- MODAL LAYOUT && DESIGN --- //
 .modal {
   position: fixed;
@@ -41,6 +47,7 @@
       height: 3vh;
       font-family: helvetica;
     }
+
     input {
       width: 90%;
       background: $white;

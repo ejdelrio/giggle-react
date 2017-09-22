@@ -64,7 +64,7 @@ class ConvoForm extends React.Component {
         onSubmit={this.onSubmit}
         className='new-convo-form'
       >
-        <p>{`Send To: ${this.state.members.join(', ')}`}</p>
+        <p id='send-to'>{`Send To: ${this.state.members.join(', ')}`}</p>
         {util.renderIf(!this.props.members,
           <SingleForm
             name='newMember'
