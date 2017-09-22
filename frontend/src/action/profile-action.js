@@ -88,3 +88,15 @@ export const userQuery = (max, genre, limit=10) => (dispatch, getState) => {
     console.log(res.body);
   });
 }
+
+export const updateAvatar = file => (dispatch, getState) => {
+  let {token} = getState();
+  console.log(file)
+  return superagent.post(`${__API_URL__}/api/avatar`)
+  .set('Authorization', `Bearer ${token}`)
+  .attach('image', file)
+  .end((error, res) => {
+    if(error) return console.error(error);
+    dispatch(updateProfile(res.body));
+  })
+}

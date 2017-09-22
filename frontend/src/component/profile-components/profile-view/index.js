@@ -7,6 +7,7 @@ import superagent from 'superagent';
 import * as util from '../../../lib/util';
 import * as bookingAction from '../../../action/booking-action.js';
 import * as convoActions from '../../../action/convo-action.js';
+import * as profileAction from '../../../action/profile-action.js';
 
 import Modal from '../../lib/modal';
 import BookingForm from '../booking-form';
@@ -30,6 +31,7 @@ class ProfileView extends React.Component {
     this.sendMessage = this.sendMessage.bind(this);
     this.messageToggle = this.messageToggle.bind(this);
     this.avatarToggle = this.avatarToggle.bind(this);
+    this.newAvatar = this.newAvatar.bind(this);
   }
   componentWillMount() {
     let { params } = this.props.match;
@@ -63,6 +65,11 @@ class ProfileView extends React.Component {
   avatarToggle() {
     let newState = this.state.avatarModalToggle ? false : true;
     this.setState({ avatarModalToggle: newState });
+  }
+
+  newAvatar(file) {
+    this.props.updateAvatar(file);
+    this.avatarToggle();
   }
   render() {
     if (!this.state.target) return (<section></section>)
@@ -99,6 +106,7 @@ class ProfileView extends React.Component {
           >
             <AvatarForm
               className='profile-avatar-form'
+              onComplete={this.newAvatar}
             />
           </Modal>
         )}
@@ -196,7 +204,8 @@ let mapStateToProps = state => ({
 
 let mapDispatchToProps = dispatch => ({
   createBooking: booking => dispatch(bookingAction.requestBooking(booking)),
-  createConvo: data => dispatch(convoActions.newConvo(data))
+  createConvo: data => dispatch(convoActions.newConvo(data)),
+  updateAvatar: file => dispatch(profileAction.updateAvatar(file))
 })
 
 

@@ -17,8 +17,10 @@ class AvatarForm extends React.Component {
   onChange(e) {
     let {files} = e.target;
     let avatar = files[0]
+    console.log('__FILE__', files)
+
     this.setState({
-      avatar
+      avatar: avatar
     })
     util.photoToDataURL(avatar)
     .then(preview => this.setState({preview}))
@@ -28,7 +30,7 @@ class AvatarForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     if(this.state.avatar === '') return this.setState({error: true});
-    this.props.complete(this.state);
+    this.props.onComplete(this.state.avatar);
   }
   render() {
     return(
