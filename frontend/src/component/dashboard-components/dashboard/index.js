@@ -32,12 +32,26 @@ class Dashboard extends React.Component {
     {queryResults: []};
 
     this.executeSearch = this.executeSearch.bind(this);
+    this.useCityLocation = this.useCityLocation.bind(this);
   }
 
   componentWillMount() {
     if(this.props.profileQuery) {
       return this.setState({queryResults: this.props.profileQuery})
     }
+  }
+
+  useCityLocation(prop) {
+    let {state, city} = prop;
+    return new Promise((resolve, reject) => {
+      superagent.get(`https://maps.google.com/maps/api/geocode/json?address=\+${city},+${state}`)
+      .end((error, res) => {
+        if(error) reject({error});
+        let {lat, lng} = res.body.results[0].geometry.location;
+        prop.location = [parseFloat(lng), parseFloat(lat)];
+        resolve(prop);
+      });
+    });
   }
 
   executeSearch(query) {
@@ -49,12 +63,15 @@ class Dashboard extends React.Component {
     query.startDate = query.startDate.toString();
     query.endDate = query.endDate.toString();
 
-    superagent.get(`${__API_URL__}/api/userQuery`)
-    .set('Authorization', `Bearer ${this.props.token}`)
-    .query(query)
-    .then(res => {
-      this.props.profileSearch(res.body);
-      this.setState({queryResults: res.body});
+    this.useCityLocation(query)
+    .then(queryObj => {
+      return superagent.get(`${__API_URL__}/api/userQuery`)
+      .set('Authorization', `Bearer ${this.props.token}`)
+      .query(query)
+      .then(res => {
+        this.props.profileSearch(res.body);
+        this.setState({queryResults: res.body});
+      })
     })
   }
 
